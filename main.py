@@ -1,6 +1,8 @@
 from src.Workflow.WorkflowManager import WorkflowManager
-from src.Database.DatabaseManager import DatabaseManager
+from src.Files.FileManager import FileManager
 
-database = DatabaseManager()
-workflow = WorkflowManager(database)
-workflow.InitWorkflowDatabase()
+#TODO modify methods names to correspond standards
+fileManager = FileManager()
+workflow = WorkflowManager()
+workflow.StoreDepartments(fileManager)
+

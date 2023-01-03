@@ -1,8 +1,6 @@
-from src.Database import DatabaseManager
-
 class WorkflowManager :
-    def __init__(self, DatabaseManager) :
-        self.DatabaseManager = DatabaseManager
+    def __init__(self) :
+        pass
 
-    def InitWorkflowDatabase(self) :
-        self.DatabaseManager.InitDatabase()
+    def StoreDepartments(self, fileManager) :
+        fileManager.ImportCandidatesDatas()

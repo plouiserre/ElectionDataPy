@@ -5,10 +5,13 @@ class FileManager :
         pass
     
     def ImportCandidatesDatas(self):
-        path_file = "/Users/plouiserre/Projects/ElectionDataPy/files/candidates.xlsx"
-        data = pd.read_excel(path_file, header=None)
+        #TODO put a relative path
+        path_file = "C:\\Users\\ploui\\Projects\\ElectionDataPy\\files\\candidates.xlsx"
+        data = pd.read_excel(path_file, index_col=None, header=None)
         candidates = [] 
-        for candidate in data.values :
+        for i, candidate in enumerate(data.values) :
+            if i == 0 : 
+                continue
             can = str(candidate)
             candidates.append(can)
         return candidates

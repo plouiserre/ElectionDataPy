@@ -16,7 +16,8 @@ USE ELECTIONSCONGRESSMANS;
 -- 1 Department
 CREATE TABLE IF NOT EXISTS DEPARTMENT(
     DepartmentId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    DepartmentName VARCHAR(25)
+    DepartmentName VARCHAR(50),
+    DepartmentNumber INT
 );
 
 -- 2 Party

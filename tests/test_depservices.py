@@ -1,6 +1,11 @@
 import unittest
+from unittest.mock import patch
 
 from src.Services.DepartmentServices import DepartmentServices
+
+from src.Repository.DepartmentRepository import DepartmentRepository
+
+#mutualise some code (declaration)
 
 class DepartmentServicesTest(unittest.TestCase):
     
@@ -9,13 +14,14 @@ class DepartmentServicesTest(unittest.TestCase):
         second_candidate = "['59' 'Nord' '13' '13ème circonscription' 2 43 'M' 'BÉZINE' 'Clément'\n datetime.datetime(1983, 12, 22, 0, 0) 'DXG'\n 'Professeur, profession scientifique' 'Non' 'M' 'WARINGHEM' 'Jean-Luc'\n datetime.datetime(1957, 3, 26, 0, 0) 'Non']"
         candidates = [first_candidate, second_candidate]
         
+        dep_repo = DepartmentRepository()
         dep = DepartmentServices()
-        departments = dep.Manage_Departments(candidates)
+        departments = dep.Manage_Departments(candidates, dep_repo)
         
         self.assertEqual(2, len(departments))
-        self.assertEqual(2, departments[0].id)
+        self.assertEqual(2, departments[0].number)
         self.assertEqual("Aisne", departments[0].name)
-        self.assertEqual(59, departments[1].id)
+        self.assertEqual(59, departments[1].number)
         self.assertEqual("Nord", departments[1].name)
         
         
@@ -28,21 +34,22 @@ class DepartmentServicesTest(unittest.TestCase):
         sixth_candidate = "['59' 'Nord' '13' '13ème circonscription' 2 43 'M' 'BÉZINE' 'Clément'\n datetime.datetime(1983, 12, 22, 0, 0) 'DXG'\n 'Professeur, profession scientifique' 'Non' 'M' 'WARINGHEM' 'Jean-Luc'\n datetime.datetime(1957, 3, 26, 0, 0) 'Non']"
         candidates = [first_candidate, second_candidate, third_candidate, fourth_candidate, fifth_candidate, sixth_candidate]
         
+        dep_repo = DepartmentRepository()
         dep = DepartmentServices()
-        departments = dep.Manage_Departments(candidates)
+        departments = dep.Manage_Departments(candidates, dep_repo)
         
         self.assertEqual(6, len(candidates))
-        self.assertEqual(1, departments[0].id)
+        self.assertEqual(1, departments[0].number)
         self.assertEqual("Ain", departments[0].name)
-        self.assertEqual(2, departments[1].id)
+        self.assertEqual(2, departments[1].number)
         self.assertEqual("Aisne", departments[1].name)
-        self.assertEqual(4, departments[2].id)
+        self.assertEqual(4, departments[2].number)
         self.assertEqual("Alpes-de-Haute-Provence", departments[2].name)
-        self.assertEqual(6, departments[3].id)
+        self.assertEqual(6, departments[3].number)
         self.assertEqual("Alpes-Maritimes", departments[3].name)
-        self.assertEqual(10, departments[4].id)
+        self.assertEqual(10, departments[4].number)
         self.assertEqual("Aube", departments[4].name)
-        self.assertEqual(59, departments[5].id)
+        self.assertEqual(59, departments[5].number)
         self.assertEqual("Nord", departments[5].name)
         
     def test_construct_departments_neighbourg_candidates(self) :
@@ -56,19 +63,30 @@ class DepartmentServicesTest(unittest.TestCase):
         eight_candidate = "['59' 'Nord' '13' '13ème circonscription' 2 43 'M' 'BÉZINE' 'Clément'\n datetime.datetime(1983, 12, 22, 0, 0) 'DXG'\n 'Professeur, profession scientifique' 'Non' 'M' 'WARINGHEM' 'Jean-Luc'\n datetime.datetime(1957, 3, 26, 0, 0) 'Non']"
         candidates = [first_candidate, second_candidate, third_candidate, fourth_candidate, fifth_candidate, sixth_candidate,seventh_candidate, eight_candidate]
         
+        dep_repo = DepartmentRepository()
         dep = DepartmentServices()
-        departments = dep.Manage_Departments(candidates)
+        departments = dep.Manage_Departments(candidates, dep_repo)
         
-        self.assertEqual(6, len(candidates))
-        self.assertEqual(1, departments[0].id)
+        self.assertEqual(6, len(departments ))
+        self.assertEqual(1, departments[0].number)
         self.assertEqual("Ain", departments[0].name)
-        self.assertEqual(2, departments[1].id)
+        self.assertEqual(2, departments[1].number)
         self.assertEqual("Aisne", departments[1].name)
-        self.assertEqual(4, departments[2].id)
+        self.assertEqual(4, departments[2].number)
         self.assertEqual("Alpes-de-Haute-Provence", departments[2].name)
-        self.assertEqual(6, departments[3].id)
+        self.assertEqual(6, departments[3].number)
         self.assertEqual("Alpes-Maritimes", departments[3].name)
-        self.assertEqual(10, departments[4].id)
+        self.assertEqual(10, departments[4].number)
         self.assertEqual("Aube", departments[4].name)
-        self.assertEqual(59, departments[5].id)
+        self.assertEqual(59, departments[5].number)
         self.assertEqual("Nord", departments[5].name)
+        
+        
+    @patch.object(DepartmentRepository,'Save_Departments')
+    def test_deparments_repository_save_departments_called(self, mock_departmentrepository) : 
+        dep_repo = DepartmentRepository()
+        department_services = DepartmentServices()
+        
+        department_services.Manage_Departments([], dep_repo)
+        
+        self.assertTrue(mock_departmentrepository.called)

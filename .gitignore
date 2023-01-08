@@ -128,4 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# folder where I save my data files for the program
 files/

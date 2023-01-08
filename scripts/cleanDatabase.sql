@@ -1,1 +1,1 @@
-TRUNCATE TABLE DEPARTMENT
+DELETE FROM electionscongressmans.department

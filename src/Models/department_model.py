@@ -2,8 +2,8 @@ class DepartmentModel :
     def __init__(self) : 
         self.number = 0
         self.name = ''
+        self.id = 0
         
-#TODO add self.id
     def to_department_model(self, data):
         data = data.replace('[','')
         data = data.replace(']','')

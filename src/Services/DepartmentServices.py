@@ -2,23 +2,21 @@ from src.Models.department_model import DepartmentModel
 
 class DepartmentServices :
     def __init__(self) :
-        pass
+        self.departments = []
     
     #TODO put departments in elements of the class and not return of this method or delete the test needed that
-    def Manage_Departments(self, candidates, department_repository):
-        departments = []
+    def manage_departments(self, candidates, department_repository):
         for candidate in candidates :
             department = DepartmentModel()
             department.to_department_model(candidate)
-            is_exists = self.deparment_exists(departments, department.number)
+            is_exists = self.deparment_exists(department.number)
             if is_exists == False :
-                departments.append(department)      
-        department_repository.Save_Departments(departments)
-        return departments
+                self.departments.append(department)      
+        department_repository.save_departments(self.departments)
     
-    def deparment_exists(self, departments, number) :
+    def deparment_exists(self, number) :
         is_exist = False
-        for deparment in departments:
+        for deparment in self.departments:
             if deparment.number == number :
                 is_exist = True
                 break

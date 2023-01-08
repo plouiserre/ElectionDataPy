@@ -16,7 +16,7 @@ class DepartmentServicesTest(unittest.TestCase):
         
         dep_repo = DepartmentRepository()
         dep = DepartmentServices()
-        departments = dep.Manage_Departments(candidates, dep_repo)
+        departments = dep.manage_departments(candidates, dep_repo)
         
         self.assertEqual(2, len(departments))
         self.assertEqual(2, departments[0].number)
@@ -36,7 +36,7 @@ class DepartmentServicesTest(unittest.TestCase):
         
         dep_repo = DepartmentRepository()
         dep = DepartmentServices()
-        departments = dep.Manage_Departments(candidates, dep_repo)
+        departments = dep.manage_departments(candidates, dep_repo)
         
         self.assertEqual(6, len(candidates))
         self.assertEqual(1, departments[0].number)
@@ -65,7 +65,7 @@ class DepartmentServicesTest(unittest.TestCase):
         
         dep_repo = DepartmentRepository()
         dep = DepartmentServices()
-        departments = dep.Manage_Departments(candidates, dep_repo)
+        departments = dep.manage_departments(candidates, dep_repo)
         
         self.assertEqual(6, len(departments ))
         self.assertEqual(1, departments[0].number)
@@ -82,11 +82,11 @@ class DepartmentServicesTest(unittest.TestCase):
         self.assertEqual("Nord", departments[5].name)
         
         
-    @patch.object(DepartmentRepository,'Save_Departments')
+    @patch.object(DepartmentRepository,'save_departments')
     def test_deparments_repository_save_departments_called(self, mock_departmentrepository) : 
         dep_repo = DepartmentRepository()
         department_services = DepartmentServices()
         
-        department_services.Manage_Departments([], dep_repo)
+        department_services.manage_departments([], dep_repo)
         
         self.assertTrue(mock_departmentrepository.called)

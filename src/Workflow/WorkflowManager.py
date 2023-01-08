@@ -4,7 +4,7 @@ class WorkflowManager :
     def __init__(self) :
         pass
 
-    def StoreDepartments(self, fileManager, departmentService) :
+    def store_departments(self, fileManager, departmentService) :
         department_repository = DepartmentRepository()
-        candidates = fileManager.ImportCandidatesDatas()
-        departmentService.Manage_Departments(candidates, department_repository)
+        candidates = fileManager.import_candidates_datas()
+        departmentService.manage_departments(candidates, department_repository)

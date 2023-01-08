@@ -1,8 +1,10 @@
-from src.Database import DatabaseManager
+from src.Repository.DepartmentRepository import DepartmentRepository
 
 class WorkflowManager :
-    def __init__(self, DatabaseManager) :
-        self.DatabaseManager = DatabaseManager
+    def __init__(self) :
+        pass
 
-    def InitWorkflowDatabase(self) :
-        self.DatabaseManager.InitDatabase()
+    def store_departments(self, fileManager, departmentService) :
+        department_repository = DepartmentRepository()
+        candidates = fileManager.import_candidates_datas()
+        departmentService.manage_departments(candidates, department_repository)

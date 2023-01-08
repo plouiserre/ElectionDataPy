@@ -1,6 +1,8 @@
 from src.Workflow.WorkflowManager import WorkflowManager
-from src.Database.DatabaseManager import DatabaseManager
+from src.Files.FileManager import FileManager
+from src.Services.DepartmentServices import DepartmentServices
 
-database = DatabaseManager()
-workflow = WorkflowManager(database)
-workflow.InitWorkflowDatabase()
+fileManager = FileManager()
+workflow = WorkflowManager()
+departmentServices = DepartmentServices()
+workflow.store_departments(fileManager, departmentServices)

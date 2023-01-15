@@ -1,17 +1,17 @@
-from src.Models.department_model import DepartmentModel
+from src.Models.DepartmentModel import DepartmentModel
 
 class DepartmentServices :
     def __init__(self) :
         self.departments = []
     
-    #TODO put departments in elements of the class and not return of this method or delete the test needed that
+    #TODO check name is ok about the s of the end of the class or update the name
     def manage_departments(self, candidates, department_repository):
         for candidate in candidates :
             department = DepartmentModel()
             department.to_department_model(candidate)
             is_exists = self.deparment_exists(department.number)
             if is_exists == False :
-                self.departments.append(department)      
+                self.departments.append(department)   
         department_repository.save_departments(self.departments)
     
     def deparment_exists(self, number) :

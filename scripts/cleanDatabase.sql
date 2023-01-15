@@ -1,1 +1,2 @@
-DELETE FROM electionscongressmans.department
+DELETE FROM electionscongressmans.department;
+DELETE FROM electionscongressmans.district;

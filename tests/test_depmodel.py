@@ -1,5 +1,5 @@
 import unittest
-from src.Models.department_model import DepartmentModel
+from src.Models.DepartmentModel import DepartmentModel
 
 class DepartmentModelTest(unittest.TestCase):
 
@@ -65,6 +65,7 @@ class DepartmentModelTest(unittest.TestCase):
         self.assertEqual(974, model.number)
         self.assertEqual("La Réunion", model.name)
         
+        
     def test_to_department_model_mayotte(self):
         model = DepartmentModel()
         
@@ -72,6 +73,7 @@ class DepartmentModelTest(unittest.TestCase):
         
         self.assertEqual(976, model.number)
         self.assertEqual("Mayotte", model.name)
+        
         
     def test_to_department_model_nouvelle_caledonie(self):
         model = DepartmentModel()
@@ -81,6 +83,7 @@ class DepartmentModelTest(unittest.TestCase):
         self.assertEqual(988, model.number)
         self.assertEqual("Nouvelle-Calédonie", model.name)
         
+        
     def test_to_department_model_polynesie_francaise(self):
         model = DepartmentModel()
         
@@ -88,6 +91,7 @@ class DepartmentModelTest(unittest.TestCase):
         
         self.assertEqual(987, model.number)
         self.assertEqual("Polynésie française", model.name)
+        
         
     def test_to_department_model_saint_pierre_et_miquelon(self):
         model = DepartmentModel()

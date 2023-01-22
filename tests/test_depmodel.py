@@ -21,6 +21,22 @@ class DepartmentModelTest(unittest.TestCase):
         self.assertEqual("Aisne", model.name)
         
         
+    def test_to_deparment_model_territoires_de_belfort(self):
+        model = DepartmentModel()
+        model.to_department_model("['90' 'Territoire de Belfort' '01' '1ère circonscription' 1 12 'M'\n 'GRUDLER' 'Thiebaud' datetime.datetime(1993, 4, 16, 0, 0) 'ENS'\n 'Personne diverse sans activité professionnelle de moins de 60 ans (sauf retraité)'\n 'Non' 'F' 'GROSDIDIER' 'Maggy' datetime.datetime(1986, 11, 14, 0, 0)\n 'Non']")
+        
+        self.assertEqual(90, model.number)
+        self.assertEqual("Territoire de Belfort", model.name)
+        
+        
+    def test_to_department_model_cotes_d_or(self) : 
+        model = DepartmentModel()
+        model.to_department_model('[\'21\' "Côte-d\'Or" \'01\' \'1ère circonscription\' 1 34 \'M\' \'MARTIN\' \'Didier\'\n datetime.datetime(1956, 8, 20, 0, 0) \'ENS\'\n \'Profession intermédiaire de la santé et du travail social\' \'Oui\' \'F\'\n \'REFAIT-ALEXANDRE\' \'Catherine\' datetime.datetime(1972, 9, 29, 0, 0) \'Non\']')
+
+        self.assertEqual(21, model.number)        
+        self.assertEqual("Côte-d'Or", model.name)
+        
+        
     def test_to_department_model_corsica(self):
         model = DepartmentModel()
         

@@ -1,6 +1,7 @@
 import unittest
 
 from src.Models.DistrictModel import DistrictModel
+from src.Models.DepartmentModel import DepartmentModel
 
 class DistrictModelTest(unittest.TestCase):
     

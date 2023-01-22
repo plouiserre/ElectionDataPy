@@ -21,10 +21,10 @@ class DepartmentServicesTest(unittest.TestCase):
         departments = dep.departments
         
         self.assertEqual(2, len(departments))
-        self.assertEqual(2, departments[0].number)
-        self.assertEqual("Aisne", departments[0].name)
-        self.assertEqual(59, departments[1].number)
-        self.assertEqual("Nord", departments[1].name)
+        self.assertEqual(2, departments[2].number)
+        self.assertEqual("Aisne", departments[2].name)
+        self.assertEqual(59, departments[59].number)
+        self.assertEqual("Nord", departments[59].name)
         
         
     def test_construct_departments_many_candidates(self) :
@@ -37,18 +37,18 @@ class DepartmentServicesTest(unittest.TestCase):
         departments = dep.departments
         
         self.assertEqual(6, len(candidates))
-        self.assertEqual(1, departments[0].number)
-        self.assertEqual("Ain", departments[0].name)
-        self.assertEqual(2, departments[1].number)
-        self.assertEqual("Aisne", departments[1].name)
-        self.assertEqual(4, departments[2].number)
-        self.assertEqual("Alpes-de-Haute-Provence", departments[2].name)
-        self.assertEqual(6, departments[3].number)
-        self.assertEqual("Alpes-Maritimes", departments[3].name)
-        self.assertEqual(10, departments[4].number)
-        self.assertEqual("Aube", departments[4].name)
-        self.assertEqual(59, departments[5].number)
-        self.assertEqual("Nord", departments[5].name)
+        self.assertEqual(1, departments[1].number)
+        self.assertEqual("Ain", departments[1].name)
+        self.assertEqual(2, departments[2].number)
+        self.assertEqual("Aisne", departments[2].name)
+        self.assertEqual(4, departments[4].number)
+        self.assertEqual("Alpes-de-Haute-Provence", departments[4].name)
+        self.assertEqual(6, departments[6].number)
+        self.assertEqual("Alpes-Maritimes", departments[6].name)
+        self.assertEqual(10, departments[10].number)
+        self.assertEqual("Aube", departments[10].name)
+        self.assertEqual(59, departments[59].number)
+        self.assertEqual("Nord", departments[59].name)
         
     def test_construct_departments_neighbourg_candidates(self) :
         helper = HelperTest()
@@ -60,18 +60,18 @@ class DepartmentServicesTest(unittest.TestCase):
         departments = dep.departments
         
         self.assertEqual(6, len(departments ))
-        self.assertEqual(1, departments[0].number)
-        self.assertEqual("Ain", departments[0].name)
-        self.assertEqual(2, departments[1].number)
-        self.assertEqual("Aisne", departments[1].name)
-        self.assertEqual(4, departments[2].number)
-        self.assertEqual("Alpes-de-Haute-Provence", departments[2].name)
-        self.assertEqual(6, departments[3].number)
-        self.assertEqual("Alpes-Maritimes", departments[3].name)
-        self.assertEqual(10, departments[4].number)
-        self.assertEqual("Aube", departments[4].name)
-        self.assertEqual(59, departments[5].number)
-        self.assertEqual("Nord", departments[5].name)
+        self.assertEqual(1, departments[1].number)
+        self.assertEqual("Ain", departments[1].name)
+        self.assertEqual(2, departments[2].number)
+        self.assertEqual("Aisne", departments[2].name)
+        self.assertEqual(4, departments[4].number)
+        self.assertEqual("Alpes-de-Haute-Provence", departments[4].name)
+        self.assertEqual(6, departments[6].number)
+        self.assertEqual("Alpes-Maritimes", departments[6].name)
+        self.assertEqual(10, departments[10].number)
+        self.assertEqual("Aube", departments[10].name)
+        self.assertEqual(59, departments[59].number)
+        self.assertEqual("Nord", departments[59].name)
         
         
     @patch.object(DepartmentRepository,'save_departments')

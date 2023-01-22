@@ -12,13 +12,13 @@ class DistrictServices :
            department_id = 0
            #TODO externalize in a new methods
            department_name = candidate.split(' ')[1].replace('\'','')
-           for department in departments : 
-                if department_name == department.name : 
-                    department_id = department.id
+           for department_number in departments : 
+                if department_name == departments[department_number].name : 
+                    department_id = departments[department_number].id
                     break
                 else :
                     continue 
-           district.to_district_model(candidate, department_id)
+           district.to_district_model(candidate, department_id, departments)
            is_exists = self.district_exists(district.number, district.department_id)
            if is_exists == False :                 
                 self.districts.append(district)

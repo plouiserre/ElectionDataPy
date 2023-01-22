@@ -23,7 +23,9 @@ class DistrictServicesTest(unittest.TestCase):
         second_department.id = 67
         second_department.name = "Nord"
         second_department.number = 59
-        departments = [first_department, second_department]
+        departments = {} 
+        departments.update({first_department.number : first_department}) 
+        departments.update({second_department.number : second_department})
         
         dis_repo = Mock()
         dis = DistrictServices()
@@ -66,7 +68,13 @@ class DistrictServicesTest(unittest.TestCase):
         sixth_department.id = 70
         sixth_department.name = "Nord"
         sixth_department.number = 59
-        departments = [first_department, second_department, third_department, fourth_department, fifth_department,sixth_department]
+        departments = {} 
+        departments.update({first_department.number : first_department}) 
+        departments.update({second_department.number : second_department})
+        departments.update({third_department.number : third_department}) 
+        departments.update({fourth_department.number : fourth_department})
+        departments.update({fifth_department.number : fifth_department}) 
+        departments.update({sixth_department.number : sixth_department})
         
         dis_repo = Mock()
         dis = DistrictServices()
@@ -121,7 +129,13 @@ class DistrictServicesTest(unittest.TestCase):
         sixth_department.id = 70
         sixth_department.name = "Nord"
         sixth_department.number = 59
-        departments = [first_department, second_department, third_department, fourth_department, fifth_department,sixth_department]
+        departments = {} 
+        departments.update({first_department.number : first_department}) 
+        departments.update({second_department.number : second_department})
+        departments.update({third_department.number : third_department}) 
+        departments.update({fourth_department.number : fourth_department})
+        departments.update({fifth_department.number : fifth_department}) 
+        departments.update({sixth_department.number : sixth_department})
         
         dis_repo = Mock()
         dis = DistrictServices()

@@ -4,11 +4,20 @@ class DepartmentModel :
         self.name = ''
         self.id = 0
         
+#TODO correct bug for  departments : 94 "Val d'Oise" and 20 "Côte-dOr" and 21 "Côtes-dArmor"
+#TODO create a clean method to put all replace code
     def to_department_model(self, data):
+        old_data = data
         data = data.replace('[','')
-        data = data.replace(']','')
-        datas = data.split(' ')
+        data = data.replace(']','')         
+        data = data.replace("\"","'")
+        data = data.replace('\' \'','_')
+        #data = data.replace('\'','')
+        datas = data.split('_')
+        
         id = datas[0].replace('\'','')
+        if id =="21":
+            print("hello")
         if id == '2A' or id == '2B' : 
             self.number = 20
             self.name = "Corse"
@@ -48,5 +57,6 @@ class DepartmentModel :
         else :
             id_clean = datas[0].replace('\'','')            
             self.number = int(id_clean)
-            self.name  = datas[1].replace('\'','')
+            #self.name  = datas[1].replace('\'','')
+            self.name = datas[1]
             

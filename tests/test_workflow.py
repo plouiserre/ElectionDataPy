@@ -17,8 +17,10 @@ class WorkflowTest(unittest.TestCase):
         departmentService_mock.manage_departments() 
         district_service_mock = Mock()
         district_service_mock.import_candidates_datas()
+        panda_mock = Mock()
         
-        workflow.store_departments(filemanager_mock, departmentService_mock, district_service_mock)
+        
+        workflow.store_departments(filemanager_mock, departmentService_mock, district_service_mock, panda_mock)
         
         self.assertTrue(filemanager_mock.import_candidates_datas.called)
         self.assertTrue(departmentService_mock.manage_departments.called)

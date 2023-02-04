@@ -18,7 +18,7 @@ class DistrictServices :
                     break
                 else :
                     continue 
-           district.to_district_model(candidate, department_id, departments)
+           district.to_district_model(candidate, department_id)
            is_exists = self.district_exists(district.number, district.department_id)
            if is_exists == False :                 
                 self.districts.append(district)

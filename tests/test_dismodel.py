@@ -38,7 +38,7 @@ class DistrictModelTest(unittest.TestCase):
     def test_to_district_with_department_name_apostrophe(self) : 
         model = DistrictModel()
         
-        model.to_district_model('[\'21\' "Côte-d\'Or" \'01\' \'1ère circonscription\' 1 34 \'M\' \'MARTIN\' \'Didier\'\n datetime.datetime(1956, 8, 20, 0, 0) \'ENS\'\n \'Profession intermédiaire de la santé et du travail social\' \'Oui\' \'F\'\n \'REFAIT-ALEXANDRE\' \'Catherine\' datetime.datetime(1972, 9, 29, 0, 0) \'Non\']', 21)
+        model.to_district_model("['21' 'Côte-d\'Or' '01' '1ère circonscription' 1 34 'M' 'MARTIN' 'Didier'\n datetime.datetime(1956, 8, 20, 0, 0) 'ENS'\n 'Profession intermédiaire de la santé et du travail social' 'Oui' 'F'\n 'REFAIT-ALEXANDRE' 'Catherine' datetime.datetime(1972, 9, 29, 0, 0) 'Non']", 21)
         
         self.assertEqual(1, model.number)
         self.assertEqual("1ère circonscription", model.name)

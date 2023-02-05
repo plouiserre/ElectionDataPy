@@ -10,7 +10,9 @@ class DistrictModel :
     def to_district_model(self, data, department_id) :         
         data = data.replace('[','')
         data = data.replace(']','')
-        data = data.replace('\' \'','_')
+        data = data.replace('\' \'','_')        
+        data = data.replace('\' ','_')        
+        data = data.replace(' \'','_')
         data = self.clean_data(data)
         datas = data.split('_')
         district_number = datas[2]

@@ -6,9 +6,15 @@ class DepartmentModel :
         
     def to_department_model(self, data):
         data = data.replace('[','')
-        data = data.replace(']','')
-        datas = data.split(' ')
+        data = data.replace(']','')         
+        data = data.replace("\"","'")
+        data = data.replace('\' \'','_')        
+        data = data.replace('\' ','_')        
+        data = data.replace(' \'','_')
+        datas = data.split('_')
+        
         id = datas[0].replace('\'','')
+      
         if id == '2A' or id == '2B' : 
             self.number = 20
             self.name = "Corse"
@@ -34,7 +40,7 @@ class DepartmentModel :
             self.name = "Polynésie française"
             self.number = 987
         elif id == "ZS" : 
-            self.name = "Saint Pierre et Miquelon"
+            self.name = "Saint-Pierre-et-Miquelon"
             self.number = 975
         elif id == "ZW" : 
             self.name = "Wallis et Futuna"
@@ -48,5 +54,5 @@ class DepartmentModel :
         else :
             id_clean = datas[0].replace('\'','')            
             self.number = int(id_clean)
-            self.name  = datas[1].replace('\'','')
+            self.name = datas[1]
             

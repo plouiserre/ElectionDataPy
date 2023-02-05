@@ -1,10 +1,9 @@
-#TODO add some attributes to improve quality code
 class FileManager : 
     def __init__(self):
         pass
     
     def import_candidates_datas(self, pd):
-        #TODO put a relative path
+        #TODO the path in configuration file
         path_file = "C:\\Users\\ploui\\Projects\\ElectionDataPy\\files\\candidates.xlsx"
         data = pd.read_excel(path_file)
         candidates = [] 

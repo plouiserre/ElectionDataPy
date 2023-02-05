@@ -1,3 +1,5 @@
+from src.Models.DepartmentModel import DepartmentModel
+
 class HelperTest : 
     def __init__(self) :
         pass
@@ -35,4 +37,39 @@ class HelperTest :
         second_candidate = "['2B' 'Haute-Corse' '13' '13ème circonscription' 2 43 'M' 'BÉZINE' 'Clément'\n datetime.datetime(1983, 12, 22, 0, 0) 'DXG'\n 'Professeur, profession scientifique' 'Non' 'M' 'WARINGHEM' 'Jean-Luc'\n datetime.datetime(1957, 3, 26, 0, 0) 'Non']"
         candidates = [first_candidate, second_candidate]
         return candidates
+        
+        
+    def get_six_departments(self) : 
+        first_department = DepartmentModel()
+        first_department.id = 65
+        first_department.name = "Ain"
+        first_department.number = 1
+        second_department = DepartmentModel()
+        second_department.id = 66
+        second_department.name = "Aisne"
+        second_department.number = 2
+        third_department = DepartmentModel()
+        third_department.id = 67
+        third_department.name = "Alpes-de-Haute-Provence"
+        third_department.number = 4
+        fourth_department = DepartmentModel()
+        fourth_department.id = 68
+        fourth_department.name = "Alpes-Maritimes"
+        fourth_department.number = 6
+        fifth_department = DepartmentModel()
+        fifth_department.id = 69
+        fifth_department.name = "Aube"
+        fifth_department.number = 10
+        sixth_department = DepartmentModel()
+        sixth_department.id = 70
+        sixth_department.name = "Nord"
+        sixth_department.number = 59
+        departments = {} 
+        departments.update({first_department.number : first_department}) 
+        departments.update({second_department.number : second_department})
+        departments.update({third_department.number : third_department}) 
+        departments.update({fourth_department.number : fourth_department})
+        departments.update({fifth_department.number : fifth_department}) 
+        departments.update({sixth_department.number : sixth_department})
+        return departments
         

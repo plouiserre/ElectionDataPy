@@ -1,15 +1,9 @@
-import mysql.connector
-
 class DepartmentRepository : 
-    def __init__(self) :
-        pass
+    def __init__(self, mydb) :
+        self.mydb = mydb
 
     def save_departments(self, departments) :    
-        mydb = mysql.connector.connect(
-            host="localhost",
-            user="ElectionsCongressmans",
-            password="ASimpleP@ssW0rd"
-        )
+        mydb = self.mydb.get_my_db()
         
         mycursor = mydb.cursor()
         for department_number in departments : 

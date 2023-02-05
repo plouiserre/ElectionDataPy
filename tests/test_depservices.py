@@ -1,24 +1,21 @@
 import unittest
+from mock import Mock
 from unittest.mock import patch
+
+from src.Repository.DepartmentRepository import DepartmentRepository
+from src.Repository.mydb import MyDb
 
 from src.Services.DepartmentServices import DepartmentServices
 
-from src.Repository.DepartmentRepository import DepartmentRepository
-
 from tests.helper_test import HelperTest
 
-#TODO mock repository to prevent insert in database
-#TODO put an contrustor to factorize the code
-
-class DepartmentServicesTest(unittest.TestCase):
+class DepartmentServicesTest(unittest.TestCase):   
     def test_construct_departments_two_candidates(self) :
+        
         helper = HelperTest()
         candidates = helper.get_two_candidates()
         
-        dep_repo = DepartmentRepository()
-        dep = DepartmentServices()
-        dep.manage_departments(candidates, dep_repo)        
-        departments = dep.departments
+        departments = self.call_manage_departments(candidates)
         
         self.assertEqual(2, len(departments))
         self.assertEqual(2, departments[2].number)
@@ -31,10 +28,7 @@ class DepartmentServicesTest(unittest.TestCase):
         helper = HelperTest()
         candidates = helper.get_six_candidates()
         
-        dep_repo = DepartmentRepository()
-        dep = DepartmentServices()
-        dep.manage_departments(candidates, dep_repo)        
-        departments = dep.departments
+        departments = self.call_manage_departments(candidates)
         
         self.assertEqual(6, len(candidates))
         self.assertEqual(1, departments[1].number)
@@ -52,12 +46,9 @@ class DepartmentServicesTest(unittest.TestCase):
         
     def test_construct_departments_neighbourg_candidates(self) :
         helper = HelperTest()
-        candidates = helper.get_eigth_candidates()
-        
-        dep_repo = DepartmentRepository()
-        dep = DepartmentServices()
-        dep.manage_departments(candidates, dep_repo)        
-        departments = dep.departments
+        candidates = helper.get_eigth_candidates()        
+              
+        departments = self.call_manage_departments(candidates)
         
         self.assertEqual(6, len(departments ))
         self.assertEqual(1, departments[1].number)
@@ -74,9 +65,17 @@ class DepartmentServicesTest(unittest.TestCase):
         self.assertEqual("Nord", departments[59].name)
         
         
+    def call_manage_departments(self, candidates) : 
+        dep_repo = Mock()
+        dep = DepartmentServices()
+        dep.manage_departments(candidates, dep_repo)        
+        return dep.departments
+        
+        
     @patch.object(DepartmentRepository,'save_departments')
     def test_deparments_repository_save_departments_called(self, mock_departmentrepository) : 
-        dep_repo = DepartmentRepository()
+        mydb = MyDb()
+        dep_repo = DepartmentRepository(mydb)
         department_services = DepartmentServices()
         
         department_services.manage_departments([], dep_repo)

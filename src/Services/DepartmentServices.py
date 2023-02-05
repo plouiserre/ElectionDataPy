@@ -4,7 +4,6 @@ class DepartmentServices :
     def __init__(self) :
         self.departments = {}
     
-    #TODO check name is ok about the s of the end of the class or update the name
     def manage_departments(self, candidates, department_repository):
         for candidate in candidates :
             department = DepartmentModel()

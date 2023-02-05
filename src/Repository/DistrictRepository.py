@@ -1,16 +1,9 @@
-import mysql.connector
-
-#TODO externalise mydb code in a centrale class
 class DistrictRepository : 
-    def __init__(self):
-        pass
-    
+    def __init__(self, mydb):
+        self.mydb = mydb
+        
     def save_districts(self, districts) : 
-        mydb = mysql.connector.connect(
-            host="localhost",
-            user="ElectionsCongressmans",
-            password="ASimpleP@ssW0rd"
-        )
+        mydb = self.mydb.get_my_db()
         mycursor = mydb.cursor()
         for district in districts : 
             sql = "INSERT INTO ELECTIONSCONGRESSMANS.DISTRICT(DistrictName, Position, DepartmentId) VALUES (%s, %s, %s)"

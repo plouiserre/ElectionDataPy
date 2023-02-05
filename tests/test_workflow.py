@@ -7,10 +7,7 @@ from src.Services.DepartmentServices import DepartmentServices
 from src.Services.DistrictServices import DistrictServices
 
 class WorkflowTest(unittest.TestCase):
-    #TODO check if I can divide this test in three tests
     def test_call_workflow_called_external_methods(self):
-        workflow = WorkflowManager()
-        
         filemanager_mock = Mock()
         filemanager_mock.import_candidates_datas()
         departmentService_mock = Mock()
@@ -18,9 +15,10 @@ class WorkflowTest(unittest.TestCase):
         district_service_mock = Mock()
         district_service_mock.import_candidates_datas()
         panda_mock = Mock()
+        workflow = WorkflowManager(filemanager_mock, departmentService_mock, district_service_mock, panda_mock)        
         
         
-        workflow.store_departments(filemanager_mock, departmentService_mock, district_service_mock, panda_mock)
+        workflow.store_departments()
         
         self.assertTrue(filemanager_mock.import_candidates_datas.called)
         self.assertTrue(departmentService_mock.manage_departments.called)
@@ -29,11 +27,3 @@ class WorkflowTest(unittest.TestCase):
         
     if __name__ == "__main__":
         unittest.main()
-        
-    #TODO in workflowmanager improve test to fail with this stupide code 
-    '''   
-    department_repository = DepartmentRepository()
-        candidates = fileManager.import_candidates_datas()
-        departmentService.manage_departments(candidates, department_repository)
-        districtService.manage_districts()
-    '''

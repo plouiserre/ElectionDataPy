@@ -3,20 +3,21 @@ from src.Models.DistrictModel import DistrictModel
 class DistrictServices :
     def __init__(self) :
         self.districts = []
+        self.departments = []
     
-    #TODO improve this code
-    #TODO reduce parameters of this methods
     def manage_districts(self, candidates, departments, district_repository):
+        self.departments = departments
         for candidate in candidates :
            district = DistrictModel() 
            department_id = 0
-           department_name = self.get_department_name(candidate, departments)           
+           department_name = self.get_department_name(candidate)           
            for department_number in departments : 
-                if department_name == departments[department_number].name : 
-                    department_id = departments[department_number].id
+                if department_name == self.departments[department_number].name : 
+                    department_id = self.departments[department_number].id
                     break
                 elif department_name =="Corse-du-Sud" or department_name == "Haute-Corse" : 
-                    department_id = departments[20].id
+                    department_id = self.departments[20].id
+                    break
                 else :
                     continue 
            district.to_district_model(candidate, department_id)
@@ -26,11 +27,11 @@ class DistrictServices :
         district_repository.save_districts(self.districts)        
         
         
-    def get_department_name(self, candidate, departments) : 
+    def get_department_name(self, candidate) : 
         department_name = ''
-        for i in departments : 
-            if departments[i].name in candidate :
-                department_name = departments[i].name
+        for i in self.departments : 
+            if self.departments[i].name in candidate :
+                department_name = self.departments[i].name
                 break
         return department_name
                 

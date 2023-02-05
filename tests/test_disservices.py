@@ -6,12 +6,10 @@ from src.Services.DistrictServices import DistrictServices
 from src.Models.DepartmentModel import DepartmentModel
 
 from src.Repository.DistrictRepository import DistrictRepository
+from src.Repository.mydb import MyDb
 
 from tests.helper_test import HelperTest
 
-#TODO add departments in helper too
-#TODO mock to not called bdd
-#TODO factorize the code
 class DistrictServicesTest(unittest.TestCase): 
         
     def test_construct_districts_two_candidates(self) :
@@ -46,37 +44,7 @@ class DistrictServicesTest(unittest.TestCase):
     def test_construct_districts_many_candidates(self) : 
         helper = HelperTest()
         candidates = helper.get_six_candidates()
-        first_department = DepartmentModel()
-        first_department.id = 65
-        first_department.name = "Ain"
-        first_department.number = 1
-        second_department = DepartmentModel()
-        second_department.id = 66
-        second_department.name = "Aisne"
-        second_department.number = 2
-        third_department = DepartmentModel()
-        third_department.id = 67
-        third_department.name = "Alpes-de-Haute-Provence"
-        third_department.number = 4
-        fourth_department = DepartmentModel()
-        fourth_department.id = 68
-        fourth_department.name = "Alpes-Maritimes"
-        fourth_department.number = 6
-        fifth_department = DepartmentModel()
-        fifth_department.id = 69
-        fifth_department.name = "Aube"
-        fifth_department.number = 10
-        sixth_department = DepartmentModel()
-        sixth_department.id = 70
-        sixth_department.name = "Nord"
-        sixth_department.number = 59
-        departments = {} 
-        departments.update({first_department.number : first_department}) 
-        departments.update({second_department.number : second_department})
-        departments.update({third_department.number : third_department}) 
-        departments.update({fourth_department.number : fourth_department})
-        departments.update({fifth_department.number : fifth_department}) 
-        departments.update({sixth_department.number : sixth_department})
+        departments = helper.get_six_departments()
         
         dis_repo = Mock()
         dis = DistrictServices()
@@ -107,37 +75,7 @@ class DistrictServicesTest(unittest.TestCase):
     def test_construct_districts_neighbourg_candidates(self) :
         helper = HelperTest()
         candidates = helper.get_eigth_candidates()
-        first_department = DepartmentModel()
-        first_department.id = 65
-        first_department.name = "Ain"
-        first_department.number = 1
-        second_department = DepartmentModel()
-        second_department.id = 66
-        second_department.name = "Aisne"
-        second_department.number = 2
-        third_department = DepartmentModel()
-        third_department.id = 67
-        third_department.name = "Alpes-de-Haute-Provence"
-        third_department.number = 4
-        fourth_department = DepartmentModel()
-        fourth_department.id = 68
-        fourth_department.name = "Alpes-Maritimes"
-        fourth_department.number = 6
-        fifth_department = DepartmentModel()
-        fifth_department.id = 69
-        fifth_department.name = "Aube"
-        fifth_department.number = 10
-        sixth_department = DepartmentModel()
-        sixth_department.id = 70
-        sixth_department.name = "Nord"
-        sixth_department.number = 59
-        departments = {} 
-        departments.update({first_department.number : first_department}) 
-        departments.update({second_department.number : second_department})
-        departments.update({third_department.number : third_department}) 
-        departments.update({fourth_department.number : fourth_department})
-        departments.update({fifth_department.number : fifth_department}) 
-        departments.update({sixth_department.number : sixth_department})
+        departments = helper.get_six_departments()
         
         dis_repo = Mock()
         dis = DistrictServices()
@@ -236,33 +174,12 @@ class DistrictServicesTest(unittest.TestCase):
         self.assertEqual(1, districts[0].number)
         self.assertEqual("1ère circonscription", districts[0].name)
         self.assertEqual(666, districts[0].department_id)        
-    
-    #TODO delete if is useless
-    ''' def test_construct_district_saint_pierre_et_miquelon_candidate(self) :
-        candidate = "['ZS' 'Saint-Pierre-et-Miquelon' 1 'Saint-Pierre-et-Miquelon' 2 4 'M' 'LEBAILLY' 'Patrick' '1965-05-08 00:00:00' 'DVG' 'Employé civil et agent de service de la fonction publique' 'Non' 'M' 'BRIAND' 'Emmanuel' '1978-01-13 00:00:00' 'Non']"
-        candidates = []
-        candidates.append(candidate)
-        first_department = DepartmentModel()
-        first_department.id = 666
-        first_department.name = "Saint-Pierre-et-Miquelon"
-        first_department.number = 21
-        departments = {} 
-        departments.update({first_department.number : first_department}) 
-        
-        dis_repo = Mock()
-        dis = DistrictServices()
-        dis.manage_districts(candidates, departments, dis_repo)    
-        districts = dis.districts
-        
-        self.assertEqual(1, len(districts))
-        self.assertEqual(1, districts[0].number)
-        self.assertEqual("1ère circonscription", districts[0].name)
-        self.assertEqual(666, districts[0].department_id)  '''
         
     
     @patch.object(DistrictRepository, 'save_districts')
     def test_districts_repository_save_districts_called(self, mock_districtrepository) :
-        dis_repo = DistrictRepository()
+        mydb = MyDb()
+        dis_repo = DistrictRepository(mydb)
         district_services = DistrictServices()
         
         district_services.manage_districts([],[],dis_repo)

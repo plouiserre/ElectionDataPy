@@ -1,4 +1,5 @@
 from src.Models.DistrictModel import DistrictModel
+from src.Factory.CreatorDistrict import CreatorDistrict
 
 class DistrictServices :
     def __init__(self) :
@@ -7,8 +8,9 @@ class DistrictServices :
     
     def manage_districts(self, candidates, departments, district_repository):
         self.departments = departments
+        
         for candidate in candidates :
-           district = DistrictModel() 
+           creator_district = CreatorDistrict()
            department_id = 0
            department_name = self.get_department_name(candidate)           
            for department_number in departments : 
@@ -20,7 +22,9 @@ class DistrictServices :
                     break
                 else :
                     continue 
-           district.to_district_model(candidate, department_id)
+           district = DistrictModel() 
+           district = creator_district.factory_method(candidate)
+           district.department_id = department_id
            is_exists = self.district_exists(district.number, district.department_id)
            if is_exists == False :                 
                 self.districts.append(district)

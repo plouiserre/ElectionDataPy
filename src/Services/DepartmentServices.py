@@ -1,4 +1,5 @@
 from src.Models.DepartmentModel import DepartmentModel
+from src.Factory.CreatorDepartment import CreatorDepartment
 
 class DepartmentServices :
     def __init__(self) :
@@ -6,8 +7,9 @@ class DepartmentServices :
     
     def manage_departments(self, candidates, department_repository):
         for candidate in candidates :
+            department_creator = CreatorDepartment()
             department = DepartmentModel()
-            department.to_department_model(candidate)
+            department = department_creator.factory_method(candidate)
             is_exists = self.deparment_exists(department.number)
             if is_exists == False :
                 self.departments.update({department.number: department})   

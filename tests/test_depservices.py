@@ -10,10 +10,9 @@ from src.Services.DepartmentServices import DepartmentServices
 from tests.helper_test import HelperTest
 
 class DepartmentServicesTest(unittest.TestCase):   
-    def test_construct_departments_two_candidates(self) :
-        
+    def test_construct_departments_two_candidates(self) :        
         helper = HelperTest()
-        candidates = helper.get_two_candidates()
+        candidates = helper.get_two_candidates_data_model()
         
         departments = self.call_manage_departments(candidates)
         
@@ -26,7 +25,7 @@ class DepartmentServicesTest(unittest.TestCase):
         
     def test_construct_departments_many_candidates(self) :
         helper = HelperTest()
-        candidates = helper.get_six_candidates()
+        candidates = helper.get_six_candidates_data_model()
         
         departments = self.call_manage_departments(candidates)
         
@@ -46,7 +45,7 @@ class DepartmentServicesTest(unittest.TestCase):
         
     def test_construct_departments_neighbourg_candidates(self) :
         helper = HelperTest()
-        candidates = helper.get_eigth_candidates()        
+        candidates = helper.get_eight_candidates_data_model()        
               
         departments = self.call_manage_departments(candidates)
         
@@ -81,3 +80,6 @@ class DepartmentServicesTest(unittest.TestCase):
         department_services.manage_departments([], dep_repo)
         
         self.assertTrue(mock_departmentrepository.called)
+        
+    if __name__ == "__main__":
+        unittest.main()

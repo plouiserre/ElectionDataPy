@@ -82,6 +82,13 @@ class HelperTest :
         candidate_data.department_number = 33
         candidate_data.district_name = "1 ère circonscription"
         candidate_data.district_number = 1
+        candidate_data.candidate_first_name = "Thomas"
+        candidate_data.candidate_last_name = "Cazenave"
+        candidate_data.candidate_is_sorting = False
+        candidate_data.candidate_job = "Cadre de la fonction publique"
+        candidate_data.candidate_party = "ENS"
+        candidate_data.candidate_sexe = "M"
+        candidate_data.candidate_birth_date = "06/03/1978"
         return candidate_data
     
     

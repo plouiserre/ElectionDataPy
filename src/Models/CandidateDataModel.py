@@ -1,7 +1,9 @@
+from src.Models.DepartmentModel import DepartmentModel
+from src.Models.DistrictModel import DistrictModel
+from src.Models.CandidateModel import CandidateModel
+
 class CandidateDataModel : 
     def __init__(self) : 
-        self.department_number = 0
-        self.department_name = ''
         self.district_number = 0
         self.district_name = ''
         self.candidate_last_name = ''
@@ -12,3 +14,6 @@ class CandidateDataModel :
         self.candidate_job = ''
         #TODO check the name of this variable
         self.candidate_is_sorting = False
+        self.department = DepartmentModel()
+        #self.district = DistrictModel()
+        #self.candidate = CandidateModel()

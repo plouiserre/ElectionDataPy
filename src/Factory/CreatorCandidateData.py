@@ -1,4 +1,5 @@
 from src.Models.CandidateDataModel import CandidateDataModel
+from src.Factory.CreatorDepartment import CreatorDepartment
 from src.Factory.Creator import Creator
 
 #TODO rework this class because it is begin too complexe
@@ -18,7 +19,7 @@ class CreatorCandidateData(Creator) :
         
         self.__get_district_candidate_datas()
         
-        self.__get_candidate_datas()
+        #self.__get_candidate_datas()
                
         return self.candidate_data
     
@@ -50,49 +51,8 @@ class CreatorCandidateData(Creator) :
     
     
     def __get_department_candidate_datas(self) : 
-        #TODO externalise in a specific method
-        department_id = self.datas[0].replace('\'','')
-      
-        if department_id == '2A' or department_id == '2B' : 
-            self.candidate_data.department_number = 20
-            self.candidate_data.department_name = "Corse"
-        elif department_id == "ZA" :
-            self.candidate_data.department_number = 971
-            self.candidate_data.department_name = "Guadeloupe"
-        elif department_id == "ZB": 
-            self.candidate_data.department_name = "Martinique"
-            self.candidate_data.department_number = 972
-        elif department_id == "ZC": 
-            self.candidate_data.department_name = "Guyane"
-            self.candidate_data.department_number = 973
-        elif department_id == "ZD": 
-            self.candidate_data.department_name = "La Réunion"
-            self.candidate_data.department_number = 974
-        elif department_id =="ZM":
-            self.candidate_data.department_name = "Mayotte"
-            self.candidate_data.department_number = 976
-        elif department_id == "ZN":
-            self.candidate_data.department_name = "Nouvelle-Calédonie"
-            self.candidate_data.department_number = 988
-        elif department_id == "ZP":
-            self.candidate_data.department_name = "Polynésie française"
-            self.candidate_data.department_number = 987
-        elif department_id == "ZS" : 
-            self.candidate_data.department_name = "Saint-Pierre-et-Miquelon"
-            self.candidate_data.department_number = 975
-        elif department_id == "ZW" : 
-            self.candidate_data.department_name = "Wallis et Futuna"
-            self.candidate_data.department_number = 986
-        elif department_id == "ZX" : 
-            self.candidate_data.department_name = "Saint-Martin/Saint-Barthélemy"
-            self.candidate_data.department_number = 978
-        elif department_id == "ZZ" : 
-            self.candidate_data.department_name = "Français établis hors de France"
-            self.candidate_data.department_number= 99
-        else :
-            id_clean = self.datas[0].replace('\'','')            
-            self.candidate_data.department_number = int(id_clean)
-            self.candidate_data.department_name = self.datas[1]
+        dep_creator = CreatorDepartment()
+        self.candidate_data.department = dep_creator.factory_method(self.datas)
             
             
     def __get_district_candidate_datas(self) : 

@@ -12,7 +12,7 @@ class DistrictServices :
         for candidate in candidates :
            creator_district = CreatorDistrict()
            department_id = 0
-           department_name = candidate.department_name
+           department_name = candidate.department.name
            for department_number in departments : 
                 if department_name == self.departments[department_number].name : 
                     department_id = self.departments[department_number].id

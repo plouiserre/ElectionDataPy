@@ -7,9 +7,7 @@ class DepartmentServices :
     
     def manage_departments(self, candidates, department_repository):
         for candidate in candidates :
-            department_creator = CreatorDepartment()
-            department = DepartmentModel()
-            department = department_creator.factory_method(candidate)
+            department = candidate.department
             is_exists = self.deparment_exists(department.number)
             if is_exists == False :
                 self.departments.update({department.number: department})   

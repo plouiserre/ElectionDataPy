@@ -4,8 +4,6 @@ from src.Models.CandidateModel import CandidateModel
 
 class CandidateDataModel : 
     def __init__(self) : 
-        self.district_number = 0
-        self.district_name = ''
         self.candidate_last_name = ''
         self.candidate_first_name = ''
         self.candidate_sexe = ''
@@ -15,5 +13,5 @@ class CandidateDataModel :
         #TODO check the name of this variable
         self.candidate_is_sorting = False
         self.department = DepartmentModel()
-        #self.district = DistrictModel()
+        self.district = DistrictModel()
         #self.candidate = CandidateModel()

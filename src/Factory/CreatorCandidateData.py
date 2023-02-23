@@ -1,8 +1,8 @@
 from src.Models.CandidateDataModel import CandidateDataModel
 from src.Factory.CreatorDepartment import CreatorDepartment
+from src.Factory.CreatorDistrict import CreatorDistrict
 from src.Factory.Creator import Creator
 
-#TODO rework this class because it is begin too complexe
 class CreatorCandidateData(Creator) : 
     def __init__(self) -> None:
         self.candidate_data = CandidateDataModel()
@@ -56,9 +56,9 @@ class CreatorCandidateData(Creator) :
             
             
     def __get_district_candidate_datas(self) : 
-        district_number = self.datas[2]
-        self.candidate_data.district_number = int(district_number)
-        self.candidate_data.district_name = self.datas[3]
+        dis_creator = CreatorDistrict()
+        self.candidate_data.district = dis_creator.factory_method(self.datas)
+        self.candidate_data.district.department = self.candidate_data.department
         
         
     def __get_candidate_datas(self) : 

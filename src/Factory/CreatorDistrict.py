@@ -4,6 +4,7 @@ from src.Factory.Creator import Creator
 class CreatorDistrict(Creator) : 
     def factory_method(self, candidate_data):
         district = DistrictModel()
-        district.number = candidate_data.district_number
-        district.name = candidate_data.district_name
+        district_number = candidate_data[2]
+        district.number = int(district_number)
+        district.name = candidate_data[3]
         return district

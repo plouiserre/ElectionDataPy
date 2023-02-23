@@ -1,4 +1,5 @@
 from src.Models.DepartmentModel import DepartmentModel
+from src.Models.DistrictModel import DistrictModel
 from src.Models.CandidateDataModel import CandidateDataModel
 
 
@@ -81,7 +82,7 @@ class HelperTest :
         candidate_data.department_name = "Gironde"
         candidate_data.department_number = 33
         candidate_data.district_name = "1 ère circonscription"
-        candidate_data.district_number = 1
+        candidate_data.district.number = 1
         candidate_data.candidate_first_name = "Thomas"
         candidate_data.candidate_last_name = "Cazenave"
         candidate_data.candidate_is_sorting = False
@@ -97,15 +98,21 @@ class HelperTest :
         first_candidate_data.department = DepartmentModel()
         first_candidate_data.department.name = "Aisne"
         first_candidate_data.department.number = 2
-        first_candidate_data.district_name = "4ème circonscription"
-        first_candidate_data.district_number = 4
+        #first_candidate_data.department.id = 66
+        first_candidate_data.district = DistrictModel()
+        first_candidate_data.district.name = "4ème circonscription"
+        first_candidate_data.district.number = 4
+        first_candidate_data.district.department = first_candidate_data.department
         
         second_candidate_data = CandidateDataModel()
         second_candidate_data.department = DepartmentModel()
         second_candidate_data.department.name = "Nord"
         second_candidate_data.department.number = 59
-        second_candidate_data.district_name = "13ème circonscription"
-        second_candidate_data.district_number = 13
+        #second_candidate_data.department.id = 67
+        second_candidate_data.district = DistrictModel()
+        second_candidate_data.district.name = "13ème circonscription"
+        second_candidate_data.district.number = 13
+        second_candidate_data.district.department = second_candidate_data.department
         
         candidates = [first_candidate_data, second_candidate_data]
         
@@ -117,15 +124,21 @@ class HelperTest :
         first_candidate_data.department = DepartmentModel()
         first_candidate_data.department.name = "Corse-du-Sud"
         first_candidate_data.department.number = 20
-        first_candidate_data.district_name = "4ème circonscription"
-        first_candidate_data.district_number = 4
+        #first_candidate_data.department.id = 65
+        first_candidate_data.district = DistrictModel()
+        first_candidate_data.district.name = "4ème circonscription"
+        first_candidate_data.district.number = 4
+        first_candidate_data.district.department = first_candidate_data.department
         
         second_candidate_data = CandidateDataModel()
         second_candidate_data.department = DepartmentModel()
         second_candidate_data.department.name = "Haute-Corse"
         second_candidate_data.department.number = 20
-        second_candidate_data.district_name = "13ème circonscription"
-        second_candidate_data.district_number = 13
+        #second_candidate_data.department.id = 65
+        second_candidate_data.district = DistrictModel()
+        second_candidate_data.district.name = "13ème circonscription"
+        second_candidate_data.district.number = 13
+        second_candidate_data.district.department = second_candidate_data.department
         
         candidates = [first_candidate_data, second_candidate_data]
         
@@ -138,42 +151,42 @@ class HelperTest :
         first_candidate_data.department.name = "Ain"
         first_candidate_data.department.number = 1
         first_candidate_data.district_name = "1ère circonscription"
-        first_candidate_data.district_number = 1
+        first_candidate_data.district.number = 1
         
         second_candidate_data = CandidateDataModel()
         second_candidate_data.department = DepartmentModel()
         second_candidate_data.department.name = "Aisne"
         second_candidate_data.department.number = 2
         second_candidate_data.district_name = "4ème circonscription"
-        second_candidate_data.district_number = 4
+        second_candidate_data.district.number = 4
         
         third_candidate_data = CandidateDataModel()
         third_candidate_data.department = DepartmentModel()
         third_candidate_data.department.name = "Alpes-de-Haute-Provence"
         third_candidate_data.department.number = 4
         third_candidate_data.district_name = "2ème circonscription"
-        third_candidate_data.district_number = 2
+        third_candidate_data.district.number = 2
         
         fourth_candidate_data = CandidateDataModel()
         fourth_candidate_data.department = DepartmentModel()
         fourth_candidate_data.department.name = "Alpes-Maritimes"
         fourth_candidate_data.department.number = 6
         fourth_candidate_data.district_name = "6ème circonscription"
-        fourth_candidate_data.district_number = 6
+        fourth_candidate_data.district.number = 6
         
         fifth_candidate_data = CandidateDataModel()
         fifth_candidate_data.department = DepartmentModel()
         fifth_candidate_data.department.name = "Aube"
         fifth_candidate_data.department.number = 10
         fifth_candidate_data.district_name = "1ère circonscription"
-        fifth_candidate_data.district_number = 1
+        fifth_candidate_data.district.number = 1
         
         sixth_candidate_data = CandidateDataModel()
         sixth_candidate_data.department = DepartmentModel()
         sixth_candidate_data.department.name = "Nord"
         sixth_candidate_data.department.number = 59
         sixth_candidate_data.district_name = "13ème circonscription"
-        sixth_candidate_data.district_number = 13
+        sixth_candidate_data.district.number = 13
         
         candidates = [first_candidate_data, second_candidate_data, third_candidate_data, fourth_candidate_data, fifth_candidate_data, sixth_candidate_data]
         
@@ -184,57 +197,81 @@ class HelperTest :
         first_candidate_data.department = DepartmentModel()
         first_candidate_data.department.name = "Ain"
         first_candidate_data.department.number = 1
-        first_candidate_data.district_name = "1ère circonscription"
-        first_candidate_data.district_number = 1
+        #first_candidate_data.department.id = 65
+        first_candidate_data.district = DistrictModel()
+        first_candidate_data.district.name = "1ère circonscription"
+        first_candidate_data.district.number = 1
+        first_candidate_data.district.department = first_candidate_data.department
         
         second_candidate_data = CandidateDataModel()
         second_candidate_data.department = DepartmentModel()
         second_candidate_data.department.name = "Aisne"
         second_candidate_data.department.number = 2
-        second_candidate_data.district_name = "4ème circonscription"
-        second_candidate_data.district_number = 4
+        #second_candidate_data.department.id = 66
+        second_candidate_data.district = DistrictModel()
+        second_candidate_data.district.name = "4ème circonscription"
+        second_candidate_data.district.number = 4
+        second_candidate_data.district.department = second_candidate_data.department
         
         third_candidate_data = CandidateDataModel()
         third_candidate_data.department = DepartmentModel()
         third_candidate_data.department.name = "Alpes-de-Haute-Provence"
         third_candidate_data.department.number = 4
-        third_candidate_data.district_name = "2ème circonscription"
-        third_candidate_data.district_number = 2
+        #third_candidate_data.department.id = 67
+        third_candidate_data.district = DistrictModel()
+        third_candidate_data.district.name = "2ème circonscription"
+        third_candidate_data.district.number = 2
+        third_candidate_data.district.department = third_candidate_data.department
         
         fourth_candidate_data = CandidateDataModel()
         fourth_candidate_data.department = DepartmentModel()
         fourth_candidate_data.department.name = "Alpes-Maritimes"
         fourth_candidate_data.department.number = 6
-        fourth_candidate_data.district_name = "6ème circonscription"
-        fourth_candidate_data.district_number = 6
+        #fourth_candidate_data.department.id = 68
+        fourth_candidate_data.district = DistrictModel()
+        fourth_candidate_data.district.name = "6ème circonscription"
+        fourth_candidate_data.district.number = 6
+        fourth_candidate_data.district.department = fourth_candidate_data.department
         
         fifth_candidate_data = CandidateDataModel()
         fifth_candidate_data.department = DepartmentModel()
         fifth_candidate_data.department.name = "Alpes-Maritimes"
         fifth_candidate_data.department.number = 6
-        fifth_candidate_data.district_name = "6ème circonscription"
-        fifth_candidate_data.district_number = 6
+        #fifth_candidate_data.department.id = 68
+        fifth_candidate_data.district = DistrictModel()
+        fifth_candidate_data.district.name = "6ème circonscription"
+        fifth_candidate_data.district.number = 6
+        fifth_candidate_data.district.department = fifth_candidate_data.department
         
         sixth_candidate_data = CandidateDataModel()
         sixth_candidate_data.department = DepartmentModel()
         sixth_candidate_data.department.name = "Aube"
         sixth_candidate_data.department.number = 10
-        sixth_candidate_data.district_name = "1ère circonscription"
-        sixth_candidate_data.district_number = 1
+        #sixth_candidate_data.department.id = 69
+        sixth_candidate_data.district = DistrictModel()
+        sixth_candidate_data.district.name = "1ère circonscription"
+        sixth_candidate_data.district.number = 1
+        sixth_candidate_data.district.department = sixth_candidate_data.department
         
         seven_candidate_data = CandidateDataModel()
         seven_candidate_data.department = DepartmentModel()
         seven_candidate_data.department.name = "Aube"
         seven_candidate_data.department.number = 10
-        seven_candidate_data.district_name = "1ère circonscription"
-        seven_candidate_data.district_number = 1
+        #seven_candidate_data.department.id = 69
+        seven_candidate_data.district = DistrictModel()
+        seven_candidate_data.district.name = "1ère circonscription"
+        seven_candidate_data.district.number = 1
+        seven_candidate_data.district.department = seven_candidate_data.department
         
         eigth_candidate_data = CandidateDataModel()
         eigth_candidate_data.department = DepartmentModel()
         eigth_candidate_data.department.name = "Nord"
         eigth_candidate_data.department.number = 59
-        eigth_candidate_data.district_name = "13ème circonscription"
-        eigth_candidate_data.district_number = 13
+        #eigth_candidate_data.department.id = 70
+        eigth_candidate_data.district = DistrictModel()
+        eigth_candidate_data.district.name = "13ème circonscription"
+        eigth_candidate_data.district.number = 13
+        eigth_candidate_data.district.department = eigth_candidate_data.department
         
         candidates = [first_candidate_data, second_candidate_data, third_candidate_data, fourth_candidate_data, fifth_candidate_data, sixth_candidate_data, seven_candidate_data, eigth_candidate_data]
         

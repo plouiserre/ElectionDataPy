@@ -1,3 +1,5 @@
+import datetime
+
 from src.Models.CandidateDataModel import CandidateDataModel
 from src.Factory.CreatorDepartment import CreatorDepartment
 from src.Factory.CreatorDistrict import CreatorDistrict
@@ -19,12 +21,14 @@ class CreatorCandidateData(Creator) :
         
         self.__get_district_candidate_datas()
         
-        #self.__get_candidate_datas()
+        self.__get_candidate_datas()
                
         return self.candidate_data
     
     
+    #TODO simple and explicit this complex method
     def __clean_data(self, data) : 
+        data = ' '.join(data.split())
         data = data.replace('\t',' ')
         data = data.replace('\n ',' ')
         data = data.replace('[','')
@@ -71,26 +75,38 @@ class CreatorCandidateData(Creator) :
        self.__get_candidate_party()
        self.__get_candidate_jobs()
        
-       
+    
+    #TODO refaire cette méthode
     def __get_candidate_first_name(self) :  
-        if "datetime.datetime(" in self.datas[8] :
-            self.candidate_data.candidate_first_name = self.datas[7]
-        else :
+        if str.isalpha(self.datas[8]) : 
             self.is_first_name_simple = False
             self.candidate_data.candidate_first_name = self.datas[7]+" "+self.datas[8]
+        else :
+            self.candidate_data.candidate_first_name = self.datas[7]
               
        
     #WARNING for the moment we accept day like 0x
+    #TODO facto this method
     def __get_candidate_birth_date(self) : 
         birthdate = ''
-        if  self.is_first_name_simple :
-            birthdate = self.datas[8]
-        else :
+        if  self.is_first_name_simple == False :
             birthdate = self.datas[9]
-        birthdate = str.replace(birthdate, 'datetime.datetime(','')
-        birthdate = str.replace(birthdate, ')','')
-        birthdate_element = birthdate.split(',')
-        self.candidate_data.candidate_birth_date = str.strip(birthdate_element[1])+'/'+str.strip(birthdate_element[2])+'/'+str.strip(birthdate_element[0])
+            birthdate = birthdate.replace('-', '/')
+            birthdate = birthdate.replace(' 00:00:00','')
+            birthdate_elements = birthdate.split('/')
+            year = int(birthdate_elements[0])
+            month = int(birthdate_elements[1])
+            day = int(birthdate_elements[2])
+            self.candidate_data.candidate_birth_date = datetime.datetime(year, month, day)
+        else :
+            birthdate = self.datas[8]
+            birthdate = birthdate.replace('-', '/')
+            birthdate = birthdate.replace(' 00:00:00','')
+            birthdate_elements = birthdate.split('/')
+            year = int(birthdate_elements[0])
+            month = int(birthdate_elements[1])
+            day = int(birthdate_elements[2])
+            self.candidate_data.candidate_birth_date = datetime.datetime(year, month, day)
         
     
     def __get_candidate_party(self) : 

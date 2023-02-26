@@ -1,6 +1,5 @@
 import unittest
 from src.Factory.CreatorCandidate import CreatorCandidate
-#from src.Models.CandidateDataModel import CandidateDataModel
 
 from tests.helper_test import HelperTest
 

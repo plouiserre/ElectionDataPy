@@ -3,10 +3,11 @@ from src.Repository.DistrictRepository import DistrictRepository
 from src.Repository.mydb import MyDb
 
 class WorkflowManager :
-    def __init__(self, departmentService, districtService, candidate_adapter) :
+    def __init__(self, departmentService, districtService, candidate_adapter, candidate_service) :
         self.deparment_service = departmentService
         self.district_service = districtService
         self.candidate_adapter = candidate_adapter
+        self.candidate_service = candidate_service
         
     def store_departments(self) :
         mydb = MyDb()
@@ -15,3 +16,4 @@ class WorkflowManager :
         candidates = self.candidate_adapter.get_candidates()
         self.deparment_service.manage_departments(candidates, department_repository)
         self.district_service.manage_districts(candidates, self.deparment_service.departments, district_repository)
+        self.candidate_service.manage_candidates()

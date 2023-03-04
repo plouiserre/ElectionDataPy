@@ -6,10 +6,11 @@ from src.Factory.CreatorDistrict import CreatorDistrict
 from src.Factory.Creator import Creator
 
 class CreatorCandidateData(Creator) : 
-    def __init__(self) -> None:
+    def __init__(self, parties) :
         self.candidate_data = CandidateDataModel()
         self.datas = []
         self.is_first_name_simple = True
+        self.parties = parties
         
         
     def factory_method(self, data):
@@ -66,8 +67,8 @@ class CreatorCandidateData(Creator) :
         
         
     def __get_candidate_datas(self) : 
-       self.candidate_data.candidate_sexe = self.datas[5]
-       self.candidate_data.candidate_last_name = self.datas[6]
+       self.candidate_data.candidate.sexe = self.datas[5]
+       self.candidate_data.candidate.last_name = self.datas[6]
        if self.datas[11] == 'Oui' :
            self.candidate_data.candidate_is_sorting = True
        self.__get_candidate_first_name()
@@ -80,9 +81,9 @@ class CreatorCandidateData(Creator) :
     def __get_candidate_first_name(self) :  
         if str.isalpha(self.datas[8]) : 
             self.is_first_name_simple = False
-            self.candidate_data.candidate_first_name = self.datas[7]+" "+self.datas[8]
+            self.candidate_data.candidate.first_name = self.datas[7]+" "+self.datas[8]
         else :
-            self.candidate_data.candidate_first_name = self.datas[7]
+            self.candidate_data.candidate.first_name = self.datas[7]
               
        
     #WARNING for the moment we accept day like 0x
@@ -97,7 +98,7 @@ class CreatorCandidateData(Creator) :
             year = int(birthdate_elements[0])
             month = int(birthdate_elements[1])
             day = int(birthdate_elements[2])
-            self.candidate_data.candidate_birth_date = datetime.datetime(year, month, day)
+            self.candidate_data.candidate.birth_date = datetime.datetime(year, month, day)
         else :
             birthdate = self.datas[8]
             birthdate = birthdate.replace('-', '/')
@@ -106,18 +107,22 @@ class CreatorCandidateData(Creator) :
             year = int(birthdate_elements[0])
             month = int(birthdate_elements[1])
             day = int(birthdate_elements[2])
-            self.candidate_data.candidate_birth_date = datetime.datetime(year, month, day)
+            self.candidate_data.candidate.birth_date = datetime.datetime(year, month, day)
         
     
     def __get_candidate_party(self) : 
-         if  self.is_first_name_simple :
-            self.candidate_data.candidate_party = self.datas[9]
-         else :
-            self.candidate_data.candidate_party = self.datas[10]
+        party_shortname = ''
+        if  self.is_first_name_simple :
+           party_shortname = self.datas[9]
+        else :
+           party_shortname = self.datas[10]
+        for party in self.parties : 
+            if party.short_name == party_shortname : 
+                self.candidate_data.candidate.party_id = party.id
             
             
     def __get_candidate_jobs(self) : 
          if  self.is_first_name_simple :
-            self.candidate_data.candidate_job = self.datas[10]
+            self.candidate_data.candidate.job = self.datas[10]
          else :
-            self.candidate_data.candidate_job = self.datas[11]
+            self.candidate_data.candidate.job = self.datas[11]

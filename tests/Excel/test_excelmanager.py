@@ -37,8 +37,6 @@ class ExcelManagerTest(unittest.TestCase) :
         self.assertEqual(candidates[1],"['02' 'Aisne' 2 'BEAURAIN' 'Eric']")
         self.assertEqual(candidates[2],"['21' 'Côte d\'Or' 3 'GUILLAUMIN' 'Jean-Marie']")
         
-        #'[\'21\' "Côte-d\'Or" 4 \'4ème circonscription\' 9 15 \'M\' \'GUINOT\' \'Stéphane\'\n Timestamp(\'1981-05-02 00:00:00\') \'NUP\'\n \'Professeur des écoles, instituteur et assimilé\' \'Non\' \'F\' \'JACQ\'\n \'Valérie\' Timestamp(\'1972-10-30 00:00:00\') \'Non\']'
-        
         
     if __name__ == "__main__":
         unittest.main()

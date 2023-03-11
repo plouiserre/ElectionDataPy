@@ -11,7 +11,7 @@ from src.Repository.mydb import MyDb
 from tests.helper_test import HelperTest
 
 class DistrictServicesTest(unittest.TestCase): 
-        
+    
     def test_construct_districts_two_candidates(self) :
         helper = HelperTest()
         candidates = helper.get_two_candidates_data_model()
@@ -35,42 +35,10 @@ class DistrictServicesTest(unittest.TestCase):
         self.assertEqual(2, len(districts))
         self.assertEqual(4, districts[0].number)
         self.assertEqual("4ème circonscription", districts[0].name)
-        self.assertEqual(66, districts[0].department_id)
+        self.assertEqual(66, districts[0].department.id)
         self.assertEqual(13, districts[1].number)
         self.assertEqual("13ème circonscription", districts[1].name)
-        self.assertEqual(67, districts[1].department_id)
-        
-        
-    def test_construct_districts_many_candidates(self) : 
-        helper = HelperTest()
-        candidates = helper.get_six_candidates_data_model()
-        departments = helper.get_six_departments()
-        
-        dis_repo = Mock()
-        dis = DistrictServices()
-        dis.manage_districts(candidates, departments, dis_repo)       
-        districts = dis.districts
-        
-        self.assertEqual(6, len(districts))
-        self.assertEqual(1, districts[0].number)
-        self.assertEqual("1ère circonscription", districts[0].name)
-        self.assertEqual(65, districts[0].department_id)
-        self.assertEqual(4, districts[1].number)
-        self.assertEqual("4ème circonscription", districts[1].name)
-        self.assertEqual(66, districts[1].department_id)
-        self.assertEqual(2, districts[2].number)
-        self.assertEqual("2ème circonscription", districts[2].name)
-        self.assertEqual(67, districts[2].department_id)
-        self.assertEqual(6, districts[3].number)
-        self.assertEqual("6ème circonscription", districts[3].name)
-        self.assertEqual(68, districts[3].department_id)
-        self.assertEqual(1, districts[4].number)
-        self.assertEqual("1ère circonscription", districts[4].name)
-        self.assertEqual(69, districts[4].department_id)
-        self.assertEqual(13, districts[5].number)
-        self.assertEqual("13ème circonscription", districts[5].name)
-        self.assertEqual(70, districts[5].department_id)
-        
+        self.assertEqual(67, districts[1].department.id)
         
     def test_construct_districts_neighbourg_candidates(self) :
         helper = HelperTest()
@@ -85,22 +53,22 @@ class DistrictServicesTest(unittest.TestCase):
         self.assertEqual(6, len(districts))
         self.assertEqual(1, districts[0].number)
         self.assertEqual("1ère circonscription", districts[0].name)
-        self.assertEqual(65, districts[0].department_id)
+        self.assertEqual(65, districts[0].department.id)
         self.assertEqual(4, districts[1].number)
         self.assertEqual("4ème circonscription", districts[1].name)
-        self.assertEqual(66, districts[1].department_id)
+        self.assertEqual(66, districts[1].department.id)
         self.assertEqual(2, districts[2].number)
         self.assertEqual("2ème circonscription", districts[2].name)
-        self.assertEqual(67, districts[2].department_id)
+        self.assertEqual(67, districts[2].department.id)
         self.assertEqual(6, districts[3].number)
         self.assertEqual("6ème circonscription", districts[3].name)
-        self.assertEqual(68, districts[3].department_id)
+        self.assertEqual(68, districts[3].department.id)
         self.assertEqual(1, districts[4].number)
         self.assertEqual("1ère circonscription", districts[4].name)
-        self.assertEqual(69, districts[4].department_id)
+        self.assertEqual(69, districts[4].department.id)
         self.assertEqual(13, districts[5].number)
         self.assertEqual("13ème circonscription", districts[5].name)
-        self.assertEqual(70, districts[5].department_id) 
+        self.assertEqual(70, districts[5].department.id) 
         
         
     def test_construct_districts_corsica_candidates(self) :
@@ -126,10 +94,10 @@ class DistrictServicesTest(unittest.TestCase):
         self.assertEqual(2, len(districts))
         self.assertEqual(4, districts[0].number)
         self.assertEqual("4ème circonscription", districts[0].name)
-        self.assertEqual(65, districts[0].department_id)
+        self.assertEqual(65, districts[0].department.id)
         self.assertEqual(13, districts[1].number) 
         self.assertEqual("13ème circonscription", districts[1].name)        
-        self.assertEqual(65, districts[1].department_id)        
+        self.assertEqual(65, districts[1].department.id)        
         
     
     @patch.object(DistrictRepository, 'save_districts')

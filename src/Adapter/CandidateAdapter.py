@@ -8,12 +8,12 @@ class CandidateAdapter :
         self.pd = pd
         pass
     
-    def get_candidates(self) : 
+    def get_candidates(self, parties) : 
         clients_datas = self.excel_manager.import_candidates_datas(self.pd)       
         candidates = []
         
         for client_data in clients_datas : 
-            creator = CreatorCandidateData()
+            creator = CreatorCandidateData(parties)
             candidate = creator.factory_method(client_data)
             candidates.append(candidate)
         

@@ -44,12 +44,12 @@ CREATE TABLE IF NOT EXISTS DISTRICT(
 -- 4 Candidate
 CREATE TABLE IF NOT EXISTS CANDIDATE(
     CandidateId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    CandidateLastName VARCHAR(25),
-    CandidateFirstName VARCHAR(25),
+    CandidateLastName VARCHAR(50),
+    CandidateFirstName VARCHAR(50),
     CandidateSexe VARCHAR(1),
     CandidateBirthDate DATE,
     PartyId INT,
-    Job VARCHAR(25),
+    Job VARCHAR(150),
     OldCandidate BIT,
     DistrictId INT,
     VoteFirstRound INT,

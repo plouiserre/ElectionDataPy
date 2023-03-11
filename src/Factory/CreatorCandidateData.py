@@ -1,10 +1,16 @@
+import datetime
+
 from src.Models.CandidateDataModel import CandidateDataModel
+from src.Factory.CreatorDepartment import CreatorDepartment
+from src.Factory.CreatorDistrict import CreatorDistrict
 from src.Factory.Creator import Creator
 
 class CreatorCandidateData(Creator) : 
-    def __init__(self) -> None:
+    def __init__(self, parties) :
         self.candidate_data = CandidateDataModel()
         self.datas = []
+        self.is_first_name_simple = True
+        self.parties = parties
         
         
     def factory_method(self, data):
@@ -15,11 +21,17 @@ class CreatorCandidateData(Creator) :
         self.__get_department_candidate_datas()    
         
         self.__get_district_candidate_datas()
+        
+        self.__get_candidate_datas()
                
         return self.candidate_data
     
+    
+    #TODO simple and explicit this complex method
     def __clean_data(self, data) : 
+        data = ' '.join(data.split())
         data = data.replace('\t',' ')
+        data = data.replace('\n ',' ')
         data = data.replace('[','')
         data = data.replace(']','')
         data = data.replace('\' \'','_')        
@@ -44,53 +56,73 @@ class CreatorCandidateData(Creator) :
     
     
     def __get_department_candidate_datas(self) : 
-        #TODO externalise in a specific method
-        department_id = self.datas[0].replace('\'','')
-      
-        if department_id == '2A' or department_id == '2B' : 
-            self.candidate_data.department_number = 20
-            self.candidate_data.department_name = "Corse"
-        elif department_id == "ZA" :
-            self.candidate_data.department_number = 971
-            self.candidate_data.department_name = "Guadeloupe"
-        elif department_id == "ZB": 
-            self.candidate_data.department_name = "Martinique"
-            self.candidate_data.department_number = 972
-        elif department_id == "ZC": 
-            self.candidate_data.department_name = "Guyane"
-            self.candidate_data.department_number = 973
-        elif department_id == "ZD": 
-            self.candidate_data.department_name = "La Réunion"
-            self.candidate_data.department_number = 974
-        elif department_id =="ZM":
-            self.candidate_data.department_name = "Mayotte"
-            self.candidate_data.department_number = 976
-        elif department_id == "ZN":
-            self.candidate_data.department_name = "Nouvelle-Calédonie"
-            self.candidate_data.department_number = 988
-        elif department_id == "ZP":
-            self.candidate_data.department_name = "Polynésie française"
-            self.candidate_data.department_number = 987
-        elif department_id == "ZS" : 
-            self.candidate_data.department_name = "Saint-Pierre-et-Miquelon"
-            self.candidate_data.department_number = 975
-        elif department_id == "ZW" : 
-            self.candidate_data.department_name = "Wallis et Futuna"
-            self.candidate_data.department_number = 986
-        elif department_id == "ZX" : 
-            self.candidate_data.department_name = "Saint-Martin/Saint-Barthélemy"
-            self.candidate_data.department_number = 978
-        elif department_id == "ZZ" : 
-            self.candidate_data.department_name = "Français établis hors de France"
-            self.candidate_data.department_number= 99
-        else :
-            id_clean = self.datas[0].replace('\'','')            
-            self.candidate_data.department_number = int(id_clean)
-            self.candidate_data.department_name = self.datas[1]
+        dep_creator = CreatorDepartment()
+        self.candidate_data.department = dep_creator.factory_method(self.datas)
             
             
     def __get_district_candidate_datas(self) : 
-        district_number = self.datas[2]
-        self.candidate_data.district_number = int(district_number)
-        self.candidate_data.district_name = self.datas[3]
+        dis_creator = CreatorDistrict()
+        self.candidate_data.district = dis_creator.factory_method(self.datas)
+        self.candidate_data.district.department = self.candidate_data.department
         
+        
+    def __get_candidate_datas(self) : 
+       self.candidate_data.candidate.sexe = self.datas[5]
+       self.candidate_data.candidate.last_name = self.datas[6]
+       if self.datas[11] == 'Oui' :
+           self.candidate_data.candidate_is_sorting = True
+       self.__get_candidate_first_name()
+       self.__get_candidate_birth_date()
+       self.__get_candidate_party()
+       self.__get_candidate_jobs()
+       
+    
+    #TODO refaire cette méthode
+    def __get_candidate_first_name(self) :  
+        if str.isalpha(self.datas[8]) : 
+            self.is_first_name_simple = False
+            self.candidate_data.candidate.first_name = self.datas[7]+" "+self.datas[8]
+        else :
+            self.candidate_data.candidate.first_name = self.datas[7]
+              
+       
+    #WARNING for the moment we accept day like 0x
+    #TODO facto this method
+    def __get_candidate_birth_date(self) : 
+        birthdate = ''
+        if  self.is_first_name_simple == False :
+            birthdate = self.datas[9]
+            birthdate = birthdate.replace('-', '/')
+            birthdate = birthdate.replace(' 00:00:00','')
+            birthdate_elements = birthdate.split('/')
+            year = int(birthdate_elements[0])
+            month = int(birthdate_elements[1])
+            day = int(birthdate_elements[2])
+            self.candidate_data.candidate.birth_date = datetime.datetime(year, month, day)
+        else :
+            birthdate = self.datas[8]
+            birthdate = birthdate.replace('-', '/')
+            birthdate = birthdate.replace(' 00:00:00','')
+            birthdate_elements = birthdate.split('/')
+            year = int(birthdate_elements[0])
+            month = int(birthdate_elements[1])
+            day = int(birthdate_elements[2])
+            self.candidate_data.candidate.birth_date = datetime.datetime(year, month, day)
+        
+    
+    def __get_candidate_party(self) : 
+        party_shortname = ''
+        if  self.is_first_name_simple :
+           party_shortname = self.datas[9]
+        else :
+           party_shortname = self.datas[10]
+        for party in self.parties : 
+            if party.short_name == party_shortname : 
+                self.candidate_data.candidate.party_id = party.id
+            
+            
+    def __get_candidate_jobs(self) : 
+         if  self.is_first_name_simple :
+            self.candidate_data.candidate.job = self.datas[10]
+         else :
+            self.candidate_data.candidate.job = self.datas[11]

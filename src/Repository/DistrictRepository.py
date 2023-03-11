@@ -7,7 +7,7 @@ class DistrictRepository :
         mycursor = mydb.cursor()
         for district in districts : 
             sql = "INSERT INTO ELECTIONSCONGRESSMANS.DISTRICT(DistrictName, Position, DepartmentId) VALUES (%s, %s, %s)"
-            val = (district.name, district.number, district.department_id)
+            val = (district.name, district.number, district.department.id)
             mycursor.execute(sql, val)
             district.id = mycursor.lastrowid
         

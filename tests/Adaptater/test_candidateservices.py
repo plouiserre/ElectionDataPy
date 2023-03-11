@@ -13,7 +13,7 @@ class CandidatesServicesTest(unittest.TestCase) :
         candidate_repository_mock = Mock()
         
         candidate_service = CandidateServices()
-        candidate_service.manage_candidates(candidate_repository_mock, candidates)
+        candidate_service.manage_candidates(candidates, candidate_repository_mock)
         
         self.assertTrue(candidate_repository_mock.save_candidates.called)
         

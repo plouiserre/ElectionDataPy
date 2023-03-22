@@ -1,6 +1,7 @@
 from src.Models.CandidateModel import CandidateModel
 from src.Factory.Creator import Creator
 
+#TODO rework this method and this test like CreatorDistrict
 class CreatorCandidate(Creator) : 
     def factory_method(self, candidate_data) :         
         can = CandidateModel()

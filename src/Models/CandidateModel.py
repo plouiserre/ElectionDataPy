@@ -1,5 +1,7 @@
 import datetime
 
+from src.Models.DeputyModel import DeputyModel
+
 class CandidateModel : 
     def __init__(self) : 
         self.last_name = ''
@@ -9,3 +11,4 @@ class CandidateModel :
         self.party_id = 0
         self.job = ''
         self.is_sorting = False
+        self.deputy = DeputyModel()

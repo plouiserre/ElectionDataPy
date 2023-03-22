@@ -3,6 +3,8 @@ from src.Models.DistrictModel import DistrictModel
 from src.Models.CandidateDataModel import CandidateDataModel
 from src.Models.PartyModel import PartyModel
 
+import datetime
+
 
 class HelperTest : 
     def __init__(self) :
@@ -79,7 +81,7 @@ class HelperTest :
         departments.update({sixth_department.number : sixth_department})
         return departments
     
-    
+    #TODO refaire cette méthode
     def get_one_candidate_data_model(self) : 
         candidate_data = CandidateDataModel()
         candidate_data.department_name = "Gironde"
@@ -93,6 +95,10 @@ class HelperTest :
         candidate_data.candidate_party = "ENS"
         candidate_data.candidate_sexe = "M"
         candidate_data.candidate_birth_date = "06/03/1978"
+        candidate_data.deputy.sexe = 'F'
+        candidate_data.deputy.last_name = 'BARTEBIN-SOURHOU'
+        candidate_data.deputy.first_name = 'Huguette'
+        candidate_data.deputy.birth_date = datetime.datetime(1971,12,3)
         return candidate_data
     
     

@@ -5,7 +5,6 @@ from src.Models.DeputyModel import DeputyModel
 from src.Factory.CreatorDeputy import CreatorDeputy
 from helper_test import HelperTest
 
-#TODO factoize self assertpart 
 class CreatorDeputyTest(unittest.TestCase):
     def test_creator_deputy(self):
         creator = CreatorDeputy(False)
@@ -13,11 +12,8 @@ class CreatorDeputyTest(unittest.TestCase):
         
         deputy = creator.factory_method(deputy_data)
         
-        self.assertEqual('F', deputy.sexe)
-        self.assertEqual('BARTEBIN-SOURHOU', deputy.last_name)
-        self.assertEqual('Huguette', deputy.first_name)
-        self.assertEqual(datetime.datetime(1971,12,3), deputy.birth_date)
-        self.assertFalse(deputy.is_sorting)
+        deputy_model_check = ["BARTEBIN-SOURHOU", "Huguette", "F", datetime.datetime(1971,12,3), False]   
+        self.__assert_deputy_model(deputy_model_check, deputy) 
         
         
     def test_creator_deputy_is_sorting(self):
@@ -26,11 +22,8 @@ class CreatorDeputyTest(unittest.TestCase):
         
         deputy = creator.factory_method(deputy_data)
         
-        self.assertEqual('F', deputy.sexe)
-        self.assertEqual('BARTEBIN-SOURHOU', deputy.last_name)
-        self.assertEqual('Huguette', deputy.first_name)
-        self.assertEqual(datetime.datetime(1971,12,3), deputy.birth_date)
-        self.assertTrue(deputy.is_sorting)
+        deputy_model_check = ["BARTEBIN-SOURHOU", "Huguette", "F", datetime.datetime(1971,12,3), True]   
+        self.__assert_deputy_model(deputy_model_check, deputy) 
         
         
     def test_creator_deputy_with_candidate_two_first_names(self):
@@ -40,11 +33,8 @@ class CreatorDeputyTest(unittest.TestCase):
         
         deputy = creator.factory_method(deputy_data)
         
-        self.assertEqual('F', deputy.sexe)
-        self.assertEqual('BARTEBIN-SOURHOU', deputy.last_name)
-        self.assertEqual('Huguette', deputy.first_name)
-        self.assertEqual(datetime.datetime(1971,12,3), deputy.birth_date)
-        self.assertFalse(deputy.is_sorting)
+        deputy_model_check = ["BARTEBIN-SOURHOU", "Huguette", "F", datetime.datetime(1971,12,3), False]   
+        self.__assert_deputy_model(deputy_model_check, deputy) 
         
         
     def test_creator_deputy_with_two_first_names(self) : 
@@ -53,11 +43,8 @@ class CreatorDeputyTest(unittest.TestCase):
         
         deputy = creator.factory_method(deputy_data)
         
-        self.assertEqual('F', deputy.sexe)
-        self.assertEqual('BARTEBIN-SOURHOU', deputy.last_name)
-        self.assertEqual('Huguette Georgette', deputy.first_name)
-        self.assertEqual(datetime.datetime(1971,12,3), deputy.birth_date)
-        self.assertTrue(deputy.is_sorting)
+        deputy_model_check = ["BARTEBIN-SOURHOU", "Huguette Georgette", "F", datetime.datetime(1971,12,3), True]   
+        self.__assert_deputy_model(deputy_model_check, deputy) 
         
         
     def test_creator_deputy_with_candidate_both_have_two_first_names(self):
@@ -67,8 +54,13 @@ class CreatorDeputyTest(unittest.TestCase):
         
         deputy = creator.factory_method(deputy_data)
         
-        self.assertEqual('F', deputy.sexe)
-        self.assertEqual('BARTEBIN-SOURHOU', deputy.last_name)
-        self.assertEqual('Huguette Georgette', deputy.first_name)
-        self.assertEqual(datetime.datetime(1971,12,3), deputy.birth_date)
-        self.assertFalse(deputy.is_sorting)
+        deputy_model_check = ["BARTEBIN-SOURHOU", "Huguette Georgette", "F", datetime.datetime(1971,12,3), False]   
+        self.__assert_deputy_model(deputy_model_check, deputy)  
+        
+        
+    def  __assert_deputy_model(self, deputy_data_check, deputy_model) :
+        self.assertEqual(deputy_data_check[0], deputy_model.last_name)
+        self.assertEqual(deputy_data_check[1], deputy_model.first_name)
+        self.assertEqual(deputy_data_check[2], deputy_model.sexe)
+        self.assertTrue(deputy_data_check[3] == deputy_model.birth_date)
+        self.assertEqual(deputy_data_check[4], deputy_model.is_sorting)

@@ -9,33 +9,33 @@ class CreatorCandidateTest(unittest.TestCase):
     def test_creator_candidate_from_gironde(self) : 
         creator = self.__get_creator_init()
         
-        candidate_data = ['XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','M','Cazenave','Thomas','datetime.datetime(1978, 06, 03, 0, 0)','ENS','Cadre de la fonction publique','Non','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX']
+        candidate_data = ['XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','M','Cazenave','Thomas','datetime.datetime(1978, 06, 03, 0, 0)','ENS','Cadre de la fonction publique','Non','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX']
         
         candidate = creator.factory_method(candidate_data)
         
-        candidate_model_check = ["Cazenave", "Thomas", "M", 8, "Cadre de la fonction publique", datetime.datetime(1978,6,3), False]     
+        candidate_model_check = ["Cazenave", "Thomas", "M", 7, "Cadre de la fonction publique", datetime.datetime(1978,6,3), False]     
         self.__assert_candidate_model(candidate_model_check, candidate)
         
 
     def test_creator_candidate_woman_sorting_candidate(self) : 
         creator = self.__get_creator_init()
         
-        candidate_data = ['XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','F','TRASTOUR-ISNART','Laurence','datetime.datetime(1972, 03, 06, 0, 0)','LR','Cadre de la fonction publique','Oui','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX']
+        candidate_data = ['XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','F','TRASTOUR-ISNART','Laurence','datetime.datetime(1972, 03, 06, 0, 0)','LR','Cadre de la fonction publique','Oui','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX']
         
         candidate = creator.factory_method(candidate_data)
         
-        candidate_model_check = ["TRASTOUR-ISNART", "Laurence", "F", 12, "Cadre de la fonction publique", datetime.datetime(1972,3,6), True]     
+        candidate_model_check = ["TRASTOUR-ISNART", "Laurence", "F", 11, "Cadre de la fonction publique", datetime.datetime(1972,3,6), True]     
         self.__assert_candidate_model(candidate_model_check, candidate)
         
         
     def test_creator_candidate_two_first_name(self) : 
         creator = self.__get_creator_init()
         
-        candidate_data = ['XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','M','Cazenave','Thomas','Eric','datetime.datetime(1978, 06, 03, 0, 0)','ENS','Cadre de la fonction publique','Non','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX']
+        candidate_data = ['XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','M','Cazenave','Thomas','Eric','datetime.datetime(1978, 06, 03, 0, 0)','ENS','Cadre de la fonction publique','Non','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX']
         
         candidate = creator.factory_method(candidate_data)
         
-        candidate_model_check = ["Cazenave", "Thomas Eric", "M", 8, "Cadre de la fonction publique", datetime.datetime(1978,6,3), False]     
+        candidate_model_check = ["Cazenave", "Thomas Eric", "M", 7, "Cadre de la fonction publique", datetime.datetime(1978,6,3), False]     
         self.__assert_candidate_model(candidate_model_check, candidate)
         
     

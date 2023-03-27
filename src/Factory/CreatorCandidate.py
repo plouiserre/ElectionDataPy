@@ -14,13 +14,13 @@ class CreatorCandidate(Creator) :
         
     def factory_method(self, candidate_data) :         
         self.datas = candidate_data
-        self.can.last_name = self.datas[7]
-        self.can.sexe =  self.datas[6]
+        self.can.last_name = self.datas[6]
+        self.can.sexe =  self.datas[5]
         self.__set_candidate_first_name()
         self.__set_candidate_birth_date()
         self.__set_candidate_party()
         self.__set_candidate_jobs()
-        if self.datas[12] == 'Oui' :
+        if self.datas[11] == 'Oui' :
            self.can.is_sorting = True
         
         return self.can
@@ -28,12 +28,15 @@ class CreatorCandidate(Creator) :
     def __set_candidate_birth_date(self) : 
         birthdate = ''
         if  self.is_candidate_first_name_simple == False :
-            birthdate = self.datas[10]
-        else : 
             birthdate = self.datas[9]
+        else : 
+            birthdate = self.datas[8]
         birthdate = birthdate.replace('datetime.datetime(', '')
         birthdate = birthdate.replace(', 0, 0)','')
         birthdate = birthdate.replace(')','')
+        #TODO compare if the next two lines are necesserary or useless and rework this method 
+        birthdate = birthdate.replace(" 00:00:00","")
+        birthdate = birthdate.replace("-",",")
         birthdate_elements = birthdate.split(',')
         year = int(birthdate_elements[0])
         month = int(birthdate_elements[1])
@@ -42,19 +45,19 @@ class CreatorCandidate(Creator) :
     
     
     def __set_candidate_first_name(self) :  
-        if str.isalpha(self.datas[9]) : 
+        if str.isalpha(self.datas[8]) : 
             self.is_candidate_first_name_simple = False
-            self.can.first_name = self.datas[8]+" "+self.datas[9]
+            self.can.first_name = self.datas[7]+" "+self.datas[8]
         else :
-            self.can.first_name = self.datas[8]
+            self.can.first_name = self.datas[7]
             
             
     def __set_candidate_party(self) : 
         party_shortname = ''
         if  self.is_candidate_first_name_simple :
-           party_shortname = self.datas[10]
+           party_shortname = self.datas[9]
         else :
-           party_shortname = self.datas[11]
+           party_shortname = self.datas[10]
         for party in self.parties : 
             if party.short_name == party_shortname : 
                 self.can.party_id = party.id
@@ -63,7 +66,7 @@ class CreatorCandidate(Creator) :
             
     def __set_candidate_jobs(self) : 
          if  self.is_candidate_first_name_simple :
-            self.can.job = self.datas[11]
+            self.can.job = self.datas[10]
          else :
-            self.can.job = self.datas[12]
+            self.can.job = self.datas[11]
         

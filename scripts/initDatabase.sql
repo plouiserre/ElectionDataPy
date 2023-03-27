@@ -74,7 +74,6 @@ INSERT INTO PARTY(PartyName, ShortName) VALUES ('Parti radical de gauche','RDG')
 INSERT INTO PARTY(PartyName, ShortName) VALUES ('Nouvelle union populaire écologique et sociale','NUP');
 INSERT INTO PARTY(PartyName, ShortName) VALUES ('Divers gauche','DVG');
 INSERT INTO PARTY(PartyName, ShortName) VALUES ('Ecologistes','ECO');
-INSERT INTO PARTY(PartyName, ShortName) VALUES ('Divers','DIV');
 INSERT INTO PARTY(PartyName, ShortName) VALUES ('Régionaliste','REG');
 INSERT INTO PARTY(PartyName, ShortName) VALUES ('Ensemble ! (Majorité présidentielle)','ENS');
 INSERT INTO PARTY(PartyName, ShortName) VALUES ('Divers Centre','DVC');

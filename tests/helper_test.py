@@ -282,21 +282,20 @@ class HelperTest :
         third_party = self.__init_party(3, "Nouvelle union populaire écologique et sociale", "NUP")
         fourth_party = self.__init_party(4, "Divers gauche", "DVG")
         fifth_party = self.__init_party(5, "Ecologistes", "ECO")
-        sixth_party = self.__init_party(6, "Divers", "DIV")
-        seventh_party = self.__init_party(7, "Regionaliste", "REG")
-        eighth_party = self.__init_party(8, "Ensemble ! (Majorité présidentielle)", "ENS")
-        nineth_party = self.__init_party(9, "Divers Centre", "DVC")
-        tenth_party = self.__init_party(10, "Divers", "DIV")
-        eleventh_party = self.__init_party(11, "Union des Démocrates et des Indépendants", "UDI")
-        twelfth_party = self.__init_party(12, "Les Républicains", "LR")
-        thirteenth_party = self.__init_party(13, "Divers droite", "DVD")
-        fourteenth_party = self.__init_party(14, "Droite souverainiste", "DSV")
-        fifteenth_party = self.__init_party(15, "Reconquête !", "REC")
-        sixteenth_party = self.__init_party(16, "Rassemblement National", "RN")
-        seventeenth_party = self.__init_party(17, "Divers extrême droite", "DXD")
+        sixth_party = self.__init_party(6, "Regionaliste", "REG")
+        seventh_party = self.__init_party(7, "Ensemble ! (Majorité présidentielle)", "ENS")
+        eighth_party = self.__init_party(8, "Divers Centre", "DVC")
+        nineth_party = self.__init_party(9, "Divers", "DIV")
+        tenth_party = self.__init_party(10, "Union des Démocrates et des Indépendants", "UDI")
+        eleventh_party = self.__init_party(11, "Les Républicains", "LR")
+        twelfth_party = self.__init_party(12, "Divers droite", "DVD")
+        thirteenth_party = self.__init_party(13, "Droite souverainiste", "DSV")
+        fourteenth_party = self.__init_party(14, "Reconquête !", "REC")
+        fifteenth_party = self.__init_party(15, "Rassemblement National", "RN")
+        sixteenth_party = self.__init_party(16, "Divers extrême droite", "DXD")
         parties = [first_party, second_party, third_party, fourth_party, fifth_party, sixth_party, seventh_party,
                    eighth_party, nineth_party, tenth_party, eleventh_party, twelfth_party, thirteenth_party,
-                   fourteenth_party, fifteenth_party, sixteenth_party, seventeenth_party]
+                   fourteenth_party, fifteenth_party, sixteenth_party]
         return parties
         
 

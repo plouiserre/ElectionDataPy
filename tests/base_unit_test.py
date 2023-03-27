@@ -18,16 +18,11 @@ class BaseUnitTest(unittest.TestCase) :
         self.assertEqual(candidate_data_check[9], candidate_data_model.candidate.party_id)
         self.assertEqual(candidate_data_check[10], candidate_data_model.candidate.job)
         self.assertTrue(candidate_data_check[11] == candidate_data_model.candidate.birth_date)
-        #TODO refaire cette partie
-        self.assertEqual(candidate_data_check[12], candidate_data_model.candidate_is_sorting)
+        self.assertEqual(candidate_data_check[12], candidate_data_model.candidate.is_sorting)
         
         self.assertEqual(candidate_data_check[13], candidate_data_model.deputy.sexe)
         self.assertEqual(candidate_data_check[14], candidate_data_model.deputy.last_name)
         self.assertEqual(candidate_data_check[15], candidate_data_model.deputy.first_name)
         self.assertTrue(candidate_data_check[16] == candidate_data_model.deputy.birth_date)
         self.assertEqual(candidate_data_check[17], candidate_data_model.deputy.is_sorting)
-        
-        
-        
-       #model = creator.factory_method("['M' 'BOUVET' 'Didier' datetime.datetime(1963, 5, 26, 0, 0) 'Non']")
        

@@ -14,27 +14,27 @@ class CreatorDeputy(Creator):
         self.datas = deputy_data
         if self.is_candidate_two_first_name :
             self.index_modify += 1
-        self.deputy.sexe = self.datas[13 + self.index_modify]
-        self.deputy.last_name = self.datas[14 + self.index_modify]
+        self.deputy.sexe = self.datas[12 + self.index_modify]
+        self.deputy.last_name = self.datas[13 + self.index_modify]
         self.__set_deputy_first_name()
         self.__set_deputy_birthdate()
-        if  self.datas[17 + self.index_modify]  == 'Oui' :
+        if  'Oui' in self.datas[16 + self.index_modify] :
             self.deputy.is_sorting = True
         return self.deputy
     
     
     def __set_deputy_first_name(self) : 
-        if ('datetime' in self.datas[15 + self.index_modify + 1]) == False : 
-            self.deputy.first_name = self.datas[15 + self.index_modify] +" "+ self.datas[15 + self.index_modify + 1]
+        if ('datetime' in self.datas[14 + self.index_modify + 1]) == False : 
+            self.deputy.first_name = self.datas[14 + self.index_modify] +" "+ self.datas[14 + self.index_modify + 1]
             self.index_modify += 1
         else :     
-            self.deputy.first_name = self.datas[15 + self.index_modify]
+            self.deputy.first_name = self.datas[14 + self.index_modify]
             
        
     
     #TODO factorize with birthdate from candidate
     def __set_deputy_birthdate(self) : 
-        birthdate = self.datas[16 + self.index_modify]
+        birthdate = self.datas[15 + self.index_modify]
         birthdate = birthdate.replace('datetime.datetime(', '')
         birthdate = birthdate.replace(', 0, 0)','')
         birthdate = birthdate.replace(')','')

@@ -11,16 +11,16 @@ class WorkflowManager :
         self.candidate_adapter = candidate_adapter
         self.candidate_service = candidate_service
         self.party_service = party_service
-        
-    #TODO externalize all repository thing in the constructor
-    def store_departments(self) :
         mydb = MyDb()
-        department_repository = DepartmentRepository(mydb)
-        district_repository = DistrictRepository(mydb)
-        party_repository = PartyRepository(mydb)
-        candidate_repository = CandidateRepository(mydb)
-        parties = self.party_service.load_parties(party_repository)
+        self.department_repository = DepartmentRepository(mydb)
+        self.district_repository = DistrictRepository(mydb)
+        self.party_repository = PartyRepository(mydb)
+        self.candidate_repository = CandidateRepository(mydb)
+        
+        
+    def store_departments(self) :
+        parties = self.party_service.load_parties(self.party_repository)
         candidates = self.candidate_adapter.get_candidates(parties)
-        self.deparment_service.manage_departments(candidates, department_repository)
-        self.district_service.manage_districts(candidates, self.deparment_service.departments, district_repository)
-        self.candidate_service.manage_candidates(candidates, candidate_repository)
+        self.deparment_service.manage_departments(candidates, self.department_repository)
+        self.district_service.manage_districts(candidates, self.deparment_service.departments, self.district_repository)
+        self.candidate_service.manage_candidates(candidates, self.candidate_repository)

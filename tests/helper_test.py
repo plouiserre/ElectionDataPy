@@ -3,8 +3,6 @@ from src.Models.DistrictModel import DistrictModel
 from src.Models.CandidateDataModel import CandidateDataModel
 from src.Models.PartyModel import PartyModel
 
-import datetime
-
 
 class HelperTest : 
     def __init__(self) :
@@ -16,6 +14,7 @@ class HelperTest :
         candidates = [first_candidate, second_candidate]
         return candidates      
         
+    
     def get_six_candidates(self) : 
         first_candidate = '[\'01\' \'Ain\' \'01\' \'1ère circonscription\' 6 22 \'M\' \'BELLON\' \'Julien\'\n  \'1978-06-11 00:00:00\' \'REC\'\n "Cadre administratif et commercial d\'entreprise" \'Non\' \'F\' \'JEAN-LOUIS\'\n \'Fabienne\' datetime.datetime(1954, 7, 13, 0, 0) \'Non\']'
         second_candidate = "['02' 'Aisne' '04' '4ème circonscription' 2 13 'M' 'GALL' 'Aurélien'\n  '1982-06-30 00:00:00' 'NUP'\n 'Professeur des écoles, instituteur et assimilé' 'Non' 'F' 'LEGRAND'\n 'Estelle' datetime.datetime(1968, 10, 2, 0, 0) 'Non']"
@@ -26,26 +25,6 @@ class HelperTest :
         candidates = [first_candidate, second_candidate, third_candidate, fourth_candidate, fifth_candidate, sixth_candidate]
         return candidates
     
-        
-    def get_eigth_candidates(self) : 
-        first_candidate = '[\'01\' \'Ain\' \'01\' \'1ère circonscription\' 6 22 \'M\' \'BELLON\' \'Julien\'\n  \'1978-06-11 00:00:00\' \'REC\'\n "Cadre administratif et commercial d\'entreprise" \'Non\' \'F\' \'JEAN-LOUIS\'\n \'Fabienne\' datetime.datetime(1954, 7, 13, 0, 0) \'Non\']'
-        second_candidate = "['02' 'Aisne' '04' '4ème circonscription' 2 13 'M' 'GALL' 'Aurélien'\n  '1982-06-30 00:00:00' 'NUP'\n 'Professeur des écoles, instituteur et assimilé' 'Non' 'F' 'LEGRAND'\n 'Estelle' datetime.datetime(1968, 10, 2, 0, 0) 'Non']"
-        third_candidate = "['04' 'Alpes-de-Haute-Provence' '02' '2ème circonscription' 12 18 'M'\n 'WALTER' 'Léo'  '1972-04-14 00:00:00' 'NUP'\n 'Professeur des écoles, instituteur et assimilé' 'Non' 'F' 'ALLAMEL'\n 'Alice' datetime.datetime(1993, 8, 23, 0, 0) 'Non']"
-        fourth_candidate = "['06' 'Alpes-Maritimes' '06' '6ème circonscription' 2 79 'F'\n 'TRASTOUR-ISNART' 'Laurence'  '1972-03-06 00:00:00' 'LR'\n 'Cadre de la fonction publique' 'Oui' 'M' 'COANUS' 'Christophe'\n datetime.datetime(1978, 12, 1, 0, 0) 'Non']"
-        fifth_candidate = "['06' 'Alpes-Maritimes' '06' '6ème circonscription' 4 21 'F' 'MAZZELLA'\n 'Nicole' '1952-09-11 00:00:00' 'NUP' 'Ancien cadre' 'Non'\n 'M' 'BOUHACHI' 'Laury' datetime.datetime(1978, 10, 28, 0, 0) 'Non']"
-        sixth_candidate = "['10' 'Aube' '01' '1ère circonscription' 3 5 'M' 'GUITTON' 'Jordan'\n  '1995-01-30 00:00:00' 'RN'\n 'Profession intermédiaire administrative de la fonction publique' 'Non'\n 'F' 'DA ROCHA' 'Katia' datetime.datetime(1974, 3, 31, 0, 0) 'Non']"
-        seventh_candidate = "['10' 'Aube' '01' '1ère circonscription' 7 20 'M' 'SPAGNESI' 'Laurent'\n '1956-10-12 00:00:00' 'NUP' 'Ancien cadre' 'Non' 'F'\n 'CORDEUIL' 'Annick' datetime.datetime(1955, 2, 5, 0, 0) 'Non']"
-        eight_candidate = "['59' 'Nord' '13' '13ème circonscription' 2 43 'M' 'BÉZINE' 'Clément'\n '1983-12-22 00:00:00' 'DXG'\n 'Professeur, profession scientifique' 'Non' 'M' 'WARINGHEM' 'Jean-Luc'\n datetime.datetime(1957, 3, 26, 0, 0) 'Non']"
-        candidates = [first_candidate, second_candidate, third_candidate, fourth_candidate, fifth_candidate, sixth_candidate,seventh_candidate, eight_candidate]
-        return candidates
-        
-        
-    def get_two_corsica_candidates(self) : 
-        first_candidate = "['2A' 'Corse-du-Sud' '04' '4ème circonscription' 2 13 'M' 'GALL' 'Aurélien'\n  '1982-06-30 00:00:00' 'NUP'\n 'Professeur des écoles, instituteur et assimilé' 'Non' 'F' 'LEGRAND'\n 'Estelle' datetime.datetime(1968, 10, 2, 0, 0) 'Non']"
-        second_candidate = "['2B' 'Haute-Corse' '13' '13ème circonscription' 2 43 'M' 'BÉZINE' 'Clément'\n  '1983-12-22 00:00:00' 'DXG'\n 'Professeur, profession scientifique' 'Non' 'M' 'WARINGHEM' 'Jean-Luc'\n datetime.datetime(1957, 3, 26, 0, 0) 'Non']"
-        candidates = [first_candidate, second_candidate]
-        return candidates
-        
         
     def get_six_departments(self) : 
         first_department = DepartmentModel()
@@ -80,26 +59,6 @@ class HelperTest :
         departments.update({fifth_department.number : fifth_department}) 
         departments.update({sixth_department.number : sixth_department})
         return departments
-    
-    #TODO refaire cette méthode
-    def get_one_candidate_data_model(self) : 
-        candidate_data = CandidateDataModel()
-        candidate_data.department_name = "Gironde"
-        candidate_data.department_number = 33
-        candidate_data.district_name = "1 ère circonscription"
-        candidate_data.district.number = 1
-        candidate_data.candidate_first_name = "Thomas"
-        candidate_data.candidate_last_name = "Cazenave"
-        candidate_data.candidate_is_sorting = False
-        candidate_data.candidate_job = "Cadre de la fonction publique"
-        candidate_data.candidate_party = "ENS"
-        candidate_data.candidate_sexe = "M"
-        candidate_data.candidate_birth_date = "06/03/1978"
-        candidate_data.deputy.sexe = 'F'
-        candidate_data.deputy.last_name = 'BARTEBIN-SOURHOU'
-        candidate_data.deputy.first_name = 'Huguette'
-        candidate_data.deputy.birth_date = datetime.datetime(1971,12,3)
-        return candidate_data
     
     
     def get_two_candidates_data_model(self) :
@@ -277,28 +236,23 @@ class HelperTest :
         
     
     def get_parties(self) : 
-        first_party = self.__init_party(1, "Divers extrême gauche", "DXG")
-        second_party = self.__init_party(2, "Parti radical de gauche", "RDG")
-        third_party = self.__init_party(3, "Nouvelle union populaire écologique et sociale", "NUP")
-        fourth_party = self.__init_party(4, "Divers gauche", "DVG")
-        fifth_party = self.__init_party(5, "Ecologistes", "ECO")
-        sixth_party = self.__init_party(6, "Regionaliste", "REG")
-        seventh_party = self.__init_party(7, "Ensemble ! (Majorité présidentielle)", "ENS")
-        eighth_party = self.__init_party(8, "Divers Centre", "DVC")
-        nineth_party = self.__init_party(9, "Divers", "DIV")
-        tenth_party = self.__init_party(10, "Union des Démocrates et des Indépendants", "UDI")
-        eleventh_party = self.__init_party(11, "Les Républicains", "LR")
-        twelfth_party = self.__init_party(12, "Divers droite", "DVD")
-        thirteenth_party = self.__init_party(13, "Droite souverainiste", "DSV")
-        fourteenth_party = self.__init_party(14, "Reconquête !", "REC")
-        fifteenth_party = self.__init_party(15, "Rassemblement National", "RN")
-        sixteenth_party = self.__init_party(16, "Divers extrême droite", "DXD")
+        first_party = PartyModel(1, "Divers extrême gauche", "DXG")
+        second_party = PartyModel(2, "Parti radical de gauche", "RDG")
+        third_party = PartyModel(3, "Nouvelle union populaire écologique et sociale", "NUP")
+        fourth_party = PartyModel(4, "Divers gauche", "DVG")
+        fifth_party = PartyModel(5, "Ecologistes", "ECO")
+        sixth_party = PartyModel(6, "Regionaliste", "REG")
+        seventh_party = PartyModel(7, "Ensemble ! (Majorité présidentielle)", "ENS")
+        eighth_party = PartyModel(8, "Divers Centre", "DVC")
+        nineth_party = PartyModel(9, "Divers", "DIV")
+        tenth_party = PartyModel(10, "Union des Démocrates et des Indépendants", "UDI")
+        eleventh_party = PartyModel(11, "Les Républicains", "LR")
+        twelfth_party = PartyModel(12, "Divers droite", "DVD")
+        thirteenth_party = PartyModel(13, "Droite souverainiste", "DSV")
+        fourteenth_party = PartyModel(14, "Reconquête !", "REC")
+        fifteenth_party = PartyModel(15, "Rassemblement National", "RN")
+        sixteenth_party = PartyModel(16, "Divers extrême droite", "DXD")
         parties = [first_party, second_party, third_party, fourth_party, fifth_party, sixth_party, seventh_party,
                    eighth_party, nineth_party, tenth_party, eleventh_party, twelfth_party, thirteenth_party,
                    fourteenth_party, fifteenth_party, sixteenth_party]
         return parties
-        
-
-    def __init_party(self, id, name, shortname) : 
-        party = PartyModel(id, name, shortname)
-        return party

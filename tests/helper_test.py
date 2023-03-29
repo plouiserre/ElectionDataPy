@@ -1,8 +1,11 @@
+import datetime
+
 from src.Models.DepartmentModel import DepartmentModel
+from src.Models.DeputyModel import DeputyModel
 from src.Models.DistrictModel import DistrictModel
 from src.Models.CandidateDataModel import CandidateDataModel
+from src.Models.CandidateModel import CandidateModel
 from src.Models.PartyModel import PartyModel
-
 
 class HelperTest : 
     def __init__(self) :
@@ -60,29 +63,91 @@ class HelperTest :
         departments.update({sixth_department.number : sixth_department})
         return departments
     
-    
+    #TODO check using of this method
     def get_two_candidates_data_model(self) :
+        first_department = DepartmentModel()
+        first_department.name = "Aisne"
+        first_department.number = 2
+        first_district = DistrictModel()
+        first_district.name = "4ème circonscription"
+        first_district.number = 4
+        first_district.department = first_department
+        first_candidate = CandidateModel()
+        first_candidate.first_name = "Wednesday"
+        first_candidate.birthdate = datetime.datetime(2002,9,27)
+        first_candidate.is_sorting = False
+        first_candidate.job = "Student"
+        first_candidate.last_name = "Addams"
+        first_candidate.party_id = 3
+        first_candidate.sexe = "F"
+        first_deputy = DeputyModel()
+        first_deputy.birthdate = datetime.datetime(2002, 4, 2)
+        first_deputy.first_name = "Enid"
+        first_deputy.is_sorting = False
+        first_deputy.last_name = "Sinclair"
+        first_deputy.sexe = "F"
         first_candidate_data = CandidateDataModel()
-        first_candidate_data.department = DepartmentModel()
-        first_candidate_data.department.name = "Aisne"
-        first_candidate_data.department.number = 2
-        first_candidate_data.district = DistrictModel()
-        first_candidate_data.district.name = "4ème circonscription"
-        first_candidate_data.district.number = 4
-        first_candidate_data.district.department = first_candidate_data.department
+        first_candidate_data.department = first_department
+        first_candidate_data.district = first_district
+        first_candidate_data.candidate = first_candidate
+        first_candidate_data.deputy = first_deputy
         
+        second_department = DepartmentModel()
+        second_department.name = "Nord"
+        second_department.number = 59
+        second_district = DistrictModel()
+        second_district.name = "13ème circonscription"
+        second_district.number = 13
+        second_district.department = second_department
+        second_candidate = CandidateModel()
+        second_candidate.birthdate = datetime.datetime(1976,5,25)
+        second_candidate.first_name = "Thomas"
+        second_candidate.is_sorting = True
+        second_candidate.job = "Gangster"
+        second_candidate.last_name = "Shelby"
+        second_candidate.party_id = 6
+        second_candidate.sexe = "M"
+        second_deputy = DeputyModel()
+        second_deputy.birthdate = datetime.datetime(1968, 8,17)
+        second_deputy.first_name = "Polly"
+        second_deputy.is_sorting = True
+        second_deputy.last_name = "Gray"
+        second_deputy.sexe = "F"
         second_candidate_data = CandidateDataModel()
-        second_candidate_data.department = DepartmentModel()
-        second_candidate_data.department.name = "Nord"
-        second_candidate_data.department.number = 59
-        second_candidate_data.district = DistrictModel()
-        second_candidate_data.district.name = "13ème circonscription"
-        second_candidate_data.district.number = 13
-        second_candidate_data.district.department = second_candidate_data.department
+        second_candidate_data.department = second_department
+        second_candidate_data.district = second_district
+        second_candidate_data.candidate = second_candidate
+        second_candidate_data.deputy = second_deputy
         
         candidates = [first_candidate_data, second_candidate_data]
         
         return candidates    
+    
+    #TODO factorize with get_two_candidates_data_model
+    def get_two_candidates_model(self) : 
+        first_candidate = CandidateModel()
+        first_candidate.first_name = "Wednesday"
+        first_candidate.birthdate = datetime.datetime(2002,9,27)
+        first_candidate.is_sorting = False
+        first_candidate.job = "Student"
+        first_candidate.last_name = "Addams"
+        first_candidate.party_id = 3
+        first_candidate.sexe = "F"
+        first_candidate.id = 1
+        
+        second_candidate = CandidateModel()
+        second_candidate.birthdate = datetime.datetime(1976,5,25)
+        second_candidate.first_name = "Thomas"
+        second_candidate.is_sorting = True
+        second_candidate.job = "Gangster"
+        second_candidate.last_name = "Shelby"
+        second_candidate.party_id = 6
+        second_candidate.sexe = "M"
+        second_candidate.id = 2
+        
+        candidates = [first_candidate, second_candidate]
+        
+        return candidates
     
     
     def get_two_corsica_candidates_data_model(self) :

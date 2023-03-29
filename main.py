@@ -6,6 +6,7 @@ from src.Services.DepartmentServices import DepartmentServices
 from src.Services.DistrictServices import DistrictServices
 from src.Services.CandidateServices import CandidateServices
 from src.Services.PartyServices import PartyServices
+from src.Services.DeputyServices import DeputyServices
 from src.Workflow.WorkflowManager import WorkflowManager
 
 excel_manager = ExcelManager()
@@ -14,5 +15,6 @@ districtServices = DistrictServices()
 candidate_adapter = CandidateAdapter(pd, excel_manager)
 candidate_service = CandidateServices()
 party_service = PartyServices()
-workflow = WorkflowManager(departmentServices, districtServices, candidate_adapter, candidate_service, party_service)
+deputy_service = DeputyServices()
+workflow = WorkflowManager(departmentServices, districtServices, candidate_adapter, candidate_service, deputy_service, party_service)
 workflow.store_departments()

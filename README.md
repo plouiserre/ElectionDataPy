@@ -10,10 +10,13 @@ Get OpenData about 2022 France Elections and insert in a new database
 4. From first opendata file store french districts DID
 5. Centralize construct models and implements Adapter Pattern DID
 6. From first opendata file store french candidats DID
-7. From first opendata file store french deputies
-7. From second opendata file store all datas in memory
-8. Store all datas from second opendata in database
-9. Defines all news datas from opendatas
+7. From first opendata file store french deputies DOING 
+8. Install program and try to import libraries externes automatically
+9. From result_first_round.xlsx store all datas in memory
+10. Store all datas from result_first_round.xlsx in database
+11. From result_second_round.xlsx store all datas in memory
+12. Store all datas from result_second_round.xlsx in database
+13. Defines all news datas from opendatas (after the definitions new phases will emerged)
 
 ## Technical Challenge
 Code with TDD

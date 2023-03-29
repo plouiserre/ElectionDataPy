@@ -17,12 +17,14 @@ class BaseUnitTest(unittest.TestCase) :
         self.assertEqual(candidate_data_check[8], candidate_data_model.candidate.sexe)
         self.assertEqual(candidate_data_check[9], candidate_data_model.candidate.party_id)
         self.assertEqual(candidate_data_check[10], candidate_data_model.candidate.job)
-        self.assertTrue(candidate_data_check[11] == candidate_data_model.candidate.birth_date)
+        self.assertTrue(candidate_data_check[11] == candidate_data_model.candidate.birthdate)
         self.assertEqual(candidate_data_check[12], candidate_data_model.candidate.is_sorting)
         
         self.assertEqual(candidate_data_check[13], candidate_data_model.deputy.sexe)
         self.assertEqual(candidate_data_check[14], candidate_data_model.deputy.last_name)
         self.assertEqual(candidate_data_check[15], candidate_data_model.deputy.first_name)
-        self.assertTrue(candidate_data_check[16] == candidate_data_model.deputy.birth_date)
+        self.assertTrue(candidate_data_check[16] == candidate_data_model.deputy.birthdate)
         self.assertEqual(candidate_data_check[17], candidate_data_model.deputy.is_sorting)
+        self.assertEqual(candidate_data_check[6], candidate_data_model.deputy.candidate.last_name)
+        self.assertEqual(candidate_data_check[7], candidate_data_model.deputy.candidate.first_name)
        

@@ -1,6 +1,3 @@
-from src.Models.DistrictModel import DistrictModel
-from src.Factory.CreatorDistrict import CreatorDistrict
-
 class DistrictServices :
     def __init__(self) :
         self.districts = []

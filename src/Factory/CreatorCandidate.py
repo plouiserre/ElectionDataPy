@@ -17,7 +17,7 @@ class CreatorCandidate(Creator) :
         self.can.last_name = self.datas[6]
         self.can.sexe =  self.datas[5]
         self.__set_candidate_first_name()
-        self.__set_candidate_birth_date()
+        self.__set_candidate_birthdate()
         self.__set_candidate_party()
         self.__set_candidate_jobs()
         if self.datas[11] == 'Oui' :
@@ -25,7 +25,7 @@ class CreatorCandidate(Creator) :
         
         return self.can
     
-    def __set_candidate_birth_date(self) : 
+    def __set_candidate_birthdate(self) : 
         birthdate = ''
         if  self.is_candidate_first_name_simple == False :
             birthdate = self.datas[9]
@@ -41,7 +41,7 @@ class CreatorCandidate(Creator) :
         year = int(birthdate_elements[0])
         month = int(birthdate_elements[1])
         day = int(birthdate_elements[2])
-        self.can.birth_date = datetime.datetime(year, month, day)
+        self.can.birthdate = datetime.datetime(year, month, day)
     
     
     def __set_candidate_first_name(self) :  

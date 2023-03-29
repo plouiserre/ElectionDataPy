@@ -52,7 +52,7 @@ class CreatorCandidateTest(unittest.TestCase):
         self.assertEqual(candidate_data_check[2], candidate_model.sexe)
         self.assertEqual(candidate_data_check[3], candidate_model.party_id)
         self.assertEqual(candidate_data_check[4], candidate_model.job)
-        self.assertTrue(candidate_data_check[5] == candidate_model.birth_date)
+        self.assertTrue(candidate_data_check[5] == candidate_model.birthdate)
         self.assertEqual(candidate_data_check[6], candidate_model.is_sorting)
         
 

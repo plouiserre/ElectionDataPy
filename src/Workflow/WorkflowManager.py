@@ -20,10 +20,10 @@ class WorkflowManager :
         self.candidate_repository = CandidateRepository(mydb)
         self.deputy_repository = DeputyRepository(mydb)
         
-    def store_departments(self) :
+    def store_datas(self) :
         parties = self.party_service.load_parties(self.party_repository)
         candidates = self.candidate_adapter.get_candidates(parties)
         self.deparment_service.manage_departments(candidates, self.department_repository)
         self.district_service.manage_districts(candidates, self.deparment_service.departments, self.district_repository)
-        self.candidate_service.manage_candidates(candidates, self.candidate_repository)
+        self.candidate_service.manage_candidates(candidates, self.candidate_repository, self.district_service.districts)
         self.deputy_service.manage_deputies(candidates, self.candidate_service.candidates, self.deputy_repository)

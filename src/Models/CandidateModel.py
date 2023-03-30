@@ -8,5 +8,6 @@ class CandidateModel :
         self.sexe = ''
         self.birthdate = datetime.date
         self.party_id = 0
+        self.district_id = 0
         self.job = ''
         self.is_sorting = False

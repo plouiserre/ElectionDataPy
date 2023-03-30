@@ -15,11 +15,13 @@ class WorkflowTest(unittest.TestCase):
         candidate_adapter_mock.get_candidates()
         candidate_service_mock = Mock()
         candidate_service_mock.manage_candidates()
+        deputy_service_mock = Mock()
+        deputy_service_mock.manage_deputies()
         party_service_mock = Mock()
         party_service_mock.load_parties()
-        workflow = WorkflowManager(departmentService_mock, district_service_mock, candidate_adapter_mock, candidate_service_mock, party_service_mock)                
+        workflow = WorkflowManager(departmentService_mock, district_service_mock, candidate_adapter_mock, candidate_service_mock, deputy_service_mock, party_service_mock)                
         
-        workflow.store_departments()
+        workflow.store_datas()
         
         self.assertTrue(departmentService_mock.manage_departments.called)
         self.assertTrue(district_service_mock.import_candidates_datas.called)

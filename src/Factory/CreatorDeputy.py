@@ -24,20 +24,16 @@ class CreatorDeputy(Creator):
         self.__set_candidate_deputy_identity()
         return self.deputy
     
-    #TODO clean this method
     def __set_deputy_first_name(self) : 
-        if ('datetime' in self.datas[14 + self.index_modify + 1]) == False and ('00:00:00' in self.datas[14 + self.index_modify + 1]) == False : 
+        if ('00:00:00' in self.datas[14 + self.index_modify + 1]) == False : 
             self.deputy.first_name = self.datas[14 + self.index_modify] +" "+ self.datas[14 + self.index_modify + 1]
             self.index_modify += 1
         else :     
             self.deputy.first_name = self.datas[14 + self.index_modify]
        
     
-    #TODO clean and/or factorize with birthdate from candidate
     def __set_deputy_birthdate(self) : 
         birthdate = self.datas[15 + self.index_modify]
-        birthdate = birthdate.replace('datetime.datetime(', '')
-        birthdate = birthdate.replace(', 0, 0)','')
         birthdate = birthdate.replace(' 00:00:00','')
         birthdate = birthdate.replace('-',',')
         birthdate = birthdate.replace(')','')

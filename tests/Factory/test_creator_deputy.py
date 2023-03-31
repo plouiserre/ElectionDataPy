@@ -8,7 +8,7 @@ from helper_test import HelperTest
 class CreatorDeputyTest(unittest.TestCase):
     def test_creator_deputy(self):
         creator = CreatorDeputy(False)
-        deputy_data = ['XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'Bond' ,'James' , 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'F', 'BARTEBIN-SOURHOU', 'Huguette' ,'datetime.datetime(1971, 12, 3, 0, 0)', 'Non']
+        deputy_data = ['XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'Bond' ,'James' , 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'F', 'BARTEBIN-SOURHOU', 'Huguette' ,'1971-12-03 00:00:00', 'Non']
         
         deputy = creator.factory_method(deputy_data)
         
@@ -18,7 +18,7 @@ class CreatorDeputyTest(unittest.TestCase):
         
     def test_creator_deputy_is_sorting(self):
         creator = CreatorDeputy(False)
-        deputy_data = ['XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'Addams' ,'Mercredi' , 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'F', 'BARTEBIN-SOURHOU', 'Huguette' ,'datetime.datetime(1971, 12, 3, 0, 0)', 'Oui']
+        deputy_data = ['XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'Addams' ,'Mercredi' , 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'F', 'BARTEBIN-SOURHOU', 'Huguette' ,'1971-12-03 00:00:00', 'Oui']
         
         deputy = creator.factory_method(deputy_data)
         
@@ -40,7 +40,7 @@ class CreatorDeputyTest(unittest.TestCase):
     def test_creator_deputy_with_candidate_two_first_names(self):
         creator = CreatorDeputy(True)
         
-        deputy_data = ['XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'M', 'Cazenave', 'Thomas' ,'Eric', 'datetime.datetime(1978, 06, 03, 0, 0)' , 'ENS', 'Cadre de la fonction publique', 'Non', 'F', 'BARTEBIN-SOURHOU', 'Huguette' ,'datetime.datetime(1971, 12, 3, 0, 0)', 'Non']
+        deputy_data = ['XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'M', 'Cazenave', 'Thomas' ,'Eric', '1978-06-03 00:00:00', 'ENS', 'Cadre de la fonction publique', 'Non', 'F', 'BARTEBIN-SOURHOU', 'Huguette' ,'1971-12-03 00:00:00', 'Non']
         
         deputy = creator.factory_method(deputy_data)
         
@@ -50,7 +50,7 @@ class CreatorDeputyTest(unittest.TestCase):
         
     def test_creator_deputy_with_two_first_names(self) : 
         creator = CreatorDeputy(False)
-        deputy_data = ['XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'Lannister' ,'Tyrion' , 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'F', 'BARTEBIN-SOURHOU', 'Huguette' , 'Georgette', 'datetime.datetime(1971, 12, 3, 0, 0)', 'Oui']
+        deputy_data = ['XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'Lannister' ,'Tyrion' , 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'F', 'BARTEBIN-SOURHOU', 'Huguette' , 'Georgette', '1971-12-03 00:00:00', 'Oui']
         
         deputy = creator.factory_method(deputy_data)
         
@@ -61,7 +61,7 @@ class CreatorDeputyTest(unittest.TestCase):
     def test_creator_deputy_with_candidate_both_have_two_first_names(self):
         creator = CreatorDeputy(True)
         
-        deputy_data = ['XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'M', 'Cazenave', 'Thomas' ,'Eric', 'datetime.datetime(1978, 06, 03, 0, 0)' , 'ENS', 'Cadre de la fonction publique', 'Non', 'F', 'BARTEBIN-SOURHOU', 'Huguette' , 'Georgette', 'datetime.datetime(1971, 12, 3, 0, 0)', 'Non']
+        deputy_data = ['XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'M', 'Cazenave', 'Thomas' ,'Eric', '1978-06-03 00:00:00', 'ENS', 'Cadre de la fonction publique', 'Non', 'F', 'BARTEBIN-SOURHOU', 'Huguette' , 'Georgette', '1971-12-03 00:00:00', 'Non']
         
         deputy = creator.factory_method(deputy_data)
         

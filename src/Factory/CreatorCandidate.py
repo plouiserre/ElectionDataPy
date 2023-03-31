@@ -3,7 +3,6 @@ import datetime
 from src.Models.CandidateModel import CandidateModel
 from src.Factory.Creator import Creator
 
-#TODO rework this method and this test like CreatorDistrict 
 class CreatorCandidate(Creator) : 
     def __init__(self, parties) -> None:
         self.is_candidate_first_name_simple = True
@@ -31,10 +30,8 @@ class CreatorCandidate(Creator) :
             birthdate = self.datas[9]
         else : 
             birthdate = self.datas[8]
-        birthdate = birthdate.replace('datetime.datetime(', '')
-        birthdate = birthdate.replace(', 0, 0)','')
+        
         birthdate = birthdate.replace(')','')
-        #TODO compare if the next two lines are necesserary or useless and rework this method 
         birthdate = birthdate.replace(" 00:00:00","")
         birthdate = birthdate.replace("-",",")
         birthdate_elements = birthdate.split(',')

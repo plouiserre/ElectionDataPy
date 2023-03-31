@@ -1,9 +1,9 @@
 import datetime
 
 from src.Models.CandidateModel import CandidateModel
-from src.Factory.Creator import Creator
+from src.Factory.CreatorPerson import CreatorPerson
 
-class CreatorCandidate(Creator) : 
+class CreatorCandidate(CreatorPerson) : 
     def __init__(self, parties) -> None:
         self.is_candidate_first_name_simple = True
         self.datas = []
@@ -30,15 +30,7 @@ class CreatorCandidate(Creator) :
             birthdate = self.datas[9]
         else : 
             birthdate = self.datas[8]
-        
-        birthdate = birthdate.replace(')','')
-        birthdate = birthdate.replace(" 00:00:00","")
-        birthdate = birthdate.replace("-",",")
-        birthdate_elements = birthdate.split(',')
-        year = int(birthdate_elements[0])
-        month = int(birthdate_elements[1])
-        day = int(birthdate_elements[2])
-        self.can.birthdate = datetime.datetime(year, month, day)
+        self.can.birthdate = self.determined_birthdate(birthdate) 
     
     
     def __set_candidate_first_name(self) :  

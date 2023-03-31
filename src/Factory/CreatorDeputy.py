@@ -1,9 +1,9 @@
 import datetime
 
 from src.Models.DeputyModel import DeputyModel
-from src.Factory.Creator import Creator
+from src.Factory.CreatorPerson import CreatorPerson
 
-class CreatorDeputy(Creator):
+class CreatorDeputy(CreatorPerson):
     def __init__(self, is_candidate_two_first_name) :
         self.datas = []
         self.deputy = DeputyModel()
@@ -18,7 +18,7 @@ class CreatorDeputy(Creator):
         self.deputy.sexe = self.datas[12 + self.index_modify]
         self.deputy.last_name = self.datas[13 + self.index_modify]
         self.__set_deputy_first_name()
-        self.__set_deputy_birthdate()
+        self.deputy.birthdate = self.determined_birthdate(self.datas[15 + self.index_modify])
         if  'Oui' in self.datas[16 + self.index_modify] :
             self.deputy.is_sorting = True
         self.__set_candidate_deputy_identity()
@@ -30,18 +30,6 @@ class CreatorDeputy(Creator):
             self.index_modify += 1
         else :     
             self.deputy.first_name = self.datas[14 + self.index_modify]
-       
-    
-    def __set_deputy_birthdate(self) : 
-        birthdate = self.datas[15 + self.index_modify]
-        birthdate = birthdate.replace(' 00:00:00','')
-        birthdate = birthdate.replace('-',',')
-        birthdate = birthdate.replace(')','')
-        birthdate_elements = birthdate.split(',')
-        year = int(birthdate_elements[0])
-        month = int(birthdate_elements[1])
-        day = int(birthdate_elements[2])
-        self.deputy.birthdate = datetime.datetime(year, month, day)
         
         
     def __set_candidate_deputy_identity(self) : 

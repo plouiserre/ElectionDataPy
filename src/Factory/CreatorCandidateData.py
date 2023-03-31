@@ -5,9 +5,8 @@ from src.Factory.CreatorDepartment import CreatorDepartment
 from src.Factory.CreatorDistrict import CreatorDistrict
 from src.Factory.CreatorCandidate import CreatorCandidate
 from src.Factory.CreatorDeputy import CreatorDeputy
-from src.Factory.Creator import Creator
 
-class CreatorCandidateData(Creator) : 
+class CreatorCandidateData() : 
     def __init__(self, parties) :
         self.candidate_data = CandidateDataModel()
         self.datas = []

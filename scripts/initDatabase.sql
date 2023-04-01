@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS DISTRICT(
     DistrictId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     Position INT,
     DistrictName VARCHAR(25),
-    DepartmentId INT,
+    DepartmentId INT NOT NULL,
     Registered INT,
     Abstention INT,
     Voting INT,
@@ -48,10 +48,10 @@ CREATE TABLE IF NOT EXISTS CANDIDATE(
     CandidateFirstName VARCHAR(50),
     CandidateSexe VARCHAR(1),
     CandidateBirthDate DATE,
-    PartyId INT,
+    PartyId INT NOT NULL,
     Job VARCHAR(150),
     OldCandidate BIT,
-    DistrictId INT,
+    DistrictId INT NOT NULL,
     VoteFirstRound INT,
     VoteSecondRound INT,
     FOREIGN KEY (PartyId) REFERENCES PARTY(PartyId),
@@ -61,10 +61,12 @@ CREATE TABLE IF NOT EXISTS CANDIDATE(
 -- 5 Deputy
 CREATE TABLE IF NOT EXISTS DEPUTY(
     DeputyId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    DeputyLastName VARCHAR(25),
-    DeputyFirstName VARCHAR(25),
+    DeputyLastName VARCHAR(50),
+    DeputyFirstName VARCHAR(50),
+    DeputySexe VARCHAR(1),
     DeputyBirthDate DATE,
-    CandidateId INT,
+    OldCandidate BIT,
+    CandidateId INT NOT NULL,
     FOREIGN KEY (CandidateId) REFERENCES CANDIDATE(CandidateId)
 );
 
@@ -74,7 +76,6 @@ INSERT INTO PARTY(PartyName, ShortName) VALUES ('Parti radical de gauche','RDG')
 INSERT INTO PARTY(PartyName, ShortName) VALUES ('Nouvelle union populaire écologique et sociale','NUP');
 INSERT INTO PARTY(PartyName, ShortName) VALUES ('Divers gauche','DVG');
 INSERT INTO PARTY(PartyName, ShortName) VALUES ('Ecologistes','ECO');
-INSERT INTO PARTY(PartyName, ShortName) VALUES ('Divers','DIV');
 INSERT INTO PARTY(PartyName, ShortName) VALUES ('Régionaliste','REG');
 INSERT INTO PARTY(PartyName, ShortName) VALUES ('Ensemble ! (Majorité présidentielle)','ENS');
 INSERT INTO PARTY(PartyName, ShortName) VALUES ('Divers Centre','DVC');

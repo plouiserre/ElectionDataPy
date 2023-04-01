@@ -1,14 +1,61 @@
-from src.Models.CandidateModel import CandidateModel
-from src.Factory.Creator import Creator
+import datetime
 
-class CreatorCandidate(Creator) : 
-    def factory_method(self, candidate_data) :         
-        can = CandidateModel()
-        can.last_name = candidate_data.candidate_last_name
-        can.first_name = candidate_data.candidate_first_name 
-        can.sexe =  candidate_data.candidate_sexe
-        can.birth_date = candidate_data.candidate_birth_date 
-        can.party = candidate_data.candidate_party 
-        can.job = candidate_data.candidate_job 
+from src.Models.CandidateModel import CandidateModel
+from src.Factory.CreatorPerson import CreatorPerson
+
+class CreatorCandidate(CreatorPerson) : 
+    def __init__(self, parties) -> None:
+        self.is_candidate_first_name_simple = True
+        self.datas = []
+        self.can = CandidateModel()
+        self.parties = parties
         
-        return can
+        
+    def factory_method(self, candidate_data) :         
+        self.datas = candidate_data
+        self.can.last_name = self.datas[6]
+        self.can.sexe =  self.datas[5]
+        self.__set_candidate_first_name()
+        self.__set_candidate_birthdate()
+        self.__set_candidate_party()
+        self.__set_candidate_jobs()
+        if self.datas[11] == 'Oui' :
+           self.can.is_sorting = True
+        
+        return self.can
+    
+    def __set_candidate_birthdate(self) : 
+        birthdate = ''
+        if  self.is_candidate_first_name_simple == False :
+            birthdate = self.datas[9]
+        else : 
+            birthdate = self.datas[8]
+        self.can.birthdate = self.determined_birthdate(birthdate) 
+    
+    
+    def __set_candidate_first_name(self) :  
+        if str.isalpha(self.datas[8]) : 
+            self.is_candidate_first_name_simple = False
+            self.can.first_name = self.datas[7]+" "+self.datas[8]
+        else :
+            self.can.first_name = self.datas[7]
+            
+            
+    def __set_candidate_party(self) : 
+        party_shortname = ''
+        if  self.is_candidate_first_name_simple :
+           party_shortname = self.datas[9]
+        else :
+           party_shortname = self.datas[10]
+        for party in self.parties : 
+            if party.short_name == party_shortname : 
+                self.can.party_id = party.id
+                break
+            
+            
+    def __set_candidate_jobs(self) : 
+         if  self.is_candidate_first_name_simple :
+            self.can.job = self.datas[10]
+         else :
+            self.can.job = self.datas[11]
+        

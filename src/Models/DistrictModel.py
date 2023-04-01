@@ -4,4 +4,5 @@ class DistrictModel :
     def __init__(self) :
         self.id = 0
         self.number = 0
+        self.name = ''
         self.department = DepartmentModel()

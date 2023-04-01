@@ -1,7 +1,6 @@
 from src.Models.DistrictModel import DistrictModel
-from src.Factory.Creator import Creator
 
-class CreatorDistrict(Creator) : 
+class CreatorDistrict() : 
     def factory_method(self, candidate_data):
         district = DistrictModel()
         district_number = candidate_data[2]

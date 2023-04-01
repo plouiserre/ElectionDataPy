@@ -1,7 +1,6 @@
 from src.Models.DepartmentModel import DepartmentModel
-from src.Factory.Creator import Creator
 
-class CreatorDepartment(Creator) : 
+class CreatorDepartment() : 
     def factory_method(self, candidate_data) :         
         dep = DepartmentModel()
         department_id = candidate_data[0].replace('\'','')

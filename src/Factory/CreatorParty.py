@@ -1,7 +1,6 @@
 from src.Models.PartyModel import PartyModel
-from src.Factory.Creator import Creator
 
-class CreatorParty(Creator) : 
+class CreatorParty() : 
     def factory_method(self, candidate_data):
         party = PartyModel()
         party.id = candidate_data[0]

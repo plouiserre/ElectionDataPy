@@ -7,12 +7,18 @@ class ExcelManager :
         path_file = "C:\\Users\\ploui\\Projects\\ElectionDataPy\\files\\candidates.xlsx"
         #path_file ="/Users/pierre-louisserre/Projects/ElectionDataPy/files/candidates.xlsx"
         data = pd.read_excel(path_file)
+        self.import_results_datas(pd)
         candidates = [] 
         for candidate in enumerate(data.values) :
             can = self.get_candidate_datas(candidate[1])
             candidates.append(can)
         return candidates
         
+        
+    def import_results_datas(self, pd):
+        path_file = "C:\\Users\\ploui\\Projects\\ElectionDataPy\\files\\result_first_round.xlsx"
+        data = pd.read_excel(path_file)
+        return None
     
     def get_candidate_datas(self, candidate) : 
         data_clean = '['

@@ -1,9 +1,5 @@
 import unittest
 from mock import Mock
-from unittest.mock import patch
-
-from src.Repository.DepartmentRepository import DepartmentRepository
-from src.Repository.mydb import MyDb
 
 from src.Services.DepartmentServices import DepartmentServices
 
@@ -71,15 +67,13 @@ class DepartmentServicesTest(unittest.TestCase):
         return dep.departments
         
         
-    @patch.object(DepartmentRepository,'save_departments')
-    def test_deparments_repository_save_departments_called(self, mock_departmentrepository) : 
-        mydb = MyDb()
-        dep_repo = DepartmentRepository(mydb)
+    def test_deparments_repository_save_departments_called(self) : 
+        mock_dependency = Mock()
         department_services = DepartmentServices()
         
-        department_services.manage_departments([], dep_repo)
+        department_services.manage_departments([], mock_dependency)
         
-        self.assertTrue(mock_departmentrepository.called)
+        self.assertTrue(mock_dependency.get_dependency.called)
         
     if __name__ == "__main__":
         unittest.main()

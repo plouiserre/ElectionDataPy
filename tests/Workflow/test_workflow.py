@@ -1,33 +1,23 @@
 import unittest
-from mock import Mock
 from unittest.mock import patch
+from mock import Mock
 from src.Workflow.WorkflowManager import WorkflowManager
+from src.Dependency.Dependency import Dependency
 
-#TODO reprendre ce code car le TU marche mal
+#TODO how to test if the calls externs are bad formated
 class WorkflowTest(unittest.TestCase):
     
-    def test_call_workflow_called_external_methods(self):
-        departmentService_mock = Mock()
-        departmentService_mock.manage_departments() 
-        district_service_mock = Mock()
-        district_service_mock.import_candidates_datas()
-        candidate_adapter_mock = Mock()
-        candidate_adapter_mock.get_candidates()
-        adapters = []
-        adapters.append(candidate_adapter_mock)
-        candidate_service_mock = Mock()
-        candidate_service_mock.manage_candidates()
-        deputy_service_mock = Mock()
-        deputy_service_mock.manage_deputies()
-        mydb_mock = Mock()
-        workflow = WorkflowManager(departmentService_mock, district_service_mock, adapters, candidate_service_mock, deputy_service_mock, mydb_mock)                
+    def getIterablesObject(*args) : 
+        arrays = []
+        return arrays
+    
+    @patch.object(Dependency,'get_dependency', side_effect=getIterablesObject)
+    def test_call_workflow_called_external_methods(self, mock_dependency):
+        workflow = WorkflowManager(mock_dependency)                
         
         workflow.store_datas()
         
-        self.assertTrue(departmentService_mock.manage_departments.called)
-        self.assertTrue(district_service_mock.import_candidates_datas.called)
-        self.assertTrue(candidate_adapter_mock.get_candidates.called)        
-        self.assertTrue(candidate_service_mock.manage_candidates.called)
+        self.assertTrue(mock_dependency.get_dependency.called)
         
     if __name__ == "__main__":
         unittest.main()

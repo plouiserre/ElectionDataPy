@@ -1,12 +1,8 @@
 import unittest
 from mock import Mock
-from unittest.mock import patch
 
 from src.Services.DistrictServices import DistrictServices
 from src.Models.DepartmentModel import DepartmentModel
-
-from src.Repository.DistrictRepository import DistrictRepository
-from src.Repository.mydb import MyDb
 
 from tests.helper_test import HelperTest
 
@@ -100,15 +96,13 @@ class DistrictServicesTest(unittest.TestCase):
         self.assertEqual(65, districts[1].department.id)        
         
     
-    @patch.object(DistrictRepository, 'save_districts')
-    def test_districts_repository_save_districts_called(self, mock_districtrepository) :
-        mydb = MyDb()
-        dis_repo = DistrictRepository(mydb)
+    def test_districts_repository_save_districts_called(self) :
+        mock_dependency = Mock()
         district_services = DistrictServices()
         
-        district_services.manage_districts([],[],dis_repo)
+        district_services.manage_districts([],[],mock_dependency)
         
-        self.assertTrue(mock_districtrepository.called)
+        self.assertTrue(mock_dependency.get_dependency.called)
         
     if __name__ == "__main__":
         unittest.main()

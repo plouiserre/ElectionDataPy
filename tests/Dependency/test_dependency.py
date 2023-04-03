@@ -46,9 +46,9 @@ class DependencyTest(unittest.TestCase) :
         
         
     def test_get_adapters_dependency(self) : 
-        dependency = self.__get_dependencies_to_test("adapters")
+        dependency = self.__get_dependencies_to_test("candidateadapter")
         
-        self.assertTrue(isinstance(dependency[0], CandidateAdapter))
+        self.assertTrue(isinstance(dependency, CandidateAdapter))
         
         
     def test_get_candidate_service_dependency(self) : 

@@ -17,7 +17,9 @@ class WorkflowManager :
         
     def __get_datas_from_adapters(self) : 
         candidates = [] 
-        adapters = self.dependency.get_dependency("adapters")
+        candidate_adapter = self.dependency.get_dependency("candidateadapter")
+        adapters = []
+        adapters.append(candidate_adapter)
         for adapter in adapters : 
             adapter.get_datas_needed()
             candidates = adapter.extracts_datas_from_files()

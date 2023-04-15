@@ -1,7 +1,7 @@
 from src.Dependency.Dependency import Dependency
-from src.Workflow.WorkflowManager import WorkflowManager
+from src.Orchestrate.OrchestrateStoreElectionsDatas import OrchestrateStoreElectionsDatas
 
 dependency = Dependency()
 dependency.init_dependencies()
-workflow = WorkflowManager(dependency)
-workflow.store_datas()
+orchestrate = OrchestrateStoreElectionsDatas(dependency)
+orchestrate.store_elections_datas()

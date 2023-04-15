@@ -1,4 +1,4 @@
-class WorkflowManager :
+class OrchestrateStoreElectionsDatas :
     def __init__(self, dependency) :
         self.dependency = dependency
         self.deparment_service = self.dependency.get_dependency("deparmentservices")
@@ -7,15 +7,15 @@ class WorkflowManager :
         self.deputy_service = self.dependency.get_dependency("deputyservices")
         
         
-    def store_datas(self) :
-        candidates = self.__get_datas_from_adapters()
-        self.deparment_service.manage_departments(candidates, self.dependency)
-        self.district_service.manage_districts(candidates, self.deparment_service.departments, self.dependency)
-        self.candidate_service.manage_candidates(candidates, self.district_service.districts,self.dependency)
-        self.deputy_service.manage_deputies(candidates, self.candidate_service.candidates, self.dependency)
+    def store_elections_datas(self) :
+        candidates = self.__get_elections_datas_from_adapters()
+        self.deparment_service.store_departments(candidates, self.dependency)
+        self.district_service.store_districts(candidates, self.deparment_service.departments, self.dependency)
+        self.candidate_service.store_candidates(candidates, self.district_service.districts,self.dependency)
+        self.deputy_service.store_deputies(candidates, self.candidate_service.candidates, self.dependency)
         
         
-    def __get_datas_from_adapters(self) : 
+    def __get_elections_datas_from_adapters(self) : 
         candidates = [] 
         candidate_adapter = self.dependency.get_dependency("candidateadapter")
         adapters = []

@@ -10,7 +10,7 @@ class DepartmentServicesTest(unittest.TestCase):
         helper = HelperTest()
         candidates = helper.get_two_candidates_data_model()
         
-        departments = self.call_manage_departments(candidates)
+        departments = self.call_store_departments(candidates)
         
         self.assertEqual(2, len(departments))
         self.assertEqual(2, departments[2].number)
@@ -23,7 +23,7 @@ class DepartmentServicesTest(unittest.TestCase):
         helper = HelperTest()
         candidates = helper.get_six_candidates_data_model()
         
-        departments = self.call_manage_departments(candidates)
+        departments = self.call_store_departments(candidates)
         
         self.assertEqual(6, len(candidates))
         self.assertEqual(1, departments[1].number)
@@ -43,7 +43,7 @@ class DepartmentServicesTest(unittest.TestCase):
         helper = HelperTest()
         candidates = helper.get_eight_candidates_data_model()        
               
-        departments = self.call_manage_departments(candidates)
+        departments = self.call_store_departments(candidates)
         
         self.assertEqual(6, len(departments ))
         self.assertEqual(1, departments[1].number)
@@ -60,10 +60,10 @@ class DepartmentServicesTest(unittest.TestCase):
         self.assertEqual("Nord", departments[59].name)
         
         
-    def call_manage_departments(self, candidates) : 
+    def call_store_departments(self, candidates) : 
         dep_repo = Mock()
         dep = DepartmentServices()
-        dep.manage_departments(candidates, dep_repo)        
+        dep.store_departments(candidates, dep_repo)        
         return dep.departments
         
         
@@ -71,7 +71,7 @@ class DepartmentServicesTest(unittest.TestCase):
         mock_dependency = Mock()
         department_services = DepartmentServices()
         
-        department_services.manage_departments([], mock_dependency)
+        department_services.store_departments([], mock_dependency)
         
         self.assertTrue(mock_dependency.get_dependency.called)
         

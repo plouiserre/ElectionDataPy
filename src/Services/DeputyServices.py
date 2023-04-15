@@ -3,7 +3,7 @@ class DeputyServices :
         self.deputies = []
         pass
     
-    def manage_deputies(self, candidates_data_model, candidates, dependency) :
+    def store_deputies(self, candidates_data_model, candidates, dependency) :
         deputy_repository = dependency.get_dependency("deputyrepository")
         for candidate_data_model in candidates_data_model : 
             deputy = candidate_data_model.deputy

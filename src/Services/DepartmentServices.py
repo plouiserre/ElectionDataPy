@@ -2,7 +2,7 @@ class DepartmentServices :
     def __init__(self) :
         self.departments = {}
     
-    def manage_departments(self, candidates, dependency):
+    def store_departments(self, candidates, dependency):
         department_repository = dependency.get_dependency("departmentrepository")
         for candidate in candidates :
             department = candidate.department

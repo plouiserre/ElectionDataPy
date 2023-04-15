@@ -49,7 +49,7 @@ class CandidatesServicesTest(unittest.TestCase) :
         dictricts = [district_one, district_two, district_third, district_fourth]
         
         candidate_service = CandidateServices()
-        candidate_service.manage_candidates(candidates, dictricts, dependency_mock)
+        candidate_service.store_candidates(candidates, dictricts, dependency_mock)
         candidates = candidate_service.candidates
         
         self.assertTrue(dependency_mock.get_dependency.called)

@@ -15,7 +15,7 @@ class DeputyServicesTest(unittest.TestCase) :
         candidates_data_model = helper.get_two_candidates_data_model()
         candidates = helper.get_two_candidates_model()
         
-        deputy_services.manage_deputies(candidates_data_model, candidates, deputy_repository)
+        deputy_services.store_deputies(candidates_data_model, candidates, deputy_repository)
         deputies = deputy_services.deputies
         
         self.assertEqual(2, len(deputies))

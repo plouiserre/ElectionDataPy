@@ -25,7 +25,7 @@ class DistrictServicesTest(unittest.TestCase):
         
         dis_repo = Mock()
         dis = DistrictServices()
-        dis.manage_districts(candidates, departments, dis_repo)        
+        dis.store_districts(candidates, departments, dis_repo)        
         districts = dis.districts
         
         self.assertEqual(2, len(districts))
@@ -43,7 +43,7 @@ class DistrictServicesTest(unittest.TestCase):
         
         dis_repo = Mock()
         dis = DistrictServices()
-        dis.manage_districts(candidates, departments, dis_repo)    
+        dis.store_districts(candidates, departments, dis_repo)    
         districts = dis.districts
         
         self.assertEqual(6, len(districts))
@@ -84,7 +84,7 @@ class DistrictServicesTest(unittest.TestCase):
         
         dis_repo = Mock()
         dis = DistrictServices()
-        dis.manage_districts(candidates, departments, dis_repo)    
+        dis.store_districts(candidates, departments, dis_repo)    
         districts = dis.districts
         
         self.assertEqual(2, len(districts))
@@ -100,7 +100,7 @@ class DistrictServicesTest(unittest.TestCase):
         mock_dependency = Mock()
         district_services = DistrictServices()
         
-        district_services.manage_districts([],[],mock_dependency)
+        district_services.store_districts([],[],mock_dependency)
         
         self.assertTrue(mock_dependency.get_dependency.called)
         

@@ -45,12 +45,6 @@ class DependencyTest(unittest.TestCase) :
         self.assertTrue(isinstance(dependency, PartyRepository))
         
         
-    def test_get_adapters_dependency(self) : 
-        dependency = self.__get_dependencies_to_test("candidateadapter")
-        
-        self.assertTrue(isinstance(dependency, CandidateAdapter))
-        
-        
     def test_get_candidate_service_dependency(self) : 
         dependency = self.__get_dependencies_to_test("candidateservices")
         

@@ -15,7 +15,7 @@ class OrchestrateTest(unittest.TestCase):
     def test_call_orchestrate_called_external_methods(self, mock_dependency):
         orchestrate = OrchestrateStoreElectionsDatas(mock_dependency)                
         
-        orchestrate.store_datas()
+        orchestrate.store_elections_datas()
         
         self.assertTrue(mock_dependency.get_dependency.called)
         

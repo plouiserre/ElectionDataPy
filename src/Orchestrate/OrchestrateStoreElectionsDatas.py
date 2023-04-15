@@ -1,3 +1,6 @@
+import pandas as pd
+from src.Adapter.CandidateAdapter import CandidateAdapter
+
 class OrchestrateStoreElectionsDatas :
     def __init__(self, dependency) :
         self.dependency = dependency
@@ -17,10 +20,19 @@ class OrchestrateStoreElectionsDatas :
         
     def __get_elections_datas_from_adapters(self) : 
         candidates = [] 
-        candidate_adapter = self.dependency.get_dependency("candidateadapter")
+        candidate_adapter = self.__get_init_candidate_adapter()
         adapters = []
         adapters.append(candidate_adapter)
         for adapter in adapters : 
             adapter.get_datas_needed()
             candidates = adapter.extracts_datas_from_files()
         return candidates
+    
+    
+    def __get_init_candidate_adapter(self) :        
+        excel_manager = self.dependency.get_dependency("excel")
+        party_service = self.dependency.get_dependency("partyservices")
+        party_repository = self.dependency.get_dependency("partyrepository")
+        candidate_adapter = CandidateAdapter(pd,excel_manager,party_service, party_repository)
+        return candidate_adapter
+        

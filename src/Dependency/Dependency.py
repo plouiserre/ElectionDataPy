@@ -1,5 +1,3 @@
-import pandas as pd
-
 class Dependency: 
     def __init__(self) :
         self.__dependencies = {}
@@ -25,9 +23,6 @@ class Dependency:
         party_repository =  self.__load_dynamically_dependency('src.Repository.PartyRepository', 'PartyRepository', mydb)
         self.__add_dependencies("partyrepository", party_repository)
            
-        candidate_adapter = self.__load_dynamically_dependency('src.Adapter.CandidateAdapter', 'CandidateAdapter', pd, excel_manager, party_service, party_repository)        
-        self.__add_dependencies("candidateadapter", candidate_adapter)
-        
         candidate_service =  self.__load_dynamically_dependency('src.Services.CandidateServices', 'CandidateServices')
         self.__add_dependencies("candidateservices", candidate_service)
         

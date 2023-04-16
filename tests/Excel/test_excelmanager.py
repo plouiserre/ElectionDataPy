@@ -1,5 +1,6 @@
 import unittest
 import pandas as pd
+from mock import Mock
 from unittest.mock import patch
 
 from src.Excel.ExcelManager import ExcelManager
@@ -24,7 +25,7 @@ class ExcelManagerTest(unittest.TestCase) :
 
     def getComplexesCandidatesDataFrame(*args) : 
         frame = pd.DataFrame({'Code département':['01', '02', '21'],'Libellé du département':['Ain', 'Aisne','Côte d\'Or'],'Code circonscription':[1,2,3],'Nom Candidat':['MAISONNETTE','BEAURAIN','GUILLAUMIN'],'Prénom Candidat':['Cécile','Eric','Jean-Marie']})
-        return frame
+        return frame    
         
     @patch.object(pd,'read_excel', side_effect=getComplexesCandidatesDataFrame)
     def test_import_candidates_datas_complexe_datas(self, mock_panda):
@@ -35,26 +36,24 @@ class ExcelManagerTest(unittest.TestCase) :
         self.assertEqual(3,len(candidates))
         self.assertEqual(candidates[0],"['01' 'Ain' 1 'MAISONNETTE' 'Cécile']")
         self.assertEqual(candidates[1],"['02' 'Aisne' 2 'BEAURAIN' 'Eric']")
-        self.assertEqual(candidates[2],"['21' 'Côte d\'Or' 3 'GUILLAUMIN' 'Jean-Marie']")
- 
+        self.assertEqual(candidates[2],"['21' 'Côte d\'Or' 3 'GUILLAUMIN' 'Jean-Marie']") 
 
-        
+
+    def getSimpleFirstRoundDataFrame(*args) : 
+        frame = pd.DataFrame({'Libellé du département':['Ain', 'Aisne','Allier'],'Code circonscription':[1,2,3],'Etat saisie':['Complet','Complet','Complet'],'Inscrits':[86187,99953,82204],'Abstentions':[43652,50270,45946],'% Abs/Ins':[50.65,50.29,55.89],'Votants':[42535,49683,36258]})
+        return frame    
     
-    def getSimpleResultFrame(*args) : 
-        frame = pd.DataFrame({'Sexe':['M', 'M', 'F'],'Prénom':['Éric', 'Vincent','Cécile'],'Nuance':['DXG','DXG','DXG'],'Voix':[391,415,281],'% Voix/Ins':[0.45,0.42,0.34],'% Voix/Exp':[0.94,0.85,0.79],'% Sièges':['','',''],'':[8,1,6],'':['M','F','M'],'':['GUÉRAUD','LAPRAY','JOLIE'],'':['Sébastien','Lumir','Christian'],'':['NUP','NUP','NUP'],'':[9982,12428,7990],'':[11.58,12.43,9.72],'':[23.87,25.42,22.36]})
-        return frame
+    @patch.object(pd,'read_excel', side_effect=getSimpleFirstRoundDataFrame)
+    def test_import_first_round_results_datas(self, mock_panda):       
+        excel_manager = ExcelManager()
         
-    # @patch.object(pd,'read_excel', side_effect=getSimpleResultFrame)
-    # def test_import_candidates_datas_complexe_datas(self, mock_panda):
-    #     excel_manager = ExcelManager()
+        results = excel_manager.import_first_round_results_datas(pd)
         
-    #     results = excel_manager.extracts_datas_from_files(pd)
-        
-    #     self.assertEqual(3,len(results))
-        # self.assertEqual(candidates[0],"['01' 'Ain' 1 'MAISONNETTE' 'Cécile']")
-        # self.assertEqual(candidates[1],"['02' 'Aisne' 2 'BEAURAIN' 'Eric']")
-        # self.assertEqual(candidates[2],"['21' 'Côte d\'Or' 3 'GUILLAUMIN' 'Jean-Marie']")   
-    
+        self.assertTrue(pd.read_excel.called)    
+        self.assertEqual(3,len(results))
+        self.assertEqual(results[0],"['Ain' 1 'Complet' 86187 43652 '50.65' 42535]")
+        self.assertEqual(results[1],"['Aisne' 2 'Complet' 99953 50270 '50.29' 49683]")
+        self.assertEqual(results[2],"['Allier' 3 'Complet' 82204 45946 '55.89' 36258]") 
         
         
     if __name__ == "__main__":

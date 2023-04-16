@@ -9,10 +9,11 @@ class OrchestrateStoreElectionsDatas :
         
     def store_elections_datas(self) :
         candidates = self.__get_elections_datas_from_adapters()
-        self.deparment_service.store_departments(candidates, self.dependency)
-        self.district_service.store_districts(candidates, self.deparment_service.departments, self.dependency)
-        self.candidate_service.store_candidates(candidates, self.district_service.districts,self.dependency)
-        self.deputy_service.store_deputies(candidates, self.candidate_service.candidates, self.dependency)
+        print("no save in database for the moment")
+        # self.deparment_service.store_departments(candidates, self.dependency)
+        # self.district_service.store_districts(candidates, self.deparment_service.departments, self.dependency)
+        # self.candidate_service.store_candidates(candidates, self.district_service.districts,self.dependency)
+        # self.deputy_service.store_deputies(candidates, self.candidate_service.candidates, self.dependency)
         
         
     def __get_elections_datas_from_adapters(self) : 

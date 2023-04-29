@@ -2,6 +2,8 @@ import unittest
 
 from src.Factory.CreatorFirstRoundData import CreatorFirstRoundData
 
+#TODO complete unit test
+#TODO factorize
 class CreatorFirstRoundDataTest(unittest.TestCase) : 
     def test_creator_first_round_data_first_line(self):
         creator = CreatorFirstRoundData()
@@ -14,6 +16,21 @@ class CreatorFirstRoundDataTest(unittest.TestCase) :
         self.assertTrue(first_round_data.district != None)
         self.assertEqual(1, first_round_data.district.number)
         self.assertEqual('1ère circonscription', first_round_data.district.name)
+        self.assertEqual('Complet', first_round_data.election.state_compute)
+        self.assertEqual(86187, first_round_data.election.registered)
+        self.assertEqual(43652, first_round_data.election.abstaining)
+        self.assertEqual(50.65, first_round_data.election.rate_abstaining)
+        self.assertEqual(42535, first_round_data.election.voting)
+        self.assertEqual(49.35, first_round_data.election.rate_voting)  
+        self.assertEqual(490, first_round_data.election.blank_balot)    
+        self.assertEqual(0.57, first_round_data.election.rate_blank_registered)   
+        self.assertEqual(1.15, first_round_data.election.rate_blank_voting)       
+        self.assertEqual(234, first_round_data.election.null_ballot)  
+        self.assertEqual(0.27, first_round_data.election.rate_null_registered)  
+        self.assertEqual(0.55, first_round_data.election.rate_null_voting)  
+        self.assertEqual(41811, first_round_data.election.expressed)  
+        self.assertEqual(48.51, first_round_data.election.rate_express_registered)  
+        self.assertEqual(98.3, first_round_data.election.rate_express_voting)  
         
         
     def test_creator_first_round_data_one_hundred_and_first_line(self):
@@ -27,3 +44,18 @@ class CreatorFirstRoundDataTest(unittest.TestCase) :
         self.assertTrue(first_round_data.district != None)
         self.assertEqual(2, first_round_data.district.number)
         self.assertEqual('2ème circonscription', first_round_data.district.name)
+        self.assertEqual('Complet', first_round_data.election.state_compute)
+        self.assertEqual(79162, first_round_data.election.registered)
+        self.assertEqual(37688, first_round_data.election.abstaining)
+        self.assertEqual(47.61, first_round_data.election.rate_abstaining)
+        self.assertEqual(41474, first_round_data.election.voting)
+        self.assertEqual(52.39, first_round_data.election.rate_voting)  
+        self.assertEqual(821, first_round_data.election.blank_balot)    
+        self.assertEqual(1.04, first_round_data.election.rate_blank_registered)   
+        self.assertEqual(1.98, first_round_data.election.rate_blank_voting)       
+        self.assertEqual(326, first_round_data.election.null_ballot)  
+        self.assertEqual(0.41, first_round_data.election.rate_null_registered)  
+        self.assertEqual(0.79, first_round_data.election.rate_null_voting)  
+        self.assertEqual(40327, first_round_data.election.expressed)  
+        self.assertEqual(50.94, first_round_data.election.rate_express_registered)  
+        self.assertEqual(97.23, first_round_data.election.rate_express_voting)  

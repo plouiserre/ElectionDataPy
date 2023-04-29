@@ -1,6 +1,7 @@
 from src.Models.FirstRoundDataModel import FirstRoundDataModel
 from src.Factory.CreatorDepartment import CreatorDepartment
 from src.Factory.CreatorDistrict import CreatorDistrict
+from src.Factory.CreatorElection import CreatorElection
 
 #TODO factoriser avec le code dans creatorcandidatedata    
 class CreatorFirstRoundData : 
@@ -11,6 +12,7 @@ class CreatorFirstRoundData :
         datas = self.__get_datas_cleaned(data)
         self.__get_department_model(datas)
         self.__get_district_model(datas)
+        self.__get_election_model(datas)
         
         return self.__first_round_data
     
@@ -24,6 +26,10 @@ class CreatorFirstRoundData :
     def __get_district_model(self, datas) : 
         creator_district = CreatorDistrict()
         self.__first_round_data.district = creator_district.factory_method(datas)
+        
+    def __get_election_model(self, datas) : 
+        creator_election = CreatorElection()
+        self.__first_round_data.election = creator_election.factory_method(datas)
         
     
     def __get_datas_cleaned(self, data) : 

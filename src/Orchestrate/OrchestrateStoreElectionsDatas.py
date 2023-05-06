@@ -19,7 +19,7 @@ class OrchestrateStoreElectionsDatas :
     def __get_elections_datas_from_adapters(self) : 
         candidates = [] 
         candidate_adapter = self.dependency.get_dependency("candidateadapter")
-        first_round_adapter = self.dependency.get_dependency("firstroundadapter")
+        first_round_adapter = self.dependency.get_dependency("electiondistrictfirstroundadapter")
         adapters = []
         adapters.append(candidate_adapter)
         adapters.append(first_round_adapter)

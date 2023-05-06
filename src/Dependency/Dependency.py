@@ -31,8 +31,8 @@ class Dependency:
         candidate_adapter = self.__load_dynamically_dependency('src.Adapter.CandidateAdapter', 'CandidateAdapter', pd, excel_manager, party_service, party_repository)        
         self.__add_dependencies("candidateadapter", candidate_adapter)
         
-        first_round_adapter = self.__load_dynamically_dependency('src.Adapter.FirstRoundAdapter', 'FirstRoundAdapter', pd,excel_manager)        
-        self.__add_dependencies("firstroundadapter", first_round_adapter)
+        first_round_adapter = self.__load_dynamically_dependency('src.Adapter.ElectionDistrictFirstRoundAdapter', 'ElectionDistrictFirstRoundAdapter', pd,excel_manager)        
+        self.__add_dependencies("electiondistrictfirstroundadapter", first_round_adapter)
         
         deputy_service =  self.__load_dynamically_dependency('src.Services.DeputyServices', 'DeputyServices')
         self.__add_dependencies("deputyservices", deputy_service)

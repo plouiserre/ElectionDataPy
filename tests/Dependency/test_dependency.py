@@ -8,12 +8,13 @@ from src.Services.PartyServices import PartyServices
 from src.Services.CandidateServices import CandidateServices
 from src.Services.DeputyServices import DeputyServices
 from src.Repository.PartyRepository import PartyRepository
-from src.Adapter.CandidateAdapter import CandidateAdapter
 from src.Repository.CandidateRepository import CandidateRepository
 from src.Repository.DepartmentRepository import DepartmentRepository
 from src.Repository.DeputyRepository import DeputyRepository
 from src.Repository.DistrictRepository import DistrictRepository
 
+
+#TODO ajouter un test pour electiondistrictfirstroundadapter
 class DependencyTest(unittest.TestCase) : 
     def test_get_excel_dependency(self) : 
         dependency = self.__get_dependencies_to_test("excel")

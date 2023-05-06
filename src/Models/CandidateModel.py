@@ -11,3 +11,6 @@ class CandidateModel :
         self.district_id = 0
         self.job = ''
         self.is_sorting = False
+        self.vote = 0
+        self.rate_vote_registered = 0.0
+        self.rate_vote_expressed = 0.0

@@ -1,8 +1,7 @@
-import datetime
-
 from src.Models.CandidateModel import CandidateModel
 from src.Factory.CreatorPerson import CreatorPerson
 
+#TODO delete parties in constructor
 class CreatorCandidate(CreatorPerson) : 
     def __init__(self, parties) -> None:
         self.is_candidate_first_name_simple = True
@@ -58,4 +57,19 @@ class CreatorCandidate(CreatorPerson) :
             self.can.job = self.datas[10]
          else :
             self.can.job = self.datas[11]
-        
+            
+            
+    def factory_candidate_first_round_method(self, candidate_data) : 
+        candidate = CandidateModel()
+        candidate.sexe = candidate_data[1]
+        candidate.last_name = candidate_data[2]
+        candidate.first_name = candidate_data[3]
+        if isinstance(candidate_data[5], str) :
+            vote_to_convert = 0
+            vote_to_convert = candidate_data[5].replace('.0','')
+            candidate.vote = int(vote_to_convert)
+        else : 
+            candidate.vote = int(candidate_data[5])
+        candidate.rate_vote_registered = float(candidate_data[6])
+        candidate.rate_vote_expressed = float(candidate_data[7])
+        return candidate

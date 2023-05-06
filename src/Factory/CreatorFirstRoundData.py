@@ -1,7 +1,9 @@
 from src.Models.FirstRoundDataModel import FirstRoundDataModel
+from src.Models.CandidateModel import CandidateModel
 from src.Factory.CreatorDepartment import CreatorDepartment
 from src.Factory.CreatorDistrict import CreatorDistrict
 from src.Factory.CreatorElection import CreatorElection
+from src.Factory.CreatorCandidates import CreatorCandidates
 
 #TODO factoriser avec le code dans creatorcandidatedata    
 class CreatorFirstRoundData : 
@@ -13,6 +15,7 @@ class CreatorFirstRoundData :
         self.__get_department_model(datas)
         self.__get_district_model(datas)
         self.__get_election_model(datas)
+        self.__get_candidates_model(datas)
         
         return self.__first_round_data
     
@@ -56,3 +59,8 @@ class CreatorFirstRoundData :
             else : 
                 continue
         return data.split('_') 
+    
+    
+    def __get_candidates_model(self, datas) : 
+        creator_candidates = CreatorCandidates()
+        self.__first_round_data.candidates = creator_candidates.factory_method(datas)

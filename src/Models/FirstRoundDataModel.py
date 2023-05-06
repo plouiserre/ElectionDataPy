@@ -1,6 +1,6 @@
-from Models.DepartmentModel import DepartmentModel
-from Models.DistrictModel import DistrictModel
-from Models.ElectionModel import ElectionModel
+from src.Models.DepartmentModel import DepartmentModel
+from src.Models.DistrictModel import DistrictModel
+from src.Models.ElectionModel import ElectionModel
 
 class FirstRoundDataModel : 
     def __init__(self) :
@@ -8,3 +8,4 @@ class FirstRoundDataModel :
         self.department = DepartmentModel()
         self.department = DepartmentModel()
         self.election = ElectionModel()
+        self.candidates = []

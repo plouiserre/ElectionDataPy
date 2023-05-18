@@ -2,6 +2,7 @@ import unittest
 from mock import Mock
 from unittest.mock import patch
 from src.Adapter.ElectionDistrictFirstRoundAdapter import ElectionDistrictFirstRoundAdapter
+from src.Models.CandidateDataModel import CandidateDataModel
 from src.Excel.ExcelManager import ExcelManager
 
 #TODO FACTORISER les asserts
@@ -38,6 +39,7 @@ class ElectionDistrictFirstRoundAdapterTest(unittest.TestCase):
         elections_first_round_datas = adapter.extracts_datas_from_files()
         
         self.assertEqual(2, len(elections_first_round_datas))
+        self.assertTrue(isinstance(elections_first_round_datas[0], CandidateDataModel))
         self.assertTrue(elections_first_round_datas[0].department != None)
         self.assertEqual(1, elections_first_round_datas[0].department.number)
         self.assertEqual('Ain', elections_first_round_datas[0].department.name)
@@ -109,6 +111,8 @@ class ElectionDistrictFirstRoundAdapterTest(unittest.TestCase):
         self.assertEqual(10.41, elections_first_round_datas[0].candidates[7].rate_vote_registered)
         self.assertEqual(21.46, elections_first_round_datas[0].candidates[7].rate_vote_expressed)
         
+        
+        self.assertTrue(isinstance(elections_first_round_datas[1], CandidateDataModel))
         self.assertEqual(25, elections_first_round_datas[1].department.number)
         self.assertEqual('Doubs', elections_first_round_datas[1].department.name)
         self.assertEqual(2, elections_first_round_datas[1].district.number)
@@ -200,6 +204,7 @@ class ElectionDistrictFirstRoundAdapterTest(unittest.TestCase):
         elections_first_round_datas = adapter.extracts_datas_from_files()
         
         self.assertEqual(4, len(elections_first_round_datas))
+        self.assertTrue(isinstance(elections_first_round_datas[0], CandidateDataModel))
         self.assertTrue(elections_first_round_datas[0].department != None)
         self.assertEqual(1, elections_first_round_datas[0].department.number)
         self.assertEqual('Ain', elections_first_round_datas[0].department.name)
@@ -271,6 +276,8 @@ class ElectionDistrictFirstRoundAdapterTest(unittest.TestCase):
         self.assertEqual(10.41, elections_first_round_datas[0].candidates[7].rate_vote_registered)
         self.assertEqual(21.46, elections_first_round_datas[0].candidates[7].rate_vote_expressed)
         
+        
+        self.assertTrue(isinstance(elections_first_round_datas[1], CandidateDataModel))
         self.assertEqual(25, elections_first_round_datas[1].department.number)
         self.assertEqual('Doubs', elections_first_round_datas[1].department.name)
         self.assertEqual(2, elections_first_round_datas[1].district.number)
@@ -346,6 +353,7 @@ class ElectionDistrictFirstRoundAdapterTest(unittest.TestCase):
         self.assertEqual(8.91, elections_first_round_datas[1].candidates[8].rate_vote_registered)
         self.assertEqual(17.49, elections_first_round_datas[1].candidates[8].rate_vote_expressed)
         
+        self.assertTrue(isinstance(elections_first_round_datas[2], CandidateDataModel))
         self.assertEqual(28, elections_first_round_datas[2].department.number)
         self.assertEqual('Eure-et-Loir', elections_first_round_datas[2].department.name)
         self.assertEqual(3, elections_first_round_datas[2].district.number)
@@ -445,6 +453,7 @@ class ElectionDistrictFirstRoundAdapterTest(unittest.TestCase):
         self.assertEqual(11.33, elections_first_round_datas[2].candidates[12].rate_vote_registered)
         self.assertEqual(24.56, elections_first_round_datas[2].candidates[12].rate_vote_expressed)
         
+        self.assertTrue(isinstance(elections_first_round_datas[3], CandidateDataModel))
         self.assertEqual(69, elections_first_round_datas[3].department.number)
         self.assertEqual('Rhône', elections_first_round_datas[3].department.name)
         self.assertEqual(6, elections_first_round_datas[3].district.number)

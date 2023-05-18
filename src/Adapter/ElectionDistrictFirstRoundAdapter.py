@@ -1,6 +1,7 @@
 from src.Adapter.Adapter import Adapter
 
-from src.Factory.CreatorElectionDistrictFirstRound import CreatorElectionDistrictFirstRound
+#from src.Factory.CreatorElectionDistrictFirstRound import CreatorElectionDistrictFirstRound
+from src.Factory.CreatorCandidateData import CreatorCandidateData
 
 class ElectionDistrictFirstRoundAdapter(Adapter) : 
     def __init__(self, panda_lib, excel_manager):
@@ -17,8 +18,11 @@ class ElectionDistrictFirstRoundAdapter(Adapter) :
         all_datas_from_first_round = []
         
         for data_each_line in datas_from_excel : 
-            creator = CreatorElectionDistrictFirstRound()
-            data_election_first_round = creator.factory_method(data_each_line)
+            # creator = CreatorElectionDistrictFirstRound()
+            # data_election_first_round = creator.factory_method(data_each_line)
+            # all_datas_from_first_round.append(data_election_first_round)
+            creator = CreatorCandidateData(None)
+            data_election_first_round = creator.factory_method_first_round(data_each_line)
             all_datas_from_first_round.append(data_election_first_round)
             
         return all_datas_from_first_round

@@ -2,6 +2,8 @@ from src.Models.DepartmentModel import DepartmentModel
 from src.Models.DistrictModel import DistrictModel
 from src.Models.CandidateModel import CandidateModel
 from src.Models.DeputyModel import DeputyModel
+from src.Models.ElectionModel import ElectionModel
+
 
 class CandidateDataModel : 
     def __init__(self) : 
@@ -10,3 +12,4 @@ class CandidateDataModel :
         self.district = DistrictModel()
         self.candidate = CandidateModel()
         self.deputy = DeputyModel()
+        self.election = ElectionModel()

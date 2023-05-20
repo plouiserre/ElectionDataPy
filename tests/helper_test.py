@@ -61,8 +61,8 @@ class HelperTest :
         first_candidate_data = CandidateDataModel()
         first_candidate_data.department = first_department
         first_candidate_data.district = first_district
-        first_candidate_data.candidate = first_candidate
-        first_candidate_data.deputy = first_deputy
+        first_candidate_data.candidates.append(first_candidate)
+        first_candidate_data.deputies.append(first_deputy)
         
         second_department = self.get_department("Nord",59)
         second_district = self.get_district("13ème circonscription", 13)   
@@ -72,8 +72,8 @@ class HelperTest :
         second_candidate_data = CandidateDataModel()
         second_candidate_data.department = second_department
         second_candidate_data.district = second_district
-        second_candidate_data.candidate = second_candidate
-        second_candidate_data.deputy = second_deputy
+        second_candidate_data.candidates.append(second_candidate)
+        second_candidate_data.deputies.append(second_deputy)
         
         candidates = [first_candidate_data, second_candidate_data]
         

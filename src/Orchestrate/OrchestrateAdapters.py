@@ -2,6 +2,7 @@ class OrchestrateAdapters :
     def __init__(self, dependency) : 
         self.dependency = dependency
         self.__candidates_with_all_datas = []
+        
     
     def get_candidates_datas_from_adapters(self) : 
         candidates_by_adapter = {}  
@@ -28,13 +29,17 @@ class OrchestrateAdapters :
         return candidates_by_adapter
     
     
-    def __orders_datas_to_get_candidates_with_all_datas(self, candidates) : 
-        for candidate in candidates :
-            for candidate_stored in  self.__candidates_with_all_datas : 
-                if candidate_stored.candidate.first_name == candidate.candidate.first_name and candidate_stored.candidate.last_name == candidate.candidate.last_name : 
-                    candidate_stored.candidate.vote = candidate.candidate.vote
-                    candidate_stored.candidate.rate_vote_registered = candidate.candidate.rate_vote_registered
-                    candidate_stored.candidate.rate_vote_expressed = candidate.candidate.rate_vote_expressed
-                    candidate_stored.election = candidate.election
+    #TODO find better name and naming of parameters
+    def __orders_datas_to_get_candidates_with_all_datas(self, candidates_data) : 
+        #list_candidates = self.__get_simple_candidates_list(candidates)
+        for list_candidates in candidates_data :
+            for candidate in list_candidates.candidates :
+                for candidates_stored in  self.__candidates_with_all_datas : 
+                    for candidate_stored in candidates_stored.candidates :
+                        if candidate_stored.first_name == candidate.first_name and candidate_stored.last_name == candidate.last_name : 
+                            candidate_stored.vote = candidate.vote
+                            candidate_stored.rate_vote_registered = candidate.rate_vote_registered
+                            candidate_stored.rate_vote_expressed = candidate.rate_vote_expressed
+                            candidates_stored.election = list_candidates.election
         return self.__candidates_with_all_datas
                     

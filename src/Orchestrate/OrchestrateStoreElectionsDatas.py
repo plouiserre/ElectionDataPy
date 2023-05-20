@@ -10,7 +10,7 @@ class OrchestrateStoreElectionsDatas :
         
         
     def store_elections_datas(self) :
-        self.orchestrate_adapters.orchestrate_elections_adapters()
+        self.orchestrate_adapters.get_candidates_datas_from_adapters()
         # candidates = self.__get_elections_datas_from_adapters()
         print("no save in database for the moment")
         # self.deparment_service.store_departments(candidates, self.dependency)

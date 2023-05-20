@@ -33,14 +33,16 @@ class CreatorCandidateData() :
         
     def __get_candidate_datas(self) : 
        can_creator = CreatorCandidate(self.parties)
-       self.candidate_data.candidate = can_creator.factory_method(self.datas)
+       candidate = can_creator.factory_method(self.datas)
+       self.candidate_data.candidates.append(candidate)
        self.is_candidate_first_name_simple = can_creator.is_candidate_first_name_simple
     
     
     def __get_deputy_datas(self) : 
         is_complexe_creator_first_name = not self.is_candidate_first_name_simple
         dep_creator = CreatorDeputy(is_complexe_creator_first_name)
-        self.candidate_data.deputy = dep_creator.factory_method(self.datas)
+        deputy = dep_creator.factory_method(self.datas)
+        self.candidate_data.deputies.append(deputy)
         
          
     #This method cannot managed the separation of the datas between 

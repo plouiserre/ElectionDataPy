@@ -1,7 +1,7 @@
 import unittest
 
 from src.Adapter.CandidateAdapter import CandidateAdapter
-from src.Adapter.ElectionDistrictFirstRoundAdapter import ElectionDistrictFirstRoundAdapter
+from src.Adapter.ResultsFirstRoundAdapter import ResultsFirstRoundAdapter
 from src.Dependency.Dependency import Dependency
 from src.Excel.ExcelManager import ExcelManager
 from src.Services.DepartmentServices import DepartmentServices
@@ -16,7 +16,7 @@ from src.Repository.DeputyRepository import DeputyRepository
 from src.Repository.DistrictRepository import DistrictRepository
 
 
-#TODO ajouter un test pour electiondistrictfirstroundadapter
+#TODO ajouter un test pour ResultsFirstRoundAdapter
 class DependencyTest(unittest.TestCase) : 
     def test_get_excel_dependency(self) : 
         dependency = self.__get_dependencies_to_test("excel")
@@ -89,7 +89,7 @@ class DependencyTest(unittest.TestCase) :
         
         self.assertEqual(2, len(dependency))        
         self.assertTrue(isinstance(dependency[0], CandidateAdapter))
-        self.assertTrue(isinstance(dependency[1], ElectionDistrictFirstRoundAdapter))
+        self.assertTrue(isinstance(dependency[1], ResultsFirstRoundAdapter))
         
         
     def __get_dependencies_to_test(self, key) : 

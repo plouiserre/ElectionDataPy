@@ -1,6 +1,6 @@
 from src.Models.DepartmentModel import DepartmentModel
 from src.Models.DistrictModel import DistrictModel
-from src.Models.ElectionModel import ElectionModel
+from src.Models.ResultModel import ResultModel
 
 #TODO find better naming for candidatedatamodel because it is confusing with the list of candidates
 class CandidateDataModel : 
@@ -10,4 +10,4 @@ class CandidateDataModel :
         self.district = DistrictModel()
         self.candidates = []
         self.deputies = []
-        self.election = ElectionModel()
+        self.result = ResultModel()

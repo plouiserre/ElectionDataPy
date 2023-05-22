@@ -40,6 +40,6 @@ class OrchestrateAdapters :
                             candidate_stored.vote = candidate.vote
                             candidate_stored.rate_vote_registered = candidate.rate_vote_registered
                             candidate_stored.rate_vote_expressed = candidate.rate_vote_expressed
-                            candidates_stored.election = list_candidates.election
+                            candidates_stored.result = list_candidates.result
         return self.__candidates_with_all_datas
                     

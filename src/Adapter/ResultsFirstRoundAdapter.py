@@ -3,7 +3,7 @@ from src.Adapter.Adapter import Adapter
 #from src.Factory.CreatorElectionDistrictFirstRound import CreatorElectionDistrictFirstRound
 from src.Factory.CreatorCandidateData import CreatorCandidateData
 
-class ElectionDistrictFirstRoundAdapter(Adapter) : 
+class ResultsFirstRoundAdapter(Adapter) : 
     def __init__(self, panda_lib, excel_manager):
         self.excel_manager = excel_manager     
         self.panda_lib = panda_lib

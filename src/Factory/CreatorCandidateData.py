@@ -1,11 +1,9 @@
-import datetime
-
 from src.Models.CandidateDataModel import CandidateDataModel
 from src.Factory.CreatorDepartment import CreatorDepartment
 from src.Factory.CreatorDistrict import CreatorDistrict
 from src.Factory.CreatorCandidate import CreatorCandidate
 from src.Factory.CreatorDeputy import CreatorDeputy
-from src.Factory.CreatorElection import CreatorElection
+from src.Factory.CreatorResult import CreatorResult
 from src.Factory.CreatorCandidates import CreatorCandidates
 
 class CreatorCandidateData() : 
@@ -77,7 +75,7 @@ class CreatorCandidateData() :
         self.datas = self.__get_datas_cleaned_first_round(data)
         self.__get_department_candidate_datas()
         self.__get_district_candidate_datas()
-        self.__get_election_model()
+        self.__get_result_model()
         self.__get_candidates_model()
         
         return self.candidate_data
@@ -94,9 +92,9 @@ class CreatorCandidateData() :
         self.candidate_data.district.department = self.candidate_data.department
         
         
-    def __get_election_model(self) : 
-        creator_election = CreatorElection()
-        self.candidate_data.election = creator_election.factory_method(self.datas)
+    def __get_result_model(self) : 
+        creator_result = CreatorResult()
+        self.candidate_data.result = creator_result.factory_method(self.datas)
         
     
     def __get_candidates_model(self) : 

@@ -59,7 +59,7 @@ class CreatorCandidateTest(unittest.TestCase):
         
         candidate_model_check = ["XXXX","F", "ARMENJON", "Eliane","XXXX", 1161, 1.35, 2.78]     
         assert_test = AssertTest(self, 1)  
-        assert_test.assert_candidate_data_first_round_election(candidate_model_check, candidate)   
+        assert_test.assert_candidate_data_first_round_result(candidate_model_check, candidate)   
         
         
     def test_creator_candidate_male_first_round_data(self) :
@@ -71,7 +71,7 @@ class CreatorCandidateTest(unittest.TestCase):
         
         candidate_model_check = ["XXXX","M", "THOMASSIN", "Geoffrey","XXXX", 216, 0.27, 0.54]     
         assert_test = AssertTest(self, 1)  
-        assert_test.assert_candidate_data_first_round_election(candidate_model_check, candidate)   
+        assert_test.assert_candidate_data_first_round_result(candidate_model_check, candidate)   
         
         
     def test_creator_candidate_male_first_vote_bad_formatted(self) : 
@@ -83,7 +83,7 @@ class CreatorCandidateTest(unittest.TestCase):
         
         candidate_model_check = ["XXXX","M", "THOMASSIN", "Geoffrey","XXXX", 216, 0.27, 0.54]     
         assert_test = AssertTest(self, 1)  
-        assert_test.assert_candidate_data_first_round_election(candidate_model_check, candidate)   
+        assert_test.assert_candidate_data_first_round_result(candidate_model_check, candidate)   
         
         
     if __name__ == "__main__":

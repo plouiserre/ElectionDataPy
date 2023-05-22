@@ -1,4 +1,4 @@
-class ElectionModel : 
+class ResultModel : 
     def __init__(self) :
         self.state_compute = ""
         self.registered = 0

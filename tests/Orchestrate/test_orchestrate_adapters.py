@@ -7,7 +7,7 @@ from helper_test import HelperTest
 from src.Adapter.CandidateAdapter import CandidateAdapter
 from src.Adapter.ResultsFirstRoundAdapter import ResultsFirstRoundAdapter
 from src.Dependency.Dependency import Dependency
-from src.Models.CandidateDataModel import CandidateDataModel
+from src.Models.ElectionDataModel import ElectionDataModel
 from src.Models.ResultModel import ResultModel
 from src.Orchestrate.OrchestrateAdapters import OrchestrateAdapters
 from tests.assert_test import AssertTest
@@ -19,8 +19,8 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
     @patch.object(CandidateAdapter, 'extracts_datas_from_files')
     @patch.object(ResultsFirstRoundAdapter, 'extracts_datas_from_files')
     def test_get_candidates_datas_from_adapters_two_candidates_data_models(self, mock_dependency, mock_candidate_adapter, mock_result_district_first_round_adapter) :        
-        mock_candidate_adapter.extracts_datas_from_files.return_value = self.__get_candidate_data_from_candidate_adapter_two_candidates()
-        mock_result_district_first_round_adapter.extracts_datas_from_files.return_value = self.__get_candidate_data_from_first_round_adapter_two_candidates()             
+        mock_candidate_adapter.extracts_datas_from_files.return_value = self.__get_election_data_from_candidate_adapter_two_candidates()
+        mock_result_district_first_round_adapter.extracts_datas_from_files.return_value = self.__get_election_data_from_first_round_adapter_two_candidates()             
         mock_dependency.get_dependency.return_value = [mock_candidate_adapter, mock_result_district_first_round_adapter]
         
         orchestrate = OrchestrateAdapters(mock_dependency)
@@ -42,13 +42,13 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         
         
         
-    def __get_candidate_data_from_candidate_adapter_two_candidates(self) :
+    def __get_election_data_from_candidate_adapter_two_candidates(self) :
         helper = HelperTest()
-        candidates = helper.get_two_candidates_data_model()
-        return candidates
+        elections = helper.get_two_elections_data_model()
+        return elections
     
     
-    def __get_candidate_data_from_first_round_adapter_two_candidates(self) :        
+    def __get_election_data_from_first_round_adapter_two_candidates(self) :        
         helper = HelperTest()
         
         first_department = helper.get_department("Aisne",2)
@@ -58,11 +58,11 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         first_candidate.vote = 5463213
         first_candidate.rate_vote_registered = 12.65
         first_candidate.rate_vote_expressed = 9.24
-        first_candidate_data = CandidateDataModel()
-        first_candidate_data.department = first_department
-        first_candidate_data.district = first_district
-        first_candidate_data.candidates.append(first_candidate)
-        first_candidate_data.result = self.__get_result("Completed", 4654321, 56123, 10.5, 3561234, 95.5, 1234, 30.1, 12.15, 123, 1.01, 0.75, 7456, 0.345, 0.042)        
+        first_election_data = ElectionDataModel()
+        first_election_data.department = first_department
+        first_election_data.district = first_district
+        first_election_data.candidates.append(first_candidate)
+        first_election_data.result = self.__get_result("Completed", 4654321, 56123, 10.5, 3561234, 95.5, 1234, 30.1, 12.15, 123, 1.01, 0.75, 7456, 0.345, 0.042)        
         second_department = helper.get_department("Nord",59)
         second_district = helper.get_district("13ème circonscription", 13)   
         second_district.department = second_department
@@ -70,13 +70,13 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         second_candidate.vote = 614651432
         second_candidate.rate_vote_registered = 37.95
         second_candidate.rate_vote_expressed = 35.57  
-        second_candidate_data = CandidateDataModel()
-        second_candidate_data.department = second_department
-        second_candidate_data.district = second_district
-        second_candidate_data.candidates.append(second_candidate)
-        second_candidate_data.result = self.__get_result("Completed", 897465143, 561023, 9.5, 857465143, 75.5, 134, 3.01,  9.15, 103, 0.91, 0.65, 6456, 0.245, 0.032)
+        second_election_data = ElectionDataModel()
+        second_election_data.department = second_department
+        second_election_data.district = second_district
+        second_election_data.candidates.append(second_candidate)
+        second_election_data.result = self.__get_result("Completed", 897465143, 561023, 9.5, 857465143, 75.5, 134, 3.01,  9.15, 103, 0.91, 0.65, 6456, 0.245, 0.032)
         
-        candidates = [first_candidate_data, second_candidate_data]
+        candidates = [first_election_data, second_election_data]
         
         return candidates
     
@@ -85,8 +85,8 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
     @patch.object(CandidateAdapter, 'extracts_datas_from_files')
     @patch.object(ResultsFirstRoundAdapter, 'extracts_datas_from_files')
     def test_get_candidates_datas_from_adapters_four_candidates_data_models(self, mock_dependency, mock_candidate_adapter, mock_results_first_round_adapter) :        
-        mock_candidate_adapter.extracts_datas_from_files.return_value = self.__get_candidate_data_from_candidate_adapter_four_candidates()
-        mock_results_first_round_adapter.extracts_datas_from_files.return_value = self.__get_candidate_data_from_first_round_adapter_four_candidates()             
+        mock_candidate_adapter.extracts_datas_from_files.return_value = self.__get_election_data_from_candidate_adapter_four_candidates()
+        mock_results_first_round_adapter.extracts_datas_from_files.return_value = self.__get_election_data_from_first_round_adapter_four_candidates()             
         mock_dependency.get_dependency.return_value = [mock_candidate_adapter, mock_results_first_round_adapter]
         
         orchestrate = OrchestrateAdapters(mock_dependency)
@@ -116,39 +116,39 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         assert_test.assert_result_data_model_with_all_infos(result_data_check, fourth_candidate_all_data)     
         
         
-    def __get_candidate_data_from_candidate_adapter_four_candidates(self) : 
-        candidates = self.__get_candidate_data_from_candidate_adapter_two_candidates()
+    def __get_election_data_from_candidate_adapter_four_candidates(self) : 
+        candidates = self.__get_election_data_from_candidate_adapter_two_candidates()
         
         helper = HelperTest()
         
-        third_candidate_data = CandidateDataModel()
+        third_election_data = ElectionDataModel()
         third_department = helper.get_department("Gironde", 33)
         third_district = helper.get_district("6ème circonscription", 6)
         third_candidate = helper.get_candidate("Penny", datetime.datetime(1985,11,30), True, "Sales", "Hofstadter", 5, "F")
         third_deputy = helper.get_deputy("Sheldon", "Cooper", datetime.datetime(1974,3,24),"M",False)
-        third_candidate_data.candidates.append(third_candidate)
-        third_candidate_data.department = third_department
-        third_candidate_data.deputies.append(third_deputy)
-        third_candidate_data.district = third_district
+        third_election_data.candidates.append(third_candidate)
+        third_election_data.department = third_department
+        third_election_data.deputies.append(third_deputy)
+        third_election_data.district = third_district
         
-        fourth_candidate_data = CandidateDataModel()
+        fourth_election_data = ElectionDataModel()
         fourth_department = helper.get_department("Hautes Seine", 92)
         fourth_district = helper.get_district("8ème circonscription", 8)
         fourth_candidate = helper.get_candidate("Robin", datetime.datetime(1982,4,3), False, "Journaliste", "Scherbatsky", 4, "F")
         fourth_deputy = helper.get_deputy("Lily", "Aldrin", datetime.datetime(1974,3,24),"F",False)
-        fourth_candidate_data.candidates.append(fourth_candidate)
-        fourth_candidate_data.department = fourth_department
-        fourth_candidate_data.deputies.append(fourth_deputy)
-        fourth_candidate_data.district = fourth_district
+        fourth_election_data.candidates.append(fourth_candidate)
+        fourth_election_data.department = fourth_department
+        fourth_election_data.deputies.append(fourth_deputy)
+        fourth_election_data.district = fourth_district
         
-        candidates.append(third_candidate_data)
-        candidates.append(fourth_candidate_data)
+        candidates.append(third_election_data)
+        candidates.append(fourth_election_data)
         
         return candidates
     
     
-    def __get_candidate_data_from_first_round_adapter_four_candidates(self) : 
-        candidates = self.__get_candidate_data_from_first_round_adapter_two_candidates()
+    def __get_election_data_from_first_round_adapter_four_candidates(self) : 
+        candidates = self.__get_election_data_from_first_round_adapter_two_candidates()
         
         helper = HelperTest()
         
@@ -159,11 +159,11 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         third_candidate.vote = 46513465
         third_candidate.rate_vote_registered = 65.65
         third_candidate.rate_vote_expressed = 5624
-        third_candidate_data = CandidateDataModel()
-        third_candidate_data.department = third_department
-        third_candidate_data.district = third_district
-        third_candidate_data.candidates.append(third_candidate)
-        third_candidate_data.result = self.__get_result("Completed", 15132134, 46123, 30.5, 2561234, 75.5, 666, 20.1, 8.15, 113, 0.71, 0.85, 8456, 0.245, 0.052)
+        third_election_data = ElectionDataModel()
+        third_election_data.department = third_department
+        third_election_data.district = third_district
+        third_election_data.candidates.append(third_candidate)
+        third_election_data.result = self.__get_result("Completed", 15132134, 46123, 30.5, 2561234, 75.5, 666, 20.1, 8.15, 113, 0.71, 0.85, 8456, 0.245, 0.052)
         
         fourth_department = helper.get_department("Hautes Seine", 92)
         fourth_district = helper.get_district("8ème circonscription", 8) 
@@ -172,14 +172,14 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         fourth_candidate.vote = 96513465
         fourth_candidate.rate_vote_registered = 91.05
         fourth_candidate.rate_vote_expressed = 46.512
-        fourth_candidate_data = CandidateDataModel()
-        fourth_candidate_data.department = fourth_department
-        fourth_candidate_data.district = fourth_district
-        fourth_candidate_data.candidates.append(fourth_candidate)
-        fourth_candidate_data.result = self.__get_result("Completed", 4635123, 45646, 19.5, 646543, 66.4, 234, 5.01,  19.15, 93, 1.91, 0.55, 5456, 0.235, 0.032)
+        fourth_election_data = ElectionDataModel()
+        fourth_election_data.department = fourth_department
+        fourth_election_data.district = fourth_district
+        fourth_election_data.candidates.append(fourth_candidate)
+        fourth_election_data.result = self.__get_result("Completed", 4635123, 45646, 19.5, 646543, 66.4, 234, 5.01,  19.15, 93, 1.91, 0.55, 5456, 0.235, 0.032)
         
-        candidates.append(third_candidate_data)
-        candidates.append(fourth_candidate_data)
+        candidates.append(third_election_data)
+        candidates.append(fourth_election_data)
         
         return candidates
         

@@ -3,12 +3,12 @@ class DeputyServices :
         self.deputies = []
         pass
     
-    def store_deputies(self, candidates_data_model, candidates, dependency) :
+    def store_deputies(self, elections_data_model, candidates, dependency) :
         deputy_repository = dependency.get_dependency("deputyrepository")
-        for candidate_data_model in candidates_data_model : 
-            deputy = candidate_data_model.deputies[0]
+        for election_data_model in elections_data_model : 
+            deputy = election_data_model.deputies[0]
             for candidate in candidates : 
-                if candidate.last_name == candidate_data_model.candidates[0].last_name and candidate.first_name == candidate_data_model.candidates[0].first_name : 
+                if candidate.last_name == election_data_model.candidates[0].last_name and candidate.first_name == election_data_model.candidates[0].first_name : 
                     deputy.candidate = candidate
                     break
             self.deputies.append(deputy)

@@ -8,28 +8,28 @@ class AssertTest :
         self.candidates_number = candidates_number
         
         
-    def assert_all_candidates_infos_with_deputy(self, candidate_data_check, candidate_data_model) :
-        self.unit_test.assertEqual(candidate_data_check[0], candidate_data_model.department.number)
-        self.unit_test.assertEqual(candidate_data_check[1], candidate_data_model.department.name)
-        self.unit_test.assertEqual(candidate_data_check[2], candidate_data_model.district.number)
-        self.unit_test.assertEqual(candidate_data_check[3], candidate_data_model.district.name)
-        self.unit_test.assertEqual(candidate_data_check[4], candidate_data_model.district.department.number)
-        self.unit_test.assertEqual(candidate_data_check[5], candidate_data_model.district.department.name)
-        self.unit_test.assertEqual(candidate_data_check[6], candidate_data_model.candidates[0].last_name)
-        self.unit_test.assertEqual(candidate_data_check[7], candidate_data_model.candidates[0].first_name)
-        self.unit_test.assertEqual(candidate_data_check[8], candidate_data_model.candidates[0].sexe)
-        self.unit_test.assertEqual(candidate_data_check[9], candidate_data_model.candidates[0].party_id)
-        self.unit_test.assertEqual(candidate_data_check[10], candidate_data_model.candidates[0].job)
-        self.unit_test.assertTrue(candidate_data_check[11] == candidate_data_model.candidates[0].birthdate)
-        self.unit_test.assertEqual(candidate_data_check[12], candidate_data_model.candidates[0].is_sorting)
+    def assert_all_candidates_infos_with_deputy(self, election_data_check, election_data_model) :
+        self.unit_test.assertEqual(election_data_check[0], election_data_model.department.number)
+        self.unit_test.assertEqual(election_data_check[1], election_data_model.department.name)
+        self.unit_test.assertEqual(election_data_check[2], election_data_model.district.number)
+        self.unit_test.assertEqual(election_data_check[3], election_data_model.district.name)
+        self.unit_test.assertEqual(election_data_check[4], election_data_model.district.department.number)
+        self.unit_test.assertEqual(election_data_check[5], election_data_model.district.department.name)
+        self.unit_test.assertEqual(election_data_check[6], election_data_model.candidates[0].last_name)
+        self.unit_test.assertEqual(election_data_check[7], election_data_model.candidates[0].first_name)
+        self.unit_test.assertEqual(election_data_check[8], election_data_model.candidates[0].sexe)
+        self.unit_test.assertEqual(election_data_check[9], election_data_model.candidates[0].party_id)
+        self.unit_test.assertEqual(election_data_check[10], election_data_model.candidates[0].job)
+        self.unit_test.assertTrue(election_data_check[11] == election_data_model.candidates[0].birthdate)
+        self.unit_test.assertEqual(election_data_check[12], election_data_model.candidates[0].is_sorting)
         
-        self.unit_test.assertEqual(candidate_data_check[13], candidate_data_model.deputies[0].sexe)
-        self.unit_test.assertEqual(candidate_data_check[14], candidate_data_model.deputies[0].last_name)
-        self.unit_test.assertEqual(candidate_data_check[15], candidate_data_model.deputies[0].first_name)
-        self.unit_test.assertTrue(candidate_data_check[16] == candidate_data_model.deputies[0].birthdate)
-        self.unit_test.assertEqual(candidate_data_check[17], candidate_data_model.deputies[0].is_sorting)
-        self.unit_test.assertEqual(candidate_data_check[6], candidate_data_model.deputies[0].candidate.last_name)
-        self.unit_test.assertEqual(candidate_data_check[7], candidate_data_model.deputies[0].candidate.first_name)
+        self.unit_test.assertEqual(election_data_check[13], election_data_model.deputies[0].sexe)
+        self.unit_test.assertEqual(election_data_check[14], election_data_model.deputies[0].last_name)
+        self.unit_test.assertEqual(election_data_check[15], election_data_model.deputies[0].first_name)
+        self.unit_test.assertTrue(election_data_check[16] == election_data_model.deputies[0].birthdate)
+        self.unit_test.assertEqual(election_data_check[17], election_data_model.deputies[0].is_sorting)
+        self.unit_test.assertEqual(election_data_check[6], election_data_model.deputies[0].candidate.last_name)
+        self.unit_test.assertEqual(election_data_check[7], election_data_model.deputies[0].candidate.first_name)
         
         
     #TODO after name change remove data in names
@@ -38,8 +38,8 @@ class AssertTest :
         self.__assert_candidate_department_data_first_round_result(department_data_check, result_data_model.department)
         district_data_check = result_data_check[2 : 4]
         self.__assert_candidate_district_data_first_round_result(district_data_check, result_data_model.district)
-        candidate_data_check = result_data_check[4 : 14]
-        self.__assert_all_candidates_data(candidate_data_check, result_data_model.candidates[0])
+        election_data_check = result_data_check[4 : 14]
+        self.__assert_all_candidates_data(election_data_check, result_data_model.candidates[0])
         deputy_data_check = result_data_check[14:19]
         self.__assert_basic_deputy_infos(deputy_data_check, result_data_model.deputies[0])
         result_data_check = result_data_check[19 : 34]
@@ -58,16 +58,16 @@ class AssertTest :
         self.unit_test.assertEqual(candidate_context_check[9], candidate_model.rate_vote_expressed)
         
     
-    def assert_candidate_data_model_from_first_round_result(self, candidate_data_check, candidate_data_model) :
-        department_data_check = candidate_data_check[0 : 2]
-        self.__assert_candidate_department_data_first_round_result(department_data_check, candidate_data_model.department)
-        district_data_check = candidate_data_check[2 : 4]
-        self.__assert_candidate_district_data_first_round_result(district_data_check, candidate_data_model.district)
-        result_data_check = candidate_data_check[4 : 19]
-        self.assert_result_data_first_round_result(result_data_check, candidate_data_model.result)
+    def assert_election_data_model_from_first_round_result(self, election_data_check, election_data_model) :
+        department_data_check = election_data_check[0 : 2]
+        self.__assert_candidate_department_data_first_round_result(department_data_check, election_data_model.department)
+        district_data_check = election_data_check[2 : 4]
+        self.__assert_candidate_district_data_first_round_result(district_data_check, election_data_model.district)
+        result_data_check = election_data_check[4 : 19]
+        self.assert_result_data_first_round_result(result_data_check, election_data_model.result)
         limit_candidate = 19 + self.candidates_number * 9
-        candidates_data_check = candidate_data_check[19 : limit_candidate]
-        self.__assert_candidates_data_first_round_result(candidates_data_check, candidate_data_model.candidates)
+        candidates_data_check = election_data_check[19 : limit_candidate]
+        self.__assert_candidates_data_first_round_result(candidates_data_check, election_data_model.candidates)
         
         
     def __assert_candidate_department_data_first_round_result(self, department_data_context_check, department_model) :
@@ -90,12 +90,12 @@ class AssertTest :
             #récupérer les bonnes datas
             start_index = index * 9
             candidate_context_check = candidates_context_check[start_index : start_index + 9]
-            self.assert_candidate_data_first_round_result(candidate_context_check, candidate_model)
+            self.assert_election_data_first_round_result(candidate_context_check, candidate_model)
             index += 1
             
             
     #TODO find better names          
-    def assert_candidate_data_first_round_result(self, candidate_context_check, candidate_model) :
+    def assert_election_data_first_round_result(self, candidate_context_check, candidate_model) :
         self.unit_test.assertEqual(candidate_context_check[1], candidate_model.sexe)
         self.unit_test.assertEqual(candidate_context_check[2], candidate_model.last_name)
         self.unit_test.assertEqual(candidate_context_check[3], candidate_model.first_name)

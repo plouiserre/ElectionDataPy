@@ -12,7 +12,7 @@ class CandidatesServicesTest(unittest.TestCase) :
     #TODO cleaner 
     def test_call_candidate_repository(self) : 
         helper = HelperTest()
-        candidates = helper.get_two_candidates_data_model()
+        candidates = helper.get_two_elections_data_model()
         dependency_mock = Mock()
         department_one = DepartmentModel()
         department_one.name = "Ain"

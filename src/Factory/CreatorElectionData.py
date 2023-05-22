@@ -1,4 +1,4 @@
-from src.Models.CandidateDataModel import CandidateDataModel
+from src.Models.ElectionDataModel import ElectionDataModel
 from src.Factory.CreatorDepartment import CreatorDepartment
 from src.Factory.CreatorDistrict import CreatorDistrict
 from src.Factory.CreatorCandidate import CreatorCandidate
@@ -6,9 +6,9 @@ from src.Factory.CreatorDeputy import CreatorDeputy
 from src.Factory.CreatorResult import CreatorResult
 from src.Factory.CreatorCandidates import CreatorCandidates
 
-class CreatorCandidateData() : 
+class CreatorElectionData() : 
     def __init__(self, parties) :
-        self.candidate_data = CandidateDataModel()
+        self.election_data = ElectionDataModel()
         self.datas = []
         self.is_candidate_first_name_simple = True
         self.is_deputy_first_name_simple = True
@@ -18,21 +18,21 @@ class CreatorCandidateData() :
     def factory_method(self, data):
         self.__get_datas_cleaned(data)
         
-        self.__get_department_candidate_datas()    
+        self.__get_department_election_datas()    
         
-        self.__get_district_candidate_datas()
+        self.__get_district_election_datas()
         
-        self.__get_candidate_datas()
+        self.__get_election_datas()
         
         self.__get_deputy_datas()
                
-        return self.candidate_data
+        return self.election_data
     
         
-    def __get_candidate_datas(self) : 
+    def __get_election_datas(self) : 
        can_creator = CreatorCandidate(self.parties)
        candidate = can_creator.factory_method(self.datas)
-       self.candidate_data.candidates.append(candidate)
+       self.election_data.candidates.append(candidate)
        self.is_candidate_first_name_simple = can_creator.is_candidate_first_name_simple
     
     
@@ -40,7 +40,7 @@ class CreatorCandidateData() :
         is_complexe_creator_first_name = not self.is_candidate_first_name_simple
         dep_creator = CreatorDeputy(is_complexe_creator_first_name)
         deputy = dep_creator.factory_method(self.datas)
-        self.candidate_data.deputies.append(deputy)
+        self.election_data.deputies.append(deputy)
         
          
     #This method cannot managed the separation of the datas between 
@@ -73,33 +73,33 @@ class CreatorCandidateData() :
         
     def factory_method_first_round(self, data) : 
         self.datas = self.__get_datas_cleaned_first_round(data)
-        self.__get_department_candidate_datas()
-        self.__get_district_candidate_datas()
+        self.__get_department_election_datas()
+        self.__get_district_election_datas()
         self.__get_result_model()
         self.__get_candidates_model()
         
-        return self.candidate_data
+        return self.election_data
       
        
-    def __get_department_candidate_datas(self) : 
+    def __get_department_election_datas(self) : 
         dep_creator = CreatorDepartment()
-        self.candidate_data.department = dep_creator.factory_method(self.datas)
+        self.election_data.department = dep_creator.factory_method(self.datas)
             
             
-    def __get_district_candidate_datas(self) : 
+    def __get_district_election_datas(self) : 
         dis_creator = CreatorDistrict()
-        self.candidate_data.district = dis_creator.factory_method(self.datas)
-        self.candidate_data.district.department = self.candidate_data.department
+        self.election_data.district = dis_creator.factory_method(self.datas)
+        self.election_data.district.department = self.election_data.department
         
         
     def __get_result_model(self) : 
         creator_result = CreatorResult()
-        self.candidate_data.result = creator_result.factory_method(self.datas)
+        self.election_data.result = creator_result.factory_method(self.datas)
         
     
     def __get_candidates_model(self) : 
         creator_candidates = CreatorCandidates()
-        self.candidate_data.candidates = creator_candidates.factory_method(self.datas)
+        self.election_data.candidates = creator_candidates.factory_method(self.datas)
         
         
     def __get_datas_cleaned_first_round(self, data) : 

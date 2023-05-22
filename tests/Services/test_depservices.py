@@ -8,9 +8,9 @@ from tests.helper_test import HelperTest
 class DepartmentServicesTest(unittest.TestCase):   
     def test_construct_departments_two_candidates(self) :        
         helper = HelperTest()
-        candidates = helper.get_two_candidates_data_model()
+        elections = helper.get_two_elections_data_model()
         
-        departments = self.call_store_departments(candidates)
+        departments = self.call_store_departments(elections)
         
         self.assertEqual(2, len(departments))
         self.assertEqual(2, departments[2].number)
@@ -21,11 +21,11 @@ class DepartmentServicesTest(unittest.TestCase):
         
     def test_construct_departments_many_candidates(self) :
         helper = HelperTest()
-        candidates = helper.get_six_candidates_data_model()
+        elections = helper.get_six_elections_data_model()
         
-        departments = self.call_store_departments(candidates)
+        departments = self.call_store_departments(elections)
         
-        self.assertEqual(6, len(candidates))
+        self.assertEqual(6, len(elections))
         self.assertEqual(1, departments[1].number)
         self.assertEqual("Ain", departments[1].name)
         self.assertEqual(2, departments[2].number)

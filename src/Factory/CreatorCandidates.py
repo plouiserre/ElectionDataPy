@@ -21,9 +21,9 @@ class CreatorCandidates() :
     def __get_candidate_model(self, candidates_data, index) : 
         candidate = CandidateModel()
         index_candidate = index*9+ self.start_index_candidates
-        candidate_data = candidates_data[index_candidate:index_candidate+9]
+        election_data = candidates_data[index_candidate:index_candidate+9]
         creator = CreatorCandidate(None)
-        candidate = creator.factory_candidate_first_round_method(candidate_data)
+        candidate = creator.factory_candidate_first_round_method(election_data)
         return candidate              
     
     

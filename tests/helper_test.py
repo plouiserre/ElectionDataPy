@@ -3,7 +3,7 @@ import datetime
 from src.Models.DepartmentModel import DepartmentModel
 from src.Models.DeputyModel import DeputyModel
 from src.Models.DistrictModel import DistrictModel
-from src.Models.CandidateDataModel import CandidateDataModel
+from src.Models.ElectionDataModel import ElectionDataModel
 from src.Models.CandidateModel import CandidateModel
 from src.Models.PartyModel import PartyModel
 
@@ -52,32 +52,32 @@ class HelperTest :
         return departments
     
     #TODO check using of this method
-    def get_two_candidates_data_model(self) :
+    def get_two_elections_data_model(self) :
         first_department = self.get_department("Aisne",2)
         first_district = self.get_district("4ème circonscription", 4) 
         first_district.department = first_department
-        first_candidate = self.get_candidate("Wednesday", datetime.datetime(2002,9,27), False, "Student", "Addams", 3, "F")
+        first_election = self.get_candidate("Wednesday", datetime.datetime(2002,9,27), False, "Student", "Addams", 3, "F")
         first_deputy = self.get_deputy("Enid", "Sinclair",datetime.datetime(2002, 4, 2), "F", False) 
-        first_candidate_data = CandidateDataModel()
-        first_candidate_data.department = first_department
-        first_candidate_data.district = first_district
-        first_candidate_data.candidates.append(first_candidate)
-        first_candidate_data.deputies.append(first_deputy)
+        first_election_data = ElectionDataModel()
+        first_election_data.department = first_department
+        first_election_data.district = first_district
+        first_election_data.candidates.append(first_election)
+        first_election_data.deputies.append(first_deputy)
         
         second_department = self.get_department("Nord",59)
         second_district = self.get_district("13ème circonscription", 13)   
         second_district.department = second_department
-        second_candidate = self.get_candidate("Thomas", datetime.datetime(1976,5,25), True, "Gangster", "Shelby", 6, "M")
+        second_election = self.get_candidate("Thomas", datetime.datetime(1976,5,25), True, "Gangster", "Shelby", 6, "M")
         second_deputy = self.get_deputy("Polly", "Gray", datetime.datetime(1968, 8,17), "F", True) 
-        second_candidate_data = CandidateDataModel()
-        second_candidate_data.department = second_department
-        second_candidate_data.district = second_district
-        second_candidate_data.candidates.append(second_candidate)
-        second_candidate_data.deputies.append(second_deputy)
+        second_election_data = ElectionDataModel()
+        second_election_data.department = second_department
+        second_election_data.district = second_district
+        second_election_data.candidates.append(second_election)
+        second_election_data.deputies.append(second_deputy)
         
-        candidates = [first_candidate_data, second_candidate_data]
+        elections = [first_election_data, second_election_data]
         
-        return candidates    
+        return elections    
     
     def get_two_candidates_model(self) : 
         first_candidate = self.get_candidate("Wednesday", datetime.datetime(2002,9,27), False, "Student", "Addams", 3, "F")
@@ -91,96 +91,97 @@ class HelperTest :
         return candidates
     
     
-    def get_two_corsica_candidates_data_model(self) :
-        first_candidate_data = CandidateDataModel()
-        first_candidate_data.department = self.get_department("Corse-du-Sud",20)
-        first_candidate_data.district = self.get_district("4ème circonscription", 4)   
-        first_candidate_data.district.department = first_candidate_data.department
+    def get_two_corsica_elections_data_model(self) :
+        first_election_data = ElectionDataModel()
+        first_election_data.department = self.get_department("Corse-du-Sud",20)
+        first_election_data.district = self.get_district("4ème circonscription", 4)   
+        first_election_data.district.department = first_election_data.department
         
-        second_candidate_data = CandidateDataModel()
-        second_candidate_data.department = self.get_department("Haute-Corse",20)
-        second_candidate_data.district =  self.get_district("13ème circonscription", 13)   
-        second_candidate_data.district.department = second_candidate_data.department
+        second_election_data = ElectionDataModel()
+        second_election_data.department = self.get_department("Haute-Corse",20)
+        second_election_data.district =  self.get_district("13ème circonscription", 13)   
+        second_election_data.district.department = second_election_data.department
         
-        candidates = [first_candidate_data, second_candidate_data]
+        candidates = [first_election_data, second_election_data]
         
         return candidates
     
     
-    def get_six_candidates_data_model(self) : 
-        first_candidate_data = CandidateDataModel()
-        first_candidate_data.department = self.get_department("Ain",1)
-        first_candidate_data.district.name = self.get_district("1ère circonscription", 1)        
+    def get_six_elections_data_model(self) : 
+        first_election_data = ElectionDataModel()
+        first_election_data.department = self.get_department("Ain",1)
+        first_election_data.district.name = self.get_district("1ère circonscription", 1)        
         
-        second_candidate_data = CandidateDataModel()
-        second_candidate_data.department = self.get_department("Aisne",2)
-        second_candidate_data.district.name = self.get_district("4ème circonscription", 4)
+        second_election_data = ElectionDataModel()
+        second_election_data.department = self.get_department("Aisne",2)
+        second_election_data.district.name = self.get_district("4ème circonscription", 4)
         
-        third_candidate_data = CandidateDataModel()
-        third_candidate_data.department = self.get_department("Alpes-de-Haute-Provence",4)
-        third_candidate_data.district.name = self.get_district("2ème circonscription", 2)
+        third_election_data = ElectionDataModel()
+        third_election_data.department = self.get_department("Alpes-de-Haute-Provence",4)
+        third_election_data.district.name = self.get_district("2ème circonscription", 2)
         
-        fourth_candidate_data = CandidateDataModel()
-        fourth_candidate_data.department = self.get_department("Alpes-Maritimes",6)
-        fourth_candidate_data.district = self.get_district("6ème circonscription", 6)
+        fourth_election_data = ElectionDataModel()
+        fourth_election_data.department = self.get_department("Alpes-Maritimes",6)
+        fourth_election_data.district = self.get_district("6ème circonscription", 6)
         
-        fifth_candidate_data = CandidateDataModel()
-        fifth_candidate_data.department = self.get_department("Aube",10)
-        fifth_candidate_data.district = self.get_district("1ère circonscription", 1) 
+        fifth_election_data = ElectionDataModel()
+        fifth_election_data.department = self.get_department("Aube",10)
+        fifth_election_data.district = self.get_district("1ère circonscription", 1) 
         
-        sixth_candidate_data = CandidateDataModel()
-        sixth_candidate_data.department =  self.get_department("Nord",59)
-        sixth_candidate_data.district = self.get_district("13ème circonscription", 13)
+        sixth_election_data = ElectionDataModel()
+        sixth_election_data.department =  self.get_department("Nord",59)
+        sixth_election_data.district = self.get_district("13ème circonscription", 13)
         
-        candidates = [first_candidate_data, second_candidate_data, third_candidate_data, fourth_candidate_data, fifth_candidate_data, sixth_candidate_data]
+        candidates = [first_election_data, second_election_data, third_election_data, fourth_election_data, fifth_election_data, sixth_election_data]
         
         return candidates
     
     
     def get_eight_candidates_data_model(self) : 
-        first_candidate_data = CandidateDataModel()
-        first_candidate_data.department = self.get_department("Ain",1)
-        first_candidate_data.district = self.get_district("1ère circonscription", 1)
-        first_candidate_data.district.department = first_candidate_data.department
+        first_election_data = ElectionDataModel()
+        first_election_data.department = self.get_department("Ain",1)
+        first_election_data.district = self.get_district("1ère circonscription", 1)
+        first_election_data.district.department = first_election_data.department
         
-        second_candidate_data = CandidateDataModel()
-        second_candidate_data.department = self.get_department("Aisne",2)
-        second_candidate_data.district = self.get_district("4ème circonscription", 4)
-        second_candidate_data.district.department = second_candidate_data.department
+        second_election_data = ElectionDataModel()
+        second_election_data.department = self.get_department("Aisne",2)
+        second_election_data.district = self.get_district("4ème circonscription", 4)
+        second_election_data.district.department = second_election_data.department
         
-        third_candidate_data = CandidateDataModel()
-        third_candidate_data.department =  self.get_department("Alpes-de-Haute-Provence",4)
-        third_candidate_data.district = self.get_district("2ème circonscription", 2)
-        third_candidate_data.district.department = third_candidate_data.department
+        third_election_data = ElectionDataModel()
+        third_election_data.department =  self.get_department("Alpes-de-Haute-Provence",4)
+        third_election_data.district = self.get_district("2ème circonscription", 2)
+        third_election_data.district.department = third_election_data.department
         
-        fourth_candidate_data = CandidateDataModel()
-        fourth_candidate_data.department =  self.get_department("Alpes-Maritimes",6)
-        fourth_candidate_data.district = self.get_district("6ème circonscription", 6)
-        fourth_candidate_data.district.department = fourth_candidate_data.department
+        fourth_election_data = ElectionDataModel()
+        fourth_election_data.department =  self.get_department("Alpes-Maritimes",6)
+        fourth_election_data.district = self.get_district("6ème circonscription", 6)
+        fourth_election_data.district.department = fourth_election_data.department
         
-        fifth_candidate_data = CandidateDataModel()
-        fifth_candidate_data.department =  self.get_department("Alpes-Maritimes",6)
-        fifth_candidate_data.district = self.get_district("6ème circonscription", 6)
-        fifth_candidate_data.district.department = fifth_candidate_data.department
+        fifth_election_data = ElectionDataModel()
+        fifth_election_data.department =  self.get_department("Alpes-Maritimes",6)
+        fifth_election_data.district = self.get_district("6ème circonscription", 6)
+        fifth_election_data.district.department = fifth_election_data.department
         
-        sixth_candidate_data = CandidateDataModel()
-        sixth_candidate_data.department =  self.get_department("Aube",10)
-        sixth_candidate_data.district = self.get_district("1ère circonscription", 1)
-        sixth_candidate_data.district.department = sixth_candidate_data.department
+        sixth_election_data = ElectionDataModel()
+        sixth_election_data.department =  self.get_department("Aube",10)
+        sixth_election_data.district = self.get_district("1ère circonscription", 1)
+        sixth_election_data.district.department = sixth_election_data.department
         
-        seven_candidate_data = CandidateDataModel()
-        seven_candidate_data.department = self.get_department("Aube",10)
-        seven_candidate_data.district = self.get_district("1ère circonscription", 1)
-        seven_candidate_data.district.department = seven_candidate_data.department
+        seven_election_data = ElectionDataModel()
+        seven_election_data.department = self.get_department("Aube",10)
+        seven_election_data.district = self.get_district("1ère circonscription", 1)
+        seven_election_data.district.department = seven_election_data.department
         
-        eigth_candidate_data = CandidateDataModel()
-        eigth_candidate_data.department = self.get_department("Nord",59)
-        eigth_candidate_data.district = self.get_district("13ème circonscription", 13)
-        eigth_candidate_data.district.department = eigth_candidate_data.department
+        eigth_election_data = ElectionDataModel()
+        eigth_election_data.department = self.get_department("Nord",59)
+        eigth_election_data.district = self.get_district("13ème circonscription", 13)
+        eigth_election_data.district.department = eigth_election_data.department
         
-        candidates = [first_candidate_data, second_candidate_data, third_candidate_data, fourth_candidate_data, fifth_candidate_data, sixth_candidate_data, seven_candidate_data, eigth_candidate_data]
+        elections = [first_election_data, second_election_data, third_election_data, fourth_election_data, fifth_election_data, sixth_election_data, seven_election_data, eigth_election_data]
         
-        return candidates
+        return elections
+    
     
     def get_department(self, department_name, department_number) : 
         dept = DepartmentModel()

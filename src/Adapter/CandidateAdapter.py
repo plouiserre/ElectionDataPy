@@ -1,5 +1,5 @@
 from src.Adapter.Adapter import Adapter
-from src.Factory.CreatorCandidateData import CreatorCandidateData 
+from src.Factory.CreatorElectionData import CreatorElectionData 
 
 
 #TODO try to replace modify constructor to use ONLY dependency
@@ -21,7 +21,7 @@ class CandidateAdapter(Adapter) :
         candidates = []
         
         for client_data in clients_datas : 
-            creator = CreatorCandidateData(self.parties)
+            creator = CreatorElectionData(self.parties)
             candidate = creator.factory_method(client_data)
             candidates.append(candidate)
         

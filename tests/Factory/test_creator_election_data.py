@@ -5,7 +5,7 @@ from src.Factory.CreatorElectionData import CreatorElectionData
 from tests.assert_test import AssertTest
 from tests.helper_test import HelperTest
 
-class CreatorCandidateDataTest(unittest.TestCase):
+class CreatorElectionDataTest(unittest.TestCase):
 #TODO refaire cette classe    
     def test_creator_election_data_factory_first_line(self) :        
         creator = self.__get_creator()

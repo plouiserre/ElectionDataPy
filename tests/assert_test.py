@@ -122,6 +122,7 @@ class AssertTest :
         self.unit_test.assertEqual(result_context_check[14], result_model.rate_express_voting)     
         
         
+    #TODO change name identity => basique
     def assert_candidate_model_identity(self, candidate_context, candidate_model): 
         self.unit_test.assertEqual(candidate_context[0], candidate_model.last_name)
         self.unit_test.assertEqual(candidate_context[1], candidate_model.first_name)
@@ -132,7 +133,7 @@ class AssertTest :
         self.unit_test.assertEqual(candidate_context[6], candidate_model.is_sorting)
         
     
-    def  assert_deputy_model(self, deputy_data_check, deputy_model) :
+    def assert_deputy_model(self, deputy_data_check, deputy_model) :
         self.__assert_basic_deputy_infos(deputy_data_check[0 : 5], deputy_model)
         self.unit_test.assertEqual(deputy_data_check[5], deputy_model.candidate.last_name)
         self.unit_test.assertEqual(deputy_data_check[6], deputy_model.candidate.first_name)
@@ -145,3 +146,20 @@ class AssertTest :
         self.unit_test.assertTrue(deputy_data_check[3] == deputy_model.birthdate)
         self.unit_test.assertEqual(deputy_data_check[4], deputy_model.is_sorting)
         
+        
+    #TODO régler le problème pour récupérer la partie candidats
+    def assert_elections_model(self, elections_data_check, elections_data_model) :
+        for index in range(len(elections_data_check)) :
+            election_data_check = elections_data_check[index]
+            department_data_check = election_data_check[0 : 2]
+            self.__assert_candidate_department_data_first_round_result(department_data_check, elections_data_model[index].department)
+            district_data_check = election_data_check[2 : 4]
+            self.__assert_candidate_district_data_first_round_result(district_data_check, elections_data_model[index].district)
+            candidates_deputies_number = election_data_check[4]
+            j = 0
+            while j < candidates_deputies_number :
+                candidate_data_check = election_data_check[5 + j]
+                self.assert_candidate_model_identity(candidate_data_check, elections_data_model[index].candidates[j])
+                deputy_data_check = election_data_check[5 + j]
+                self.__assert_basic_deputy_infos(deputy_data_check, elections_data_model[index].deputies[j])
+                j += 1    

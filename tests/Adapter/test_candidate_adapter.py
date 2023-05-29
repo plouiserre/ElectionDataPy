@@ -33,40 +33,48 @@ class CandidateAdapterTest(unittest.TestCase):
         
         #TODO delete this line
         adapter.parties = parties        
-        elections_data = adapter.extracts_datas_from_files()
-        election_data = elections_data[0]
+        elections_data_model = adapter.extracts_datas_from_files()
+        #election_data = elections_data[0]
         
-        self.assertEqual(1, len(elections_data))
-        self.assertEqual('Aisne', election_data.department.name)
-        self.assertEqual(2, election_data.department.number)
-        self.assertEqual('4ème circonscription', election_data.district.name)
-        self.assertEqual(4, election_data.district.number)
-        self.assertEqual(2, len(election_data.candidates))
-        self.assertEqual(2, len(election_data.deputies))        
-        self.assertEqual('GALL', election_data.candidates[0].last_name)
-        self.assertEqual('Aurélien', election_data.candidates[0].first_name)
-        self.assertTrue(datetime.datetime(1982,6,30) == election_data.candidates[0].birthdate)
-        self.assertEqual('M', election_data.candidates[0].sexe)
-        self.assertEqual('Professeur des écoles, instituteur et assimilé', election_data.candidates[0].job)
-        self.assertEqual(3, election_data.candidates[0].party_id)
-        self.assertFalse(election_data.candidates[0].is_sorting)
-        self.assertEqual('LEGRAND', election_data.deputies[0].last_name)
-        self.assertEqual('Estelle', election_data.deputies[0].first_name)
-        self.assertTrue(datetime.datetime(1968,10,2) == election_data.deputies[0].birthdate)
-        self.assertEqual('F', election_data.deputies[0].sexe)
-        self.assertFalse(election_data.deputies[0].is_sorting)        
-        self.assertEqual('BÉZINE', election_data.candidates[1].last_name)
-        self.assertEqual('Clément', election_data.candidates[1].first_name)
-        self.assertTrue(datetime.datetime(1983,12,22) == election_data.candidates[1].birthdate)
-        self.assertEqual('M', election_data.candidates[1].sexe)
-        self.assertEqual('Professeur, profession scientifique', election_data.candidates[1].job)
-        self.assertEqual(1, election_data.candidates[1].party_id)
-        self.assertTrue(election_data.candidates[1].is_sorting)
-        self.assertEqual('WARINGHEM', election_data.deputies[1].last_name)
-        self.assertEqual('Jean-Luc', election_data.deputies[1].first_name)
-        self.assertTrue(datetime.datetime(1957,3,26) == election_data.deputies[1].birthdate)
-        self.assertEqual('M', election_data.deputies[1].sexe)
-        self.assertTrue(election_data.deputies[1].is_sorting)
+        
+        elections_data_check= [[2, 'Aisne', 4, '4ème circonscription', 2, [['GALL', 'Aurélien', 'M', 3, 'Professeur des écoles, instituteur et assimilé', datetime.datetime(1982,6,30), 
+                                False ], ['BÉZINE', 'Clément', 'M', 1, 'Professeur, profession scientifique', datetime.datetime(1983,12,22), True]], [['LEGRAND', 'Estelle', 'M', 3, 
+                                datetime.datetime(1968,10,2), False ], ['WARINGHEM', 'Jean-Luc', 'M', datetime.datetime(1957,3,26),  True]]]]
+        assert_test = AssertTest(self, 1)
+        assert_test.assert_elections_model(elections_data_check, elections_data_model)
+        
+        
+        # self.assertEqual(1, len(elections_data))
+        # self.assertEqual('Aisne', election_data.department.name)
+        # self.assertEqual(2, election_data.department.number)
+        # self.assertEqual('4ème circonscription', election_data.district.name)
+        # self.assertEqual(4, election_data.district.number)
+        # self.assertEqual(2, len(election_data.candidates))
+        # self.assertEqual(2, len(election_data.deputies))        
+        # self.assertEqual('GALL', election_data.candidates[0].last_name)
+        # self.assertEqual('Aurélien', election_data.candidates[0].first_name)
+        # self.assertTrue(datetime.datetime(1982,6,30) == election_data.candidates[0].birthdate)
+        # self.assertEqual('M', election_data.candidates[0].sexe)
+        # self.assertEqual('Professeur des écoles, instituteur et assimilé', election_data.candidates[0].job)
+        # self.assertEqual(3, election_data.candidates[0].party_id)
+        # self.assertFalse(election_data.candidates[0].is_sorting)
+        # self.assertEqual('LEGRAND', election_data.deputies[0].last_name)
+        # self.assertEqual('Estelle', election_data.deputies[0].first_name)
+        # self.assertTrue(datetime.datetime(1968,10,2) == election_data.deputies[0].birthdate)
+        # self.assertEqual('F', election_data.deputies[0].sexe)
+        # self.assertFalse(election_data.deputies[0].is_sorting)        
+        # self.assertEqual('BÉZINE', election_data.candidates[1].last_name)
+        # self.assertEqual('Clément', election_data.candidates[1].first_name)
+        # self.assertTrue(datetime.datetime(1983,12,22) == election_data.candidates[1].birthdate)
+        # self.assertEqual('M', election_data.candidates[1].sexe)
+        # self.assertEqual('Professeur, profession scientifique', election_data.candidates[1].job)
+        # self.assertEqual(1, election_data.candidates[1].party_id)
+        # self.assertTrue(election_data.candidates[1].is_sorting)
+        # self.assertEqual('WARINGHEM', election_data.deputies[1].last_name)
+        # self.assertEqual('Jean-Luc', election_data.deputies[1].first_name)
+        # self.assertTrue(datetime.datetime(1957,3,26) == election_data.deputies[1].birthdate)
+        # self.assertEqual('M', election_data.deputies[1].sexe)
+        # self.assertTrue(election_data.deputies[1].is_sorting)
          
         # first_election_data_check = [2, "Aisne", 4, "4ème circonscription", 2, "Aisne", "GALL", "Aurélien", "M", 3, "Professeur des écoles, instituteur et assimilé",  datetime.datetime(1982,6,30), False, 'F', 'LEGRAND', 'Estelle', datetime.datetime(1968, 10, 2, 0, 0), False]             
         # second_election_data_check = [2, "Aisne", 4, "4ème circonscription", 59, "Nord", "BÉZINE", "Clément", "M", 1, "Professeur, profession scientifique",  datetime.datetime(1983,12,22), False, 'M', 'WARINGHEM', 'Jean-Luc', datetime.datetime(1957, 3, 26, 0, 0), False]     

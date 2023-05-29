@@ -2,7 +2,6 @@ from src.Models.DepartmentModel import DepartmentModel
 from src.Models.DistrictModel import DistrictModel
 from src.Models.ResultModel import ResultModel
 
-#TODO find better naming for candidatedatamodel because it is confusing with the list of candidates
 class ElectionDataModel : 
     def __init__(self) : 
         self.candidate_is_sorting = False
@@ -10,4 +9,4 @@ class ElectionDataModel :
         self.district = DistrictModel()
         self.candidates = []
         self.deputies = []
-        self.result = ResultModel()
+        self.result = ResultModel()        

@@ -17,12 +17,17 @@ class CandidateAdapter(Adapter) :
         
     
     def extracts_datas_from_files(self) : 
+        #TODO rename import_candidates_datas in import_elections_datas
         clients_datas = self.excel_manager.import_candidates_datas(self.pd)       
-        candidates = []
-        
-        for client_data in clients_datas : 
-            creator = CreatorElectionData(self.parties)
-            candidate = creator.factory_method(client_data)
-            candidates.append(candidate)
-        
-        return candidates
+        elections_datas = []
+        creator = CreatorElectionData(self.parties)
+            
+        for index in range(len(clients_datas)) : 
+            last_election_data_created = creator.last_election_data_created
+            election_data = creator.factory_method(clients_datas[index])
+            if last_election_data_created != None and len(last_election_data_created.candidates) > 0 and creator.is_new_election_data_model_created == True :
+                    elections_datas.append(last_election_data_created)
+            if index + 1 == len(clients_datas) : 
+                    elections_datas.append(election_data)
+           
+        return elections_datas

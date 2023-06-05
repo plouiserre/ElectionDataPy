@@ -155,11 +155,11 @@ class AssertTest :
             self.__assert_candidate_department_data_first_round_result(department_data_check, elections_data_model[index].department)
             district_data_check = election_data_check[2 : 4]
             self.__assert_candidate_district_data_first_round_result(district_data_check, elections_data_model[index].district)
-            candidates_deputies_number = election_data_check[4]
+            candidates_deputies_number = self.candidates_number
             j = 0
             while j < candidates_deputies_number :
-                candidate_data_check = election_data_check[5 + j]
+                candidate_data_check = election_data_check[4][j]
                 self.assert_candidate_model_identity(candidate_data_check, elections_data_model[index].candidates[j])
-                deputy_data_check = election_data_check[5 + j]
+                deputy_data_check = election_data_check[5][j]
                 self.__assert_basic_deputy_infos(deputy_data_check, elections_data_model[index].deputies[j])
                 j += 1    

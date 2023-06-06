@@ -22,45 +22,23 @@ class CreatorElectionDataTest(unittest.TestCase):
         assert_test.assert_all_candidates_infos_with_deputy(election_data_check, model)
         
         
-    #TODO tester aussi le last_election_data_created
     def test_creator_election_data_factory_second_line_with_last_election_data_saved_same_district(self) : 
         creator = self.__get_creator()               
         creator.last_election_data_created = self.__get_last_election_data_model_saved()
         
         model = creator.factory_method("['01' 'Ain' 5 '5ème circonscription' 3 27 'M' 'YILMAZ' 'Celil' '1975-10-30 00:00:00' 'DIV' 'Profession intermédiaire administrative et commerciale des entreprises' 'Oui' 'M' 'ORAN' 'Mahmut' '1980-06-09 00:00:00' 'Non']")
         
-        self.assertEqual(creator.last_election_data_created.department.name, model.department.name)
-        self.assertEqual(creator.last_election_data_created.department.number, model.department.number)
-        self.assertEqual(creator.last_election_data_created.district.name, model.district.name)
-        self.assertEqual(creator.last_election_data_created.district.number, model.district.number)
+        elections_data_check= [[creator.last_election_data_created.department.number, creator.last_election_data_created.department.name, 
+                                creator.last_election_data_created.district.number, creator.last_election_data_created.district.name,  
+                                [['CROZET', 'Sylvie', 'F', 1, 'Profession intermédiaire de la santé et du travail social', datetime.datetime(1962,6,3), False ],
+                                ['YILMAZ', 'Celil', 'M', 9, 'Profession intermédiaire administrative et commerciale des entreprises', datetime.datetime(1975,10,30), True]], 
+                                [['BOUVET', 'Didier', 'M', datetime.datetime(1963,5,26), False ], ['ORAN', 'Mahmut', 'M', datetime.datetime(1980,6,9),  False]]]]
+        assert_test = AssertTest(self, 2)
+        elections_data_model = [model]
+        assert_test.assert_elections_model(elections_data_check, elections_data_model)
         self.assertFalse(creator.is_new_election_data_model_created)
-        self.assertEqual(2, len(model.candidates))
-        self.assertEqual(2, len(model.deputies))
-        self.assertEqual('CROZET', model.candidates[0].last_name)
-        self.assertEqual('Sylvie', model.candidates[0].first_name)
-        self.assertTrue(datetime.datetime(1962,6,3) == model.candidates[0].birthdate)
-        self.assertEqual('F', model.candidates[0].sexe)
-        self.assertEqual('Profession intermédiaire de la santé et du travail social', model.candidates[0].job)
-        self.assertEqual(1, model.candidates[0].party_id)
-        self.assertFalse(model.candidates[0].is_sorting)
-        self.assertEqual('BOUVET', model.deputies[0].last_name)
-        self.assertEqual('Didier', model.deputies[0].first_name)
-        self.assertTrue(datetime.datetime(1963,5,26) == model.deputies[0].birthdate)
-        self.assertEqual('M', model.deputies[0].sexe)
-        self.assertFalse(model.deputies[0].is_sorting)
-        self.assertEqual('YILMAZ', model.candidates[1].last_name)
-        self.assertEqual('Celil', model.candidates[1].first_name)
-        self.assertTrue(datetime.datetime(1975,10,30) == model.candidates[1].birthdate)
-        self.assertEqual('M', model.candidates[1].sexe)
-        self.assertEqual('Profession intermédiaire administrative et commerciale des entreprises', model.candidates[1].job)
-        self.assertEqual(9, model.candidates[1].party_id)
-        self.assertTrue(model.candidates[1].is_sorting)
-        self.assertEqual('ORAN', model.deputies[1].last_name)
-        self.assertEqual('Mahmut', model.deputies[1].first_name)
-        self.assertTrue(datetime.datetime(1980,6,9) == model.deputies[1].birthdate)
-        self.assertEqual('M', model.deputies[1].sexe)
-        self.assertFalse(model.deputies[1].is_sorting)
-        self.__assert_last_election_data_created(creator.last_election_data_created, model)
+        
+        assert_test.assert_last_election_data_created(creator.last_election_data_created, model)
         
         
     def test_creator_election_data_factory_third_line_with_last_election_data_saved_other_district(self) : 
@@ -69,26 +47,17 @@ class CreatorElectionDataTest(unittest.TestCase):
         
         model = creator.factory_method("['01' 'Ain' 6 '6ème circonscription' 3 27 'M' 'YILMAZ' 'Celil' '1975-10-30 00:00:00' 'DIV' 'Profession intermédiaire administrative et commerciale des entreprises' 'Oui' 'M' 'ORAN' 'Mahmut' '1980-06-09 00:00:00' 'Non']")
         
-        self.assertEqual(creator.last_election_data_created.department.name, model.department.name)
-        self.assertEqual(creator.last_election_data_created.department.number, model.department.number)
-        self.assertEqual('6ème circonscription', model.district.name)
-        self.assertEqual(6, model.district.number)
+        
+        elections_data_check= [[creator.last_election_data_created.department.number, creator.last_election_data_created.department.name, 
+                                6, '6ème circonscription',  
+                                [['YILMAZ', 'Celil', 'M', 9, 'Profession intermédiaire administrative et commerciale des entreprises', datetime.datetime(1975,10,30), True]], 
+                                [['ORAN', 'Mahmut', 'M', datetime.datetime(1980,6,9),  False]]]]
+        assert_test = AssertTest(self, 1)
+        elections_data_model = [model]
+        assert_test.assert_elections_model(elections_data_check, elections_data_model)
         self.assertTrue(creator.is_new_election_data_model_created)
-        self.assertEqual(1, len(model.candidates))
-        self.assertEqual(1, len(model.deputies))        
-        self.assertEqual('YILMAZ', model.candidates[0].last_name)
-        self.assertEqual('Celil', model.candidates[0].first_name)
-        self.assertTrue(datetime.datetime(1975,10,30) == model.candidates[0].birthdate)
-        self.assertEqual('M', model.candidates[0].sexe)
-        self.assertEqual('Profession intermédiaire administrative et commerciale des entreprises', model.candidates[0].job)
-        self.assertEqual(9, model.candidates[0].party_id)
-        self.assertTrue(model.candidates[0].is_sorting)
-        self.assertEqual('ORAN', model.deputies[0].last_name)
-        self.assertEqual('Mahmut', model.deputies[0].first_name)
-        self.assertTrue(datetime.datetime(1980,6,9) == model.deputies[0].birthdate)
-        self.assertEqual('M', model.deputies[0].sexe)
-        self.assertFalse(model.deputies[0].is_sorting)
-        self.__assert_last_election_data_created(creator.last_election_data_created, model)
+        
+        assert_test.assert_last_election_data_created(creator.last_election_data_created, model)
         
         
     def test_creator_election_data_factory_third_line_with_last_election_data_saved_other_department_same_district_number(self) : 
@@ -97,27 +66,14 @@ class CreatorElectionDataTest(unittest.TestCase):
         
         model = creator.factory_method("['02' 'Aisne' 5 '5ème circonscription' 3 27 'M' 'YILMAZ' 'Celil' '1975-10-30 00:00:00' 'DIV' 'Profession intermédiaire administrative et commerciale des entreprises' 'Oui' 'M' 'ORAN' 'Mahmut' '1980-06-09 00:00:00' 'Non']")
         
-        self.assertEqual('Aisne', model.department.name)
-        self.assertEqual(2, model.department.number)
-        self.assertEqual(creator.last_election_data_created.district.name, model.district.name)
-        self.assertEqual(creator.last_election_data_created.district.number, model.district.number)
+        elections_data_check= [[2, 'Aisne', creator.last_election_data_created.district.number, creator.last_election_data_created.district.name,  
+                                [['YILMAZ', 'Celil', 'M', 9, 'Profession intermédiaire administrative et commerciale des entreprises', datetime.datetime(1975,10,30), True]], 
+                                [['ORAN', 'Mahmut', 'M', datetime.datetime(1980,6,9),  False]]]]
+        assert_test = AssertTest(self, 1)
+        elections_data_model = [model]
+        assert_test.assert_elections_model(elections_data_check, elections_data_model)
         self.assertTrue(creator.is_new_election_data_model_created)
-        self.assertEqual(1, len(model.candidates))
-        self.assertEqual(1, len(model.deputies))        
-        self.assertEqual('YILMAZ', model.candidates[0].last_name)
-        self.assertEqual('Celil', model.candidates[0].first_name)
-        self.assertTrue(datetime.datetime(1975,10,30) == model.candidates[0].birthdate)
-        self.assertEqual('M', model.candidates[0].sexe)
-        self.assertEqual('Profession intermédiaire administrative et commerciale des entreprises', model.candidates[0].job)
-        self.assertEqual(9, model.candidates[0].party_id)
-        self.assertTrue(model.candidates[0].is_sorting)
-        self.assertEqual('ORAN', model.deputies[0].last_name)
-        self.assertEqual('Mahmut', model.deputies[0].first_name)
-        self.assertTrue(datetime.datetime(1980,6,9) == model.deputies[0].birthdate)
-        self.assertEqual('M', model.deputies[0].sexe)
-        self.assertFalse(model.deputies[0].is_sorting)
-        self.__assert_last_election_data_created(creator.last_election_data_created, model)
-        
+        assert_test.assert_last_election_data_created(creator.last_election_data_created, model)  
      
      
     def __get_last_election_data_model_saved(self) :
@@ -147,27 +103,6 @@ class CreatorElectionDataTest(unittest.TestCase):
         elec.deputies.append(deputy)        
         return elec
     
-    
-    def __assert_last_election_data_created(self, last_election_data_created, election_data_model) : 
-        self.assertEqual(last_election_data_created.department.name, election_data_model.department.name)
-        self.assertEqual(last_election_data_created.department.number, election_data_model.department.number)
-        self.assertEqual(last_election_data_created.district.name, election_data_model.district.name)
-        self.assertEqual(last_election_data_created.district.number, election_data_model.district.number)
-        self.assertEqual(len(last_election_data_created.candidates), len(election_data_model.candidates))
-        
-        for index in range(len(election_data_model.candidates)) : 
-            self.assertEqual(last_election_data_created.candidates[index].last_name, election_data_model.candidates[index].last_name)
-            self.assertEqual(last_election_data_created.candidates[index].first_name, election_data_model.candidates[index].first_name)
-            self.assertTrue(last_election_data_created.candidates[index].birthdate == election_data_model.candidates[index].birthdate)
-            self.assertEqual(last_election_data_created.candidates[index].party_id, election_data_model.candidates[index].party_id)
-            self.assertEqual(last_election_data_created.candidates[index].job, election_data_model.candidates[index].job)
-            self.assertEqual(last_election_data_created.candidates[index].sexe, election_data_model.candidates[index].sexe)
-        
-        for index in range(len(election_data_model.deputies)) : 
-            self.assertEqual(last_election_data_created.deputies[index].last_name, election_data_model.deputies[index].last_name)
-            self.assertEqual(last_election_data_created.deputies[index].first_name, election_data_model.deputies[index].first_name)
-            self.assertTrue(last_election_data_created.deputies[index].birthdate == election_data_model.deputies[index].birthdate)
-            self.assertEqual(last_election_data_created.deputies[index].sexe, election_data_model.deputies[index].sexe)
         
     def test_creator_election_data_factory_second_line(self):
         creator = self.__get_creator()

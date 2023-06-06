@@ -163,3 +163,25 @@ class AssertTest :
                 deputy_data_check = election_data_check[5][j]
                 self.__assert_basic_deputy_infos(deputy_data_check, elections_data_model[index].deputies[j])
                 j += 1    
+                
+                
+    def assert_last_election_data_created(self, last_election_data_created, election_data_model) : 
+        self.unit_test.assertEqual(last_election_data_created.department.name, election_data_model.department.name)
+        self.unit_test.assertEqual(last_election_data_created.department.number, election_data_model.department.number)
+        self.unit_test.assertEqual(last_election_data_created.district.name, election_data_model.district.name)
+        self.unit_test.assertEqual(last_election_data_created.district.number, election_data_model.district.number)
+        self.unit_test.assertEqual(len(last_election_data_created.candidates), len(election_data_model.candidates))
+        
+        for index in range(len(election_data_model.candidates)) : 
+            self.unit_test.assertEqual(last_election_data_created.candidates[index].last_name, election_data_model.candidates[index].last_name)
+            self.unit_test.assertEqual(last_election_data_created.candidates[index].first_name, election_data_model.candidates[index].first_name)
+            self.unit_test.assertTrue(last_election_data_created.candidates[index].birthdate == election_data_model.candidates[index].birthdate)
+            self.unit_test.assertEqual(last_election_data_created.candidates[index].party_id, election_data_model.candidates[index].party_id)
+            self.unit_test.assertEqual(last_election_data_created.candidates[index].job, election_data_model.candidates[index].job)
+            self.unit_test.assertEqual(last_election_data_created.candidates[index].sexe, election_data_model.candidates[index].sexe)
+        
+        for index in range(len(election_data_model.deputies)) : 
+            self.unit_test.assertEqual(last_election_data_created.deputies[index].last_name, election_data_model.deputies[index].last_name)
+            self.unit_test.assertEqual(last_election_data_created.deputies[index].first_name, election_data_model.deputies[index].first_name)
+            self.unit_test.assertTrue(last_election_data_created.deputies[index].birthdate == election_data_model.deputies[index].birthdate)
+            self.unit_test.assertEqual(last_election_data_created.deputies[index].sexe, election_data_model.deputies[index].sexe)

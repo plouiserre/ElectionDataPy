@@ -70,6 +70,28 @@ CREATE TABLE IF NOT EXISTS DEPUTY(
     FOREIGN KEY (CandidateId) REFERENCES CANDIDATE(CandidateId)
 );
 
+-- 6 Result
+CREATE TABLE IF NOT EXISTS RESULT(
+    ResultId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    StateCompute VARCHAR(25),
+    Registered INT,
+    Abstaining INT,
+    RateAbstaining FLOAT,
+    Voting INT,
+    RateVoting FLOAT,
+    BlankBalot INT,
+    RateBlankRegistered FLOAT,
+    RateBlankVoting FLOAT,
+    NullBallot INT,        
+    RateNullRegistered FLOAT,
+    RateNullVoting FLOAT,
+    Expressed INT,
+    RateExpressRegistered FLOAT,
+    RateExpressVoting FLOAT,
+    DistrictId INT NOT NULL,
+    FOREIGN KEY (DistrictId) REFERENCES DISTRICT(DistrictId)
+);
+
 -- Add Datas 
 INSERT INTO PARTY(PartyName, ShortName) VALUES ('Divers extrême gauche','DXG');
 INSERT INTO PARTY(PartyName, ShortName) VALUES ('Parti radical de gauche','RDG');

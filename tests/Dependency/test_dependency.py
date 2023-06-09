@@ -9,11 +9,13 @@ from src.Services.DistrictServices import DistrictServices
 from src.Services.PartyServices import PartyServices
 from src.Services.CandidateServices import CandidateServices
 from src.Services.DeputyServices import DeputyServices
-from src.Repository.PartyRepository import PartyRepository
+from src.Services.ResultServices import ResultServices
 from src.Repository.CandidateRepository import CandidateRepository
 from src.Repository.DepartmentRepository import DepartmentRepository
 from src.Repository.DeputyRepository import DeputyRepository
 from src.Repository.DistrictRepository import DistrictRepository
+from src.Repository.PartyRepository import PartyRepository
+from src.Repository.ResultRepository import ResultRepository
 
 
 #TODO ajouter un test pour ResultsFirstRoundAdapter
@@ -40,6 +42,12 @@ class DependencyTest(unittest.TestCase) :
         dependency = self.__get_dependencies_to_test("partyservices")
         
         self.assertTrue(isinstance(dependency, PartyServices))
+        
+        
+    def test_get_result_service_dependency(self) : 
+        dependency = self.__get_dependencies_to_test("resultservices")
+        
+        self.assertTrue(isinstance(dependency, ResultServices))
         
         
     def test_get_party_repository_dependency(self) : 
@@ -82,6 +90,12 @@ class DependencyTest(unittest.TestCase) :
         dependency = self.__get_dependencies_to_test("districtrepository")
         
         self.assertTrue(isinstance(dependency, DistrictRepository))
+        
+        
+    def test_get_result_repository_dependency(self) : 
+        dependency = self.__get_dependencies_to_test("resultrepository")
+        
+        self.assertTrue(isinstance(dependency, ResultRepository))
         
         
     def test_get_adapters_dependency(self) : 

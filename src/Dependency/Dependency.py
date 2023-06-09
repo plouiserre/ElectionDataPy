@@ -28,11 +28,8 @@ class Dependency:
         candidate_service =  self.__load_dynamically_dependency('src.Services.CandidateServices', 'CandidateServices')
         self.__add_dependencies("candidateservices", candidate_service)
         
-        # candidate_adapter = self.__load_dynamically_dependency('src.Adapter.CandidateAdapter', 'CandidateAdapter', pd, excel_manager, party_service, party_repository)        
-        # self.__add_dependencies("candidateadapter", candidate_adapter)
-        
-        # first_round_adapter = self.__load_dynamically_dependency('src.Adapter.ElectionDistrictFirstRoundAdapter', 'ElectionDistrictFirstRoundAdapter', pd,excel_manager)        
-        # self.__add_dependencies("electiondistrictfirstroundadapter", first_round_adapter)
+        result_service =  self.__load_dynamically_dependency('src.Services.ResultServices', 'ResultServices')
+        self.__add_dependencies("resultservices", result_service)
         
         self.__add_adapters(pd, excel_manager, party_service, party_repository)
         
@@ -50,6 +47,9 @@ class Dependency:
         
         deputy_repository = self.__load_dynamically_dependency('src.Repository.DeputyRepository', 'DeputyRepository', mydb)
         self.__add_dependencies("deputyrepository",deputy_repository)
+        
+        deputy_repository = self.__load_dynamically_dependency('src.Repository.ResultRepository', 'ResultRepository', mydb)
+        self.__add_dependencies("resultrepository",deputy_repository)
         
         
     def __add_adapters(self, pd, excel_manager, party_service, party_repository) : 

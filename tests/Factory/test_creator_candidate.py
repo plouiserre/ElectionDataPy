@@ -15,7 +15,7 @@ class CreatorCandidateTest(unittest.TestCase):
         
         candidate_model_check = ["Cazenave", "Thomas", "M", 7, "Cadre de la fonction publique", datetime.datetime(1978,6,3), False]   
         assert_test = AssertTest(self, 1)  
-        assert_test.assert_candidate_model_identity(candidate_model_check, candidate)
+        assert_test.assert_candidate_model_basic(candidate_model_check, candidate)
         
 
     def test_creator_candidate_woman_sorting_candidate(self) : 
@@ -27,7 +27,7 @@ class CreatorCandidateTest(unittest.TestCase):
         
         candidate_model_check = ["TRASTOUR-ISNART", "Laurence", "F", 11, "Cadre de la fonction publique", datetime.datetime(1972,3,6), True]     
         assert_test = AssertTest(self, 1)  
-        assert_test.assert_candidate_model_identity(candidate_model_check, candidate)
+        assert_test.assert_candidate_model_basic(candidate_model_check, candidate)
         
         
     def test_creator_candidate_two_first_name(self) : 
@@ -39,7 +39,7 @@ class CreatorCandidateTest(unittest.TestCase):
         
         candidate_model_check = ["Cazenave", "Thomas Eric", "M", 7, "Cadre de la fonction publique", datetime.datetime(1978,6,3), False]     
         assert_test = AssertTest(self, 1)  
-        assert_test.assert_candidate_model_identity(candidate_model_check, candidate)   
+        assert_test.assert_candidate_model_basic(candidate_model_check, candidate)   
     
     
     def __get_creator_init(self) : 

@@ -1,7 +1,6 @@
 from src.Models.CandidateModel import CandidateModel
 from src.Factory.CreatorPerson import CreatorPerson
 
-#TODO delete parties in constructor
 class CreatorCandidate(CreatorPerson) : 
     def __init__(self, parties) -> None:
         self.is_candidate_first_name_simple = True

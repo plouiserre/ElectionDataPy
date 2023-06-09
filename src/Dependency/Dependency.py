@@ -5,7 +5,6 @@ class Dependency:
         self.__dependencies = {}
         
         
-    #TODO if it is too big split in little method
     def init_dependencies(self) :
         excel_manager = self.__load_dynamically_dependency('src.Excel.ExcelManager', 'ExcelManager')
         self.__add_dependencies("excel", excel_manager)
@@ -71,9 +70,7 @@ class Dependency:
     def __add_dependencies(self, key, object) :
         self.__dependencies[key] = object
         
-    #TODO 
-    # -> throw exeception if key is unknown
-    # -> add a unit test to check the exception
+    
     def get_dependency(self, key) : 
         return self.__dependencies[key]
     

@@ -1,4 +1,3 @@
-#TODO update UT
 class ResultServices :
     
     def __init__(self) :

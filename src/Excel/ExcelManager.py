@@ -1,11 +1,8 @@
-#TODO rename this class
 class ExcelManager : 
-    #TODO study to put panda lib in constructor and not in parameters in import_candidates_datas or import_first_round_results_datas
     def __init__(self):
         pass
     
     def import_elections_datas(self, pd):
-        #TODO the path in configuration file
         #path_file = "C:\\Users\\ploui\\Projects\\ElectionDataPy\\files\\candidates.xlsx"
         path_file ="/Users/pierre-louisserre/Projects/ElectionDataPy/files/candidates.xlsx"
         data = pd.read_excel(path_file)

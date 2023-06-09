@@ -1,4 +1,3 @@
-#TODO rework this method because of line 12
 class CandidateServices :
     def __init__(self ) :
         self.candidates = []    

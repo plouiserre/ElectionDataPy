@@ -2,7 +2,6 @@ from src.Adapter.Adapter import Adapter
 from src.Factory.CreatorElectionData import CreatorElectionData 
 
 
-#TODO try to replace modify constructor to use ONLY dependency
 class CandidateAdapter(Adapter) : 
     def __init__(self, pd, excel_manager, party_service, party_repository) :
         self.excel_manager = excel_manager

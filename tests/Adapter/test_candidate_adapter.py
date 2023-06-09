@@ -21,7 +21,7 @@ class CandidateAdapterTest(unittest.TestCase):
         return candidates
         
     #TODO try to use two patch object to mock party_service.load_parties
-    @patch.object(ExcelManager,'import_candidates_datas', side_effect=get_two_candidates_data_same_districts)
+    @patch.object(ExcelManager,'import_elections_datas', side_effect=get_two_candidates_data_same_districts)
     def test_get_two_elections_data_from_excel_manager(self, mock_excel_manager) : 
         helper = HelperTest()        
         parties = helper.get_parties()
@@ -50,7 +50,7 @@ class CandidateAdapterTest(unittest.TestCase):
     
         
     #TODO if too many unit test delete this one     
-    @patch.object(ExcelManager,'import_candidates_datas', side_effect=get_three_candidates_data_same_districts)
+    @patch.object(ExcelManager,'import_elections_datas', side_effect=get_three_candidates_data_same_districts)
     def test_get_three_elections_data_from_excel_manager(self, mock_excel_manager) : 
         helper = HelperTest()        
         parties = helper.get_parties()
@@ -79,7 +79,7 @@ class CandidateAdapterTest(unittest.TestCase):
         return candidates
         
     #TODO try to use two patch object to mock party_service.load_parties
-    @patch.object(ExcelManager,'import_candidates_datas', side_effect=get_two_candidates_data)
+    @patch.object(ExcelManager,'import_elections_datas', side_effect=get_two_candidates_data)
     def test_get_two_candidatedatamodels_from_excel_manager(self, mock_excel_manager) : 
         helper = HelperTest()        
         parties = helper.get_parties()
@@ -109,7 +109,7 @@ class CandidateAdapterTest(unittest.TestCase):
     
         
     #TODO try to use two patch object to mock party_service.load_parties
-    @patch.object(ExcelManager,'import_candidates_datas', side_effect=get_six_candidates_data)
+    @patch.object(ExcelManager,'import_elections_datas', side_effect=get_six_candidates_data)
     def test_get_six_candidatedatamodels_from_excel_manager(self, mock_excel_manager) : 
         helper = HelperTest()        
         parties = helper.get_parties()

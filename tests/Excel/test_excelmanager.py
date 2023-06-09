@@ -15,7 +15,7 @@ class ExcelManagerTest(unittest.TestCase) :
     def test_import_candidates_datas_simple_datas(self, mock_panda):
         excel_manager = ExcelManager()
         
-        candidates = excel_manager.import_candidates_datas(pd)
+        candidates = excel_manager.import_elections_datas(pd)
         
         self.assertEqual(3,len(candidates))
         self.assertEqual(candidates[0],"['01' 'Ain' 1 'MAISONNETTE' 'Cécile']")
@@ -31,7 +31,7 @@ class ExcelManagerTest(unittest.TestCase) :
     def test_import_candidates_datas_complexe_datas(self, mock_panda):
         excel_manager = ExcelManager()
         
-        candidates = excel_manager.import_candidates_datas(pd)
+        candidates = excel_manager.import_elections_datas(pd)
         
         self.assertEqual(3,len(candidates))
         self.assertEqual(candidates[0],"['01' 'Ain' 1 'MAISONNETTE' 'Cécile']")

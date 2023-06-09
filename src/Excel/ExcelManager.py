@@ -4,7 +4,7 @@ class ExcelManager :
     def __init__(self):
         pass
     
-    def import_candidates_datas(self, pd):
+    def import_elections_datas(self, pd):
         #TODO the path in configuration file
         #path_file = "C:\\Users\\ploui\\Projects\\ElectionDataPy\\files\\candidates.xlsx"
         path_file ="/Users/pierre-louisserre/Projects/ElectionDataPy/files/candidates.xlsx"

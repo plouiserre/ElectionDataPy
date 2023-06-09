@@ -5,7 +5,6 @@ from tests.assert_test import AssertTest
 
 class CreatorCandidatesTest(unittest.TestCase) : 
     
-    #TODO factorize this assertpart
     def test_creator_candidates_from_first_round_data_excel_first_line(self) : 
         creator = CreatorCandidates()
         candidates_data = ['XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX','XXXXX',4,'M', 'LAHY', 'Éric', 'DXG', 391, '0.45', '0.94', 'nan', 8, 'F', 'ARMENJON', 'Eliane', 'ECO', 1161, '1.35', '2.78', 'nan', 'nan', 'nan']

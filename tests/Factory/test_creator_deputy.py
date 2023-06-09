@@ -27,7 +27,6 @@ class CreatorDeputyTest(unittest.TestCase):
         assert_test.assert_deputy_model(deputy_model_check, deputy) 
         
       
-    #TODO check if this datetime format is always like this or not  
     def test_creator_birthdate_format_different(self):
         creator = CreatorDeputy(False)
         deputy_data = ['XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'Shelby' ,'Thomas' , 'XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'F', 'BARTEBIN-SOURHOU', 'Huguette' ,'1972-12-03 00:00:00', 'Non']

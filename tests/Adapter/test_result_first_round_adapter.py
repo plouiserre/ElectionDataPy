@@ -9,20 +9,18 @@ from tests.assert_test import AssertTest
 
 class ResultFirstRoundAdapterTest(unittest.TestCase): 
     
-    #TODO repare this UT
-    # def none_candidates(self, *args) : 
-    #     candidates = []
-    #     return candidates
+    def none_candidates(self, *args) : 
+        candidates = []
+        return candidates
     
-    # @patch.object(ExcelManager, 'import_first_round_results_datas', side_effect = none_candidates)
-    # def test_excel_manager_called_in_extracts_datas_from_files(self) : 
-    #     pd = Mock()
-    #     adapter = ElectionDistrictFirstRoundAdapter(pd, ExcelManager)
-    #     elections_first_round_datas = ElectionDistrictFirstRoundAdapter(pd, ExcelManager)
+    @patch.object(ExcelManager, 'import_first_round_results_datas', side_effect = none_candidates)
+    def test_excel_manager_called_in_extracts_datas_from_files(self, mock_excel_maager) : 
+        pd = Mock()
+        elections_first_round_datas = ResultsFirstRoundAdapter(pd, ExcelManager)
         
-    #     elections_first_round_datas.extracts_datas_from_files()
+        elections_first_round_datas.extracts_datas_from_files()
         
-    #     self.assertTrue(ExcelManager.import_first_round_results_datas.called)              
+        self.assertTrue(ExcelManager.import_first_round_results_datas.called)              
         
     
     def get_two_election_data(self, *args) : 

@@ -49,7 +49,6 @@ class CreatorCandidateTest(unittest.TestCase):
         return creator
         
         
-    #TODO factorize the assert part
     def test_creator_candidate_female_candidate_first_round_data(self) : 
         creator = CreatorCandidate(None)
         

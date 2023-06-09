@@ -12,7 +12,6 @@ from src.Repository.PartyRepository import PartyRepository
 from tests.assert_test import AssertTest
 from tests.helper_test import HelperTest
 
-#TODO rework assert part
 class CandidateAdapterTest(unittest.TestCase):
     
     def get_two_candidates_data_same_districts(self, *args)  : 
@@ -20,21 +19,13 @@ class CandidateAdapterTest(unittest.TestCase):
         candidates = helper.get_two_candidates_same_districts()
         return candidates
         
-    #TODO try to use two patch object to mock party_service.load_parties
+    
     @patch.object(ExcelManager,'import_elections_datas', side_effect=get_two_candidates_data_same_districts)
     def test_get_two_elections_data_from_excel_manager(self, mock_excel_manager) : 
-        helper = HelperTest()        
-        parties = helper.get_parties()
-        pd = Mock()
-        party_service = PartyServices()
-        mydb = MyDb()        
-        party_repository = PartyRepository(mydb)
-        adapter = CandidateAdapter(pd, ExcelManager, party_service, party_repository)
+        adapter = self.__get_adapter()       
         
-        #TODO delete this line
-        adapter.parties = parties        
         elections_data_model = adapter.extracts_datas_from_files()
-        #election_data = elections_data[0]
+        
         
         elections_data_check= [[2, 'Aisne', 4, '4ème circonscription',  [['GALL', 'Aurélien', 'M', 3, 'Professeur des écoles, instituteur et assimilé', datetime.datetime(1982,6,30), 
                                 False ], ['BÉZINE', 'Clément', 'M', 1, 'Professeur, profession scientifique', datetime.datetime(1983,12,22), True]], [['LEGRAND', 'Estelle', 'F',  
@@ -49,19 +40,10 @@ class CandidateAdapterTest(unittest.TestCase):
         return candidates
     
         
-    #TODO if too many unit test delete this one     
     @patch.object(ExcelManager,'import_elections_datas', side_effect=get_three_candidates_data_same_districts)
     def test_get_three_elections_data_from_excel_manager(self, mock_excel_manager) : 
-        helper = HelperTest()        
-        parties = helper.get_parties()
-        pd = Mock()
-        party_service = PartyServices()
-        mydb = MyDb()        
-        party_repository = PartyRepository(mydb)
-        adapter = CandidateAdapter(pd, ExcelManager, party_service, party_repository)
+        adapter = self.__get_adapter()       
         
-        #TODO delete this line
-        adapter.parties = parties        
         elections_data_model = adapter.extracts_datas_from_files()
         
         elections_data_check= [[2, 'Aisne', 4, '4ème circonscription',  [['GALL', 'Aurélien', 'M', 3, 'Professeur des écoles, instituteur et assimilé', datetime.datetime(1982,6,30), 
@@ -78,19 +60,10 @@ class CandidateAdapterTest(unittest.TestCase):
         candidates = helper.get_two_candidates()
         return candidates
         
-    #TODO try to use two patch object to mock party_service.load_parties
     @patch.object(ExcelManager,'import_elections_datas', side_effect=get_two_candidates_data)
     def test_get_two_candidatedatamodels_from_excel_manager(self, mock_excel_manager) : 
-        helper = HelperTest()        
-        parties = helper.get_parties()
-        pd = Mock()
-        party_service = PartyServices()
-        mydb = MyDb()        
-        party_repository = PartyRepository(mydb)
-        adapter = CandidateAdapter(pd, ExcelManager, party_service, party_repository)
+        adapter = self.__get_adapter()       
         
-        #TODO delete this line
-        adapter.parties = parties        
         elections_datas = adapter.extracts_datas_from_files()
          
         first_election_data_check = [2, "Aisne", 4, "4ème circonscription", 2, "Aisne", "GALL", "Aurélien", "M", 3, "Professeur des écoles, instituteur et assimilé",  datetime.datetime(1982,6,30), False, 'F', 'LEGRAND', 'Estelle', datetime.datetime(1968, 10, 2, 0, 0), False]             
@@ -108,25 +81,15 @@ class CandidateAdapterTest(unittest.TestCase):
         return candidates    
     
         
-    #TODO try to use two patch object to mock party_service.load_parties
     @patch.object(ExcelManager,'import_elections_datas', side_effect=get_six_candidates_data)
     def test_get_six_candidatedatamodels_from_excel_manager(self, mock_excel_manager) : 
-        helper = HelperTest()        
-        parties = helper.get_parties()
-        pd = Mock()
-        party_service = PartyServices()
-        mydb = MyDb()        
-        party_repository = PartyRepository(mydb)
-        adapter = CandidateAdapter(pd, ExcelManager, party_service, party_repository)
+        adapter = self.__get_adapter()       
         
-        #TODO delete this line
-        adapter.parties = parties        
         elections_datas_from_districts = adapter.extracts_datas_from_files()
         
         
         self.assertEqual(4, len(elections_datas_from_districts))
         
-        #TODO improve
         first_election_data_model = [elections_datas_from_districts[0]]
         second_election_data_model = [elections_datas_from_districts[1]]
         third_election_data_model = [elections_datas_from_districts[2]]
@@ -157,6 +120,20 @@ class CandidateAdapterTest(unittest.TestCase):
         
         assert_test = AssertTest(self, 2)
         assert_test.assert_elections_model(fourth_election_data_check, fourth_election_data_model)
+        
+    
+    def __get_adapter(self) : 
+        helper = HelperTest()        
+        parties = helper.get_parties()
+        pd = Mock()
+        party_service = PartyServices()
+        mydb = MyDb()        
+        party_repository = PartyRepository(mydb)
+        adapter = CandidateAdapter(pd, ExcelManager, party_service, party_repository)
+        
+        adapter.parties = parties    
+        
+        return adapter
         
         
     if __name__ == "__main__":

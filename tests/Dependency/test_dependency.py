@@ -18,7 +18,6 @@ from src.Repository.PartyRepository import PartyRepository
 from src.Repository.ResultRepository import ResultRepository
 
 
-#TODO ajouter un test pour ResultsFirstRoundAdapter
 class DependencyTest(unittest.TestCase) : 
     def test_get_excel_dependency(self) : 
         dependency = self.__get_dependencies_to_test("excel")

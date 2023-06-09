@@ -32,7 +32,7 @@ class HelperTest :
         candidates = [first_candidate, second_candidate, third_candidate]
         return candidates     
     
-    #TODO check in database job 'cadre d'entreprise'
+    
     def get_six_candidates(self) : 
         first_candidate = '[\'01\' \'Ain\' \'01\' \'1ère circonscription\' 6 22 \'M\' \'BELLON\' \'Julien\'\n  \'1978-06-11 00:00:00\' \'REC\'\n \'Cadre administratif et commercial d entreprise\' \'Non\' \'F\' \'JEAN-LOUIS\'\n \'Fabienne\' \'1954-07-13 00:00:00\' \'Non\']'
         second_candidate = "['02' 'Aisne' '04' '4ème circonscription' 2 13 'M' 'GALL' 'Aurélien'\n  '1982-06-30 00:00:00' 'NUP'\n 'Professeur des écoles, instituteur et assimilé' 'Non' 'F' 'LEGRAND'\n 'Estelle' '1968-10-02 00:00:00' 'Non']"
@@ -66,7 +66,7 @@ class HelperTest :
         departments.update({sixth_department.number : sixth_department})
         return departments
     
-    #TODO check using of this method
+    
     def get_two_elections_data_model(self) :
         first_department = self.get_department("Aisne",2)
         first_district = self.get_district("4ème circonscription", 4) 

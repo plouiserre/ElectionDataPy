@@ -3,7 +3,8 @@ class DistrictServices :
         self.districts = []
         self.departments = []
     
-    def manage_districts(self, candidates, departments, district_repository):
+    def store_districts(self, candidates, departments, dependency):
+        district_repository = dependency.get_dependency("districtrepository")
         self.departments = departments
         
         for candidate in candidates :

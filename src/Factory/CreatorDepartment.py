@@ -1,9 +1,9 @@
 from src.Models.DepartmentModel import DepartmentModel
 
 class CreatorDepartment() : 
-    def factory_method(self, candidate_data) :         
+    def factory_method(self, election_data) :         
         dep = DepartmentModel()
-        department_id = candidate_data[0].replace('\'','')
+        department_id = election_data[0].replace('\'','')
       
         if department_id == '2A' or department_id == '2B' : 
             dep.number = 20
@@ -42,8 +42,8 @@ class CreatorDepartment() :
             dep.name = "Français établis hors de France"
             dep.number= 99
         else :
-            id_clean = candidate_data[0].replace('\'','')            
+            id_clean = election_data[0].replace('\'','')            
             dep.number = int(id_clean)
-            dep.name = candidate_data[1]
+            dep.name = election_data[1]
             
         return dep

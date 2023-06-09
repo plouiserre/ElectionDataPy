@@ -12,8 +12,8 @@ class CandidatesServicesTest(unittest.TestCase) :
     #TODO cleaner 
     def test_call_candidate_repository(self) : 
         helper = HelperTest()
-        candidates = helper.get_two_candidates_data_model()
-        candidate_repository_mock = Mock()
+        candidates = helper.get_two_elections_data_model()
+        dependency_mock = Mock()
         department_one = DepartmentModel()
         department_one.name = "Ain"
         department_one.number = 1
@@ -49,10 +49,10 @@ class CandidatesServicesTest(unittest.TestCase) :
         dictricts = [district_one, district_two, district_third, district_fourth]
         
         candidate_service = CandidateServices()
-        candidate_service.manage_candidates(candidates, candidate_repository_mock, dictricts)
+        candidate_service.store_candidates(candidates, dictricts, dependency_mock)
         candidates = candidate_service.candidates
         
-        self.assertTrue(candidate_repository_mock.save_candidates.called)
+        self.assertTrue(dependency_mock.get_dependency.called)
         self.assertEqual(2, len(candidates))
         self.assertEqual(4, candidates[0].district_id)
         self.assertEqual(2, candidates[1].district_id)

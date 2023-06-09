@@ -1,5 +1,3 @@
-#TODO quand ca fonctonnera faire un test de partyservices
-
 class PartyServices : 
     def __init__(self ):
         pass

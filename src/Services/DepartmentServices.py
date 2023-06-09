@@ -1,11 +1,9 @@
-from src.Models.DepartmentModel import DepartmentModel
-from src.Factory.CreatorDepartment import CreatorDepartment
-
 class DepartmentServices :
     def __init__(self) :
         self.departments = {}
     
-    def manage_departments(self, candidates, department_repository):
+    def store_departments(self, candidates, dependency):
+        department_repository = dependency.get_dependency("departmentrepository")
         for candidate in candidates :
             department = candidate.department
             is_exists = self.deparment_exists(department.number)

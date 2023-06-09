@@ -7,9 +7,9 @@ class CreatorDistrictTest(unittest.TestCase):
     
     def test_creator_districs_in_gironde_department(self) : 
         creator = CreatorDistrict()
-        candidate_data = ['XXXXX','XXXXX','13','13 ème circonscription','XXXXX','XXXXX','XXXXX','XXXXX']
+        election_data = ['XXXXX','XXXXX','13','13 ème circonscription','XXXXX','XXXXX','XXXXX','XXXXX']
         
-        district = creator.factory_method(candidate_data)
+        district = creator.factory_method(election_data)
         
         self.assertEqual(13, district.number)
         self.assertEqual("13 ème circonscription", district.name)

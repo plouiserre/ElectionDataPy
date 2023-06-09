@@ -7,8 +7,8 @@ class CandidateRepository :
         
         mycursor = mydb.cursor()
         for candidate in candidates : 
-            sql = "INSERT INTO ELECTIONSCONGRESSMANS.CANDIDATE(CandidateLastName, CandidateFirstName, CandidateSexe, CandidateBirthDate, PartyId, DistrictId, Job, OldCandidate) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
-            val = (candidate.last_name, candidate.first_name, candidate.sexe, candidate.birthdate, candidate.party_id, candidate.district_id, candidate.job, candidate.is_sorting)
+            sql = "INSERT INTO ELECTIONSCONGRESSMANS.CANDIDATE(CandidateLastName, CandidateFirstName, CandidateSexe, CandidateBirthDate, PartyId, DistrictId, Job, OldCandidate, Vote, RateVoteExpressed, RateVoteRegistered) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            val = (candidate.last_name, candidate.first_name, candidate.sexe, candidate.birthdate, candidate.party_id, candidate.district_id, candidate.job, candidate.is_sorting, candidate.vote, candidate.rate_vote_registered, candidate.rate_vote_expressed)
             mycursor.execute(sql, val)
             candidate.id = mycursor.lastrowid
             

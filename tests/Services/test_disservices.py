@@ -1,12 +1,8 @@
 import unittest
 from mock import Mock
-from unittest.mock import patch
 
 from src.Services.DistrictServices import DistrictServices
 from src.Models.DepartmentModel import DepartmentModel
-
-from src.Repository.DistrictRepository import DistrictRepository
-from src.Repository.mydb import MyDb
 
 from tests.helper_test import HelperTest
 
@@ -14,7 +10,7 @@ class DistrictServicesTest(unittest.TestCase):
     
     def test_construct_districts_two_candidates(self) :
         helper = HelperTest()
-        candidates = helper.get_two_candidates_data_model()
+        elections = helper.get_two_elections_data_model()
         first_department = DepartmentModel()
         first_department.id = 66
         first_department.name = "Aisne"
@@ -29,7 +25,7 @@ class DistrictServicesTest(unittest.TestCase):
         
         dis_repo = Mock()
         dis = DistrictServices()
-        dis.manage_districts(candidates, departments, dis_repo)        
+        dis.store_districts(elections, departments, dis_repo)        
         districts = dis.districts
         
         self.assertEqual(2, len(districts))
@@ -47,7 +43,7 @@ class DistrictServicesTest(unittest.TestCase):
         
         dis_repo = Mock()
         dis = DistrictServices()
-        dis.manage_districts(candidates, departments, dis_repo)    
+        dis.store_districts(candidates, departments, dis_repo)    
         districts = dis.districts
         
         self.assertEqual(6, len(districts))
@@ -73,7 +69,7 @@ class DistrictServicesTest(unittest.TestCase):
         
     def test_construct_districts_corsica_candidates(self) :
         helper = HelperTest()
-        candidates = helper.get_two_corsica_candidates_data_model()
+        elections = helper.get_two_corsica_elections_data_model()
         first_department = DepartmentModel()
         first_department.id = 65
         first_department.name = "Corse"
@@ -88,7 +84,7 @@ class DistrictServicesTest(unittest.TestCase):
         
         dis_repo = Mock()
         dis = DistrictServices()
-        dis.manage_districts(candidates, departments, dis_repo)    
+        dis.store_districts(elections, departments, dis_repo)    
         districts = dis.districts
         
         self.assertEqual(2, len(districts))
@@ -100,15 +96,13 @@ class DistrictServicesTest(unittest.TestCase):
         self.assertEqual(65, districts[1].department.id)        
         
     
-    @patch.object(DistrictRepository, 'save_districts')
-    def test_districts_repository_save_districts_called(self, mock_districtrepository) :
-        mydb = MyDb()
-        dis_repo = DistrictRepository(mydb)
+    def test_districts_repository_save_districts_called(self) :
+        mock_dependency = Mock()
         district_services = DistrictServices()
         
-        district_services.manage_districts([],[],dis_repo)
+        district_services.store_districts([],[],mock_dependency)
         
-        self.assertTrue(mock_districtrepository.called)
+        self.assertTrue(mock_dependency.get_dependency.called)
         
     if __name__ == "__main__":
         unittest.main()

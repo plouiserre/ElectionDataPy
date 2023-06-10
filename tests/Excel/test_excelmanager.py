@@ -54,6 +54,19 @@ class ExcelManagerTest(unittest.TestCase) :
         self.assertEqual(results[0],"['Ain' 1 'Complet' 86187 43652 '50.65' 42535]")
         self.assertEqual(results[1],"['Aisne' 2 'Complet' 99953 50270 '50.29' 49683]")
         self.assertEqual(results[2],"['Allier' 3 'Complet' 82204 45946 '55.89' 36258]") 
+         
+    
+    @patch.object(pd,'read_excel', side_effect=getSimpleFirstRoundDataFrame)
+    def test_import_second_round_results_datas(self, mock_panda):       
+        excel_manager = ExcelManager()
+        
+        results = excel_manager.import_second_round_results_datas(pd)
+        
+        self.assertTrue(pd.read_excel.called)    
+        self.assertEqual(3,len(results))
+        self.assertEqual(results[0],"['Ain' 1 'Complet' 86187 43652 '50.65' 42535]")
+        self.assertEqual(results[1],"['Aisne' 2 'Complet' 99953 50270 '50.29' 49683]")
+        self.assertEqual(results[2],"['Allier' 3 'Complet' 82204 45946 '55.89' 36258]") 
         
         
     if __name__ == "__main__":

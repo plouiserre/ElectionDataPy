@@ -54,7 +54,8 @@ class Dependency:
     def __add_adapters(self, pd, excel_manager, party_service, party_repository) : 
         candidate_adapter = self.__load_dynamically_dependency('src.Adapter.CandidateAdapter', 'CandidateAdapter', pd, excel_manager, party_service, party_repository)        
         first_round_adapter = self.__load_dynamically_dependency('src.Adapter.ResultsFirstRoundAdapter', 'ResultsFirstRoundAdapter', pd,excel_manager)        
-        adapters = [candidate_adapter, first_round_adapter]
+        second_round_adapter = self.__load_dynamically_dependency('src.Adapter.ResultsSecondRoundAdapter', 'ResultsSecondRoundAdapter', pd,excel_manager)
+        adapters = [candidate_adapter, first_round_adapter, second_round_adapter]
         self.__add_dependencies("adapters", adapters)
         
     

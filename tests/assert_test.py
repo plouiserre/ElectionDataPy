@@ -54,7 +54,8 @@ class AssertTest :
         self.unit_test.assertEqual(candidate_context_check[9], candidate_model.rate_vote_expressed)
         
     
-    def assert_election_data_model_from_first_round_result(self, election_data_check, election_data_model) :
+    #TODO rename this method to englob the first and second round
+    def assert_election_data_model_from_rounds_result(self, election_data_check, election_data_model) :
         department_data_check = election_data_check[0 : 2]
         self.__assert_candidate_department_first_round_result(department_data_check, election_data_model.department)
         district_data_check = election_data_check[2 : 4]

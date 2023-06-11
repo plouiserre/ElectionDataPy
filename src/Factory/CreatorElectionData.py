@@ -8,6 +8,8 @@ from src.Factory.CreatorDeputy import CreatorDeputy
 from src.Factory.CreatorResult import CreatorResult
 from src.Factory.CreatorCandidates import CreatorCandidates
 
+#TODO subdivise in multiple class
+
 class CreatorElectionData() : 
     def __init__(self, parties) :
         self.election_data = ElectionDataModel()
@@ -107,7 +109,7 @@ class CreatorElectionData() :
         self.__get_candidates_model()
         
         return self.election_data
-      
+    
        
     def __get_department_election_datas(self) : 
         dep_creator = CreatorDepartment()
@@ -128,6 +130,22 @@ class CreatorElectionData() :
     def __get_candidates_model(self) : 
         creator_candidates = CreatorCandidates()
         self.election_data.candidates = creator_candidates.factory_method(self.datas)
+        
+        
+    def factory_method_second_round(self, data) :
+        self.datas = self.__get_datas_cleaned_first_round(data)
+        self.__delete_city_datas()
+        self.__get_department_election_datas()
+        self.__get_district_election_datas()
+        self.__get_result_model()
+        self.__get_candidates_model()
+        
+        return self.election_data
+    
+        
+    def __delete_city_datas(self) : 
+        del self.datas[4]
+        del self.datas[4]
         
         
     def __get_datas_cleaned_first_round(self, data) : 

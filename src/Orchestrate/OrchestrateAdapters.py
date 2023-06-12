@@ -35,9 +35,9 @@ class OrchestrateAdapters :
                 for candidates_stored in  self.__candidates_with_all_datas : 
                     for candidate_stored in candidates_stored.candidates :
                         if candidate_stored.first_name == candidate.first_name and candidate_stored.last_name == candidate.last_name : 
-                            candidate_stored.vote = candidate.vote
-                            candidate_stored.rate_vote_registered = candidate.rate_vote_registered
-                            candidate_stored.rate_vote_expressed = candidate.rate_vote_expressed
+                            candidate_stored.vote_first_round = candidate.vote_first_round
+                            candidate_stored.rate_vote_registered_first_round = candidate.rate_vote_registered_first_round
+                            candidate_stored.rate_vote_expressed_first_round = candidate.rate_vote_expressed_first_round
                             candidates_stored.result = elections_data.result
         return self.__candidates_with_all_datas
                     

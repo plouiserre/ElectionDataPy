@@ -52,9 +52,9 @@ CREATE TABLE IF NOT EXISTS CANDIDATE(
     Job VARCHAR(150),
     OldCandidate BIT,
     DistrictId INT NOT NULL,
-    Vote INT,
-    RateVoteExpressed FLOAT,
-    RateVoteRegistered FLOAT,
+    VoteFirstRound INT,
+    RateVoteExpressedFirstRound FLOAT,
+    RateVoteRegisteredFirstRound FLOAT,
     FOREIGN KEY (PartyId) REFERENCES PARTY(PartyId),
     FOREIGN KEY (DistrictId) REFERENCES DISTRICT(DistrictId)
 );
@@ -74,6 +74,7 @@ CREATE TABLE IF NOT EXISTS DEPUTY(
 -- 6 Result
 CREATE TABLE IF NOT EXISTS RESULT(
     ResultId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    RoundNumber INT,
     StateCompute VARCHAR(25),
     Registered INT,
     Abstaining INT,

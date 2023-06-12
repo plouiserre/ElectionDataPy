@@ -16,7 +16,7 @@ class CreatorElectionDataFirstRound(CreatorElectionData) :
         self.datas = self._get_datas_cleaned_rounds(data)
         self._get_department_election_datas()
         self._get_district_election_datas()
-        self._get_result_model()
+        self._get_result_model(1)
         self._get_candidates_model()
         
         return self.election_data

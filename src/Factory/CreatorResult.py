@@ -1,8 +1,9 @@
 from src.Models.ResultModel import ResultModel
 
 class CreatorResult() : 
-    def __init__(self) -> None:
+    def __init__(self, round_number) -> None:
         self.result = ResultModel()
+        self.result.round_number = round_number
     
     def factory_method(self, first_round_data) : 
         self.result.state_compute = first_round_data[4]

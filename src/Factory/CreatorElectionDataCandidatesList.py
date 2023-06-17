@@ -1,10 +1,11 @@
 import copy
 
-from src.Factory.CreatorCandidate import CreatorCandidate
+from src.Factory.CreatorCandidateFromList import CreatorCandidateFromList
 from src.Factory.CreatorDeputy import CreatorDeputy
 from src.Factory.CreatorElectionData import CreatorElectionData
 from src.Models.ElectionDataModel import ElectionDataModel
 
+#TODO factorize the constructor
 class CreatorElectionDataCandidatesList(CreatorElectionData) : 
     def __init__(self, parties) :
         self.election_data = ElectionDataModel()
@@ -75,7 +76,7 @@ class CreatorElectionDataCandidatesList(CreatorElectionData) :
         
         
     def __get_candidates_datas(self) : 
-       can_creator = CreatorCandidate(self.parties)
+       can_creator = CreatorCandidateFromList(self.parties)
        candidate = can_creator.factory_method(self.datas)
        if self.is_new_election_data_model_created == True :
             self.election_data.candidates = [candidate]

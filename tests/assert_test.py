@@ -1,5 +1,6 @@
 class AssertTest : 
 
+    #SUBDIVISE THIS CLASS
     def __init__(self, unit_test, candidates_number) :
         self.unit_test = unit_test
         self.candidates_number = candidates_number
@@ -39,7 +40,7 @@ class AssertTest :
         deputy_data_check = result_data_check[14:19]
         self.__assert_basic_deputy_infos(deputy_data_check, result_data_model.deputies[0])
         result_data_check = result_data_check[19 : 35]
-        self.assert_result_data_first_round_result(result_data_check, result_data_model.result)
+        self.assert_result_data_rounds_result(result_data_check, result_data_model.result)
         
     def __assert_all_candidates(self, candidate_context_check, candidate_model) : 
         self.unit_test.assertEqual(candidate_context_check[0], candidate_model.first_name)
@@ -53,18 +54,29 @@ class AssertTest :
         self.unit_test.assertEqual(candidate_context_check[8], candidate_model.rate_vote_registered_first_round)
         self.unit_test.assertEqual(candidate_context_check[9], candidate_model.rate_vote_expressed_first_round)
         
+        
+    #TODO rewrite this part with return candidates_data_check
+    def assert_election_data_model_first_round_result(self, election_data_check, election_data_model) :
+        candidates_data_check = self.__assert_election_data_model_from_rounds_result_with_candidates_data_check(election_data_check, election_data_model)
+        self.__assert_candidates_from_first_round_result(candidates_data_check, election_data_model.candidates)
     
-    #TODO rename this method to englob the first and second round
-    def assert_election_data_model_from_rounds_result(self, election_data_check, election_data_model) :
+    
+    def assert_election_data_model_second_round_result(self, election_data_check, election_data_model) :
+        candidates_data_check = self.__assert_election_data_model_from_rounds_result_with_candidates_data_check(election_data_check, election_data_model)
+        self.__assert_candidates_from_second_round_result(candidates_data_check, election_data_model.candidates)
+          
+        
+    #TODO rename all methods inside this methods
+    def __assert_election_data_model_from_rounds_result_with_candidates_data_check(self, election_data_check, election_data_model) :
         department_data_check = election_data_check[0 : 2]
         self.__assert_candidate_department_first_round_result(department_data_check, election_data_model.department)
         district_data_check = election_data_check[2 : 4]
         self.__assert_candidate_district_first_round_result(district_data_check, election_data_model.district)
-        result_data_check = election_data_check[4 : 20]
-        self.assert_result_data_first_round_result(result_data_check, election_data_model.result)
-        limit_candidate = 19 + self.candidates_number * 9
-        candidates_data_check = election_data_check[20 : limit_candidate]
-        self.__assert_candidates_from_first_round_result(candidates_data_check, election_data_model.candidates)
+        result_data_check = election_data_check[4 : 19]
+        self.assert_result_data_rounds_result(result_data_check, election_data_model.result)
+        limit_candidate = 18 + self.candidates_number * 9
+        candidates_data_check = election_data_check[19 : limit_candidate]
+        return candidates_data_check
         
         
     def __assert_candidate_department_first_round_result(self, department_data_context_check, department_model) :
@@ -78,7 +90,7 @@ class AssertTest :
         self.unit_test.assertEqual(district_data_context_check[0], district_model.number)
         self.unit_test.assertEqual(district_data_context_check[1], district_model.name)
         
-    
+    #TODO refactore between first and second rounds methods
     def __assert_candidates_from_first_round_result(self, candidates_context_check, candidates_model):
         self.unit_test.assertEqual(len(candidates_model), self.candidates_number)
         index = 0
@@ -89,6 +101,7 @@ class AssertTest :
             index += 1
             
             
+    #TODO rename this method
     def assert_election_data_first_round_result(self, candidate_context_check, candidate_model) :
         self.unit_test.assertEqual(candidate_context_check[1], candidate_model.sexe)
         self.unit_test.assertEqual(candidate_context_check[2], candidate_model.last_name)
@@ -98,23 +111,41 @@ class AssertTest :
         self.unit_test.assertEqual(candidate_context_check[7], candidate_model.rate_vote_expressed_first_round)
         
         
-    def assert_result_data_first_round_result(self, result_context_check, result_model) :
-        self.unit_test.assertEqual(result_context_check[0], result_model.round_number)
-        self.unit_test.assertEqual(result_context_check[1], result_model.state_compute)
-        self.unit_test.assertEqual(result_context_check[2], result_model.registered)
-        self.unit_test.assertEqual(result_context_check[3], result_model.abstaining)
-        self.unit_test.assertEqual(result_context_check[4], result_model.rate_abstaining)
-        self.unit_test.assertEqual(result_context_check[5], result_model.voting)
-        self.unit_test.assertEqual(result_context_check[6], result_model.rate_voting)  
-        self.unit_test.assertEqual(result_context_check[7], result_model.blank_balot)    
-        self.unit_test.assertEqual(result_context_check[8], result_model.rate_blank_registered)   
-        self.unit_test.assertEqual(result_context_check[9], result_model.rate_blank_voting)       
-        self.unit_test.assertEqual(result_context_check[10], result_model.null_ballot)  
-        self.unit_test.assertEqual(result_context_check[11], result_model.rate_null_registered)  
-        self.unit_test.assertEqual(result_context_check[12], result_model.rate_null_voting)  
-        self.unit_test.assertEqual(result_context_check[13], result_model.expressed)  
-        self.unit_test.assertEqual(result_context_check[14], result_model.rate_express_registered)  
-        self.unit_test.assertEqual(result_context_check[15], result_model.rate_express_voting)     
+    def __assert_candidates_from_second_round_result(self, candidates_context_check, candidates_model):
+        self.unit_test.assertEqual(len(candidates_model), self.candidates_number)
+        index = 0
+        for candidate_model in candidates_model : 
+            start_index = index * 9
+            candidate_context_check = candidates_context_check[start_index : start_index + 9]
+            self.assert_election_data_second_round_result(candidate_context_check, candidate_model)
+            index += 1
+            
+            
+    def assert_election_data_second_round_result(self, candidate_context_check, candidate_model) :
+        self.unit_test.assertEqual(candidate_context_check[1], candidate_model.sexe)
+        self.unit_test.assertEqual(candidate_context_check[2], candidate_model.last_name)
+        self.unit_test.assertEqual(candidate_context_check[3], candidate_model.first_name)
+        self.unit_test.assertEqual(candidate_context_check[5], candidate_model.vote_second_round)
+        self.unit_test.assertEqual(candidate_context_check[6], candidate_model.rate_vote_registered_second_round)
+        self.unit_test.assertEqual(candidate_context_check[7], candidate_model.rate_vote_expressed_second_round)
+        
+        
+    def assert_result_data_rounds_result(self, result_context_check, result_model) :
+        self.unit_test.assertEqual(result_context_check[0], result_model.state_compute)
+        self.unit_test.assertEqual(result_context_check[1], result_model.registered)
+        self.unit_test.assertEqual(result_context_check[2], result_model.abstaining)
+        self.unit_test.assertEqual(result_context_check[3], result_model.rate_abstaining)
+        self.unit_test.assertEqual(result_context_check[4], result_model.voting)
+        self.unit_test.assertEqual(result_context_check[5], result_model.rate_voting)  
+        self.unit_test.assertEqual(result_context_check[6], result_model.blank_balot)    
+        self.unit_test.assertEqual(result_context_check[7], result_model.rate_blank_registered)   
+        self.unit_test.assertEqual(result_context_check[8], result_model.rate_blank_voting)       
+        self.unit_test.assertEqual(result_context_check[9], result_model.null_ballot)  
+        self.unit_test.assertEqual(result_context_check[10], result_model.rate_null_registered)  
+        self.unit_test.assertEqual(result_context_check[11], result_model.rate_null_voting)  
+        self.unit_test.assertEqual(result_context_check[12], result_model.expressed)  
+        self.unit_test.assertEqual(result_context_check[13], result_model.rate_express_registered)  
+        self.unit_test.assertEqual(result_context_check[14], result_model.rate_express_voting)     
         
         
     def assert_candidate_model_basic(self, candidate_context, candidate_model): 

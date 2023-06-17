@@ -3,8 +3,6 @@ import copy
 from src.Models.ElectionDataModel import ElectionDataModel
 from src.Factory.CreatorDepartment import CreatorDepartment
 from src.Factory.CreatorDistrict import CreatorDistrict
-from src.Factory.CreatorCandidate import CreatorCandidate
-from src.Factory.CreatorDeputy import CreatorDeputy
 from src.Factory.CreatorResult import CreatorResult
 from src.Factory.CreatorCandidates import CreatorCandidates
 
@@ -30,12 +28,11 @@ class CreatorElectionData() :
         self.election_data.district.department = self.election_data.department
         
         
-    def _get_result_model(self, round_number) : 
-        creator_result = CreatorResult(round_number)
-        self.election_data.result = creator_result.factory_method(self.datas)
+    def _get_result_model(self) : 
+        pass
         
-    
-    def _get_candidates_model(self) : 
+    #TODO delete round_number
+    def _get_candidates_model(self, round_number) : 
         creator_candidates = CreatorCandidates()
         self.election_data.candidates = creator_candidates.factory_method(self.datas)
         

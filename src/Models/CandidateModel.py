@@ -14,3 +14,6 @@ class CandidateModel :
         self.vote_first_round = 0
         self.rate_vote_registered_first_round = 0.0
         self.rate_vote_expressed_first_round = 0.0
+        self.vote_second_round = 0
+        self.rate_vote_registered_second_round = 0.0
+        self.rate_vote_expressed_second_round = 0.0

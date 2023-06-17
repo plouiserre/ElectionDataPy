@@ -6,6 +6,7 @@ from src.Models.DistrictModel import DistrictModel
 from src.Models.ElectionDataModel import ElectionDataModel
 from src.Models.CandidateModel import CandidateModel
 from src.Models.PartyModel import PartyModel
+from src.Models.ResultModel import ResultModel
 
 class HelperTest : 
     def __init__(self) :
@@ -255,3 +256,49 @@ class HelperTest :
                    eighth_party, nineth_party, tenth_party, eleventh_party, twelfth_party, thirteenth_party,
                    fourteenth_party, fifteenth_party, sixteenth_party]
         return parties
+    
+    
+    def get_first_department_first_district_last_election_data_model(self) : 
+        last_election = ElectionDataModel()
+        last_election.department = DepartmentModel()
+        last_election.department.name = "Ain"
+        last_election.department.number = 1
+        last_election.district = DistrictModel()
+        last_election.district.number = 1
+        last_election.district.name = "1ère circonscription"
+        last_election.result = ResultModel()
+        last_election.round_number = 2
+        last_election.state_compute = "Complet"
+        last_election.registered = 327
+        last_election.abstaining = 172
+        last_election.rate_abstaining = 52.6
+        last_election.voting = 155
+        last_election.rate_voting = 47.4
+        last_election.blank_balot = 4
+        last_election.rate_blank_registered = 1.22
+        last_election.rate_blank_voting = 2.58
+        last_election.null_ballot = 5
+        last_election.rate_null_registered = 1.53
+        last_election.rate_null_voting = 3.23
+        last_election.expressed = 146
+        last_election.rate_express_registered = 44.65
+        last_election.rate_express_voting = 94.19
+        first_candidate = CandidateModel()
+        first_candidate.last_name = 'GUÉRAUD'
+        first_candidate.first_name = 'Sébastien'
+        first_candidate.sexe = 'M'
+        first_candidate.party_id = 3
+        first_candidate.vote_second_round = 43
+        first_candidate.rate_vote_registered_second_round = 13.15
+        first_candidate.rate_vote_expressed_second_round = 29.45
+        second_candidate = CandidateModel()
+        second_candidate.last_name = 'BRETON'
+        second_candidate.first_name = 'Xavier'
+        second_candidate.sexe = 'M'
+        second_candidate.party_id = 11
+        second_candidate.vote_second_round = 103
+        second_candidate.rate_vote_registered_second_round = 31.5
+        second_candidate.rate_vote_expressed_second_round = 70.55
+        candidates = [first_candidate, second_candidate]
+        last_election.candidates = candidates
+        return last_election

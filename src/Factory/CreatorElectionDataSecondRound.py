@@ -1,15 +1,17 @@
+from src.Factory.CreatorCandidatesSecondRound import CreatorCandidatesSecondRound
 from src.Factory.CreatorElectionData import CreatorElectionData
-
+from src.Factory.CreatorResultSecondRound import CreatorResultSecondRound
 from src.Models.ElectionDataModel import ElectionDataModel
 
+#TODO factorize the constructor
 class CreatorElectionDataSecondRound(CreatorElectionData) : 
-    def __init__(self, parties) :
+    def __init__(self, parties, last_election_data_created) :
         self.election_data = ElectionDataModel()
         self.datas = []
         self.is_candidate_first_name_simple = True
         self.is_deputy_first_name_simple = True
         self.parties = parties
-        self.last_election_data_created = ElectionDataModel()
+        self.last_election_data_created = last_election_data_created
         self.is_new_election_data_model_created = False
         
     def factory_method(self, data) :
@@ -17,10 +19,21 @@ class CreatorElectionDataSecondRound(CreatorElectionData) :
         self.__delete_city_datas()
         self._get_department_election_datas()
         self._get_district_election_datas()
-        self._get_result_model(2)
+        self._get_result_model()
         self._get_candidates_model()
         
         return self.election_data
+    
+    
+    def _get_result_model(self) : 
+        creator_result = CreatorResultSecondRound(self.last_election_data_created)
+        self.election_data.result = creator_result.factory_method(self.datas)
+    
+    
+    def _get_candidates_model(self) : 
+        creator_candidates = CreatorCandidatesSecondRound(self.last_election_data_created)
+        self.election_data.candidates = creator_candidates.factory_method(self.datas)
+    
     
     def __delete_city_datas(self) : 
         del self.datas[4]

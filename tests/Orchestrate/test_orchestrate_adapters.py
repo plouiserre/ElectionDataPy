@@ -34,10 +34,10 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         
         assert_test = AssertTest(self, 1)
         
-        result_data_check =[2, "Aisne", 4, "4ème circonscription", "Wednesday", "Addams", datetime.datetime(2002,9,27), "Student", "F", False, 3, 5463213, 12.65, 9.24, "Sinclair", "Enid", "F", datetime.datetime(2002, 4, 2),  False, 1, "Completed", 4654321, 56123, 10.5, 3561234, 95.5, 1234, 30.1, 12.15, 123, 1.01, 0.75, 7456, 0.345, 0.042]
+        result_data_check =[2, "Aisne", 4, "4ème circonscription", "Wednesday", "Addams", datetime.datetime(2002,9,27), "Student", "F", False, 3, 5463213, 12.65, 9.24, "Sinclair", "Enid", "F", datetime.datetime(2002, 4, 2),  False, "Completed", 4654321, 56123, 10.5, 3561234, 95.5, 1234, 30.1, 12.15, 123, 1.01, 0.75, 7456, 0.345, 0.042]
         assert_test.assert_result_data_model_with_all_infos(result_data_check, first_candidate_all_data)
         
-        result_data_check =[59, "Nord", 13, "13ème circonscription", "Thomas", "Shelby", datetime.datetime(1976,5,25), "Gangster", "M", True, 6, 614651432, 37.95, 35.57, "Gray", "Polly", "F", datetime.datetime(1968, 8,17),  True, 1, "Completed", 897465143, 561023, 9.5, 857465143, 75.5, 134, 3.01, 9.15, 103, 0.91, 0.65, 6456, 0.245, 0.032]
+        result_data_check =[59, "Nord", 13, "13ème circonscription", "Thomas", "Shelby", datetime.datetime(1976,5,25), "Gangster", "M", True, 6, 614651432, 37.95, 35.57, "Gray", "Polly", "F", datetime.datetime(1968, 8,17),  True, "Completed", 897465143, 561023, 9.5, 857465143, 75.5, 134, 3.01, 9.15, 103, 0.91, 0.65, 6456, 0.245, 0.032]
         assert_test.assert_result_data_model_with_all_infos(result_data_check, second_candidates_all_data)        
         
         
@@ -62,7 +62,7 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         first_election_data.department = first_department
         first_election_data.district = first_district
         first_election_data.candidates.append(first_candidate)
-        first_election_data.result = self.__get_result(1, "Completed", 4654321, 56123, 10.5, 3561234, 95.5, 1234, 30.1, 12.15, 123, 1.01, 0.75, 7456, 0.345, 0.042)        
+        first_election_data.result = self.__get_result("Completed", 4654321, 56123, 10.5, 3561234, 95.5, 1234, 30.1, 12.15, 123, 1.01, 0.75, 7456, 0.345, 0.042)        
         second_department = helper.get_department("Nord",59)
         second_district = helper.get_district("13ème circonscription", 13)   
         second_district.department = second_department
@@ -74,7 +74,7 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         second_election_data.department = second_department
         second_election_data.district = second_district
         second_election_data.candidates.append(second_candidate)
-        second_election_data.result = self.__get_result(1, "Completed", 897465143, 561023, 9.5, 857465143, 75.5, 134, 3.01,  9.15, 103, 0.91, 0.65, 6456, 0.245, 0.032)
+        second_election_data.result = self.__get_result("Completed", 897465143, 561023, 9.5, 857465143, 75.5, 134, 3.01,  9.15, 103, 0.91, 0.65, 6456, 0.245, 0.032)
         
         candidates = [first_election_data, second_election_data]
         
@@ -103,16 +103,16 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         
         assert_test = AssertTest(self, 1)
         
-        result_data_check =[2, "Aisne", 4, "4ème circonscription", "Wednesday", "Addams", datetime.datetime(2002,9,27), "Student", "F", False, 3, 5463213, 12.65, 9.24, "Sinclair", "Enid", "F", datetime.datetime(2002, 4, 2),  False, 1, "Completed", 4654321, 56123, 10.5, 3561234, 95.5, 1234, 30.1, 12.15, 123, 1.01, 0.75, 7456, 0.345, 0.042]
+        result_data_check =[2, "Aisne", 4, "4ème circonscription", "Wednesday", "Addams", datetime.datetime(2002,9,27), "Student", "F", False, 3, 5463213, 12.65, 9.24, "Sinclair", "Enid", "F", datetime.datetime(2002, 4, 2),  False, "Completed", 4654321, 56123, 10.5, 3561234, 95.5, 1234, 30.1, 12.15, 123, 1.01, 0.75, 7456, 0.345, 0.042]
         assert_test.assert_result_data_model_with_all_infos(result_data_check, first_candidate_all_data)
         
-        result_data_check =[59, "Nord", 13, "13ème circonscription", "Thomas", "Shelby", datetime.datetime(1976,5,25), "Gangster", "M", True, 6, 614651432, 37.95, 35.57, "Gray", "Polly", "F", datetime.datetime(1968, 8,17),  True,  1, "Completed", 897465143, 561023, 9.5, 857465143, 75.5, 134, 3.01, 9.15, 103, 0.91, 0.65, 6456, 0.245, 0.032]
+        result_data_check =[59, "Nord", 13, "13ème circonscription", "Thomas", "Shelby", datetime.datetime(1976,5,25), "Gangster", "M", True, 6, 614651432, 37.95, 35.57, "Gray", "Polly", "F", datetime.datetime(1968, 8,17),  True,  "Completed", 897465143, 561023, 9.5, 857465143, 75.5, 134, 3.01, 9.15, 103, 0.91, 0.65, 6456, 0.245, 0.032]
         assert_test.assert_result_data_model_with_all_infos(result_data_check, second_candidates_all_data)    
         
-        result_data_check = [33, "Gironde", 6, "6ème circonscription", "Penny", "Hofstadter", datetime.datetime(1985,11,30), "Sales", "F", True, 5, 46513465, 65.65, 5624, "Cooper", "Sheldon", "M", datetime.datetime(1974,3,24),  False, 1,  "Completed", 15132134, 46123, 30.5, 2561234, 75.5, 666, 20.1, 8.15, 113, 0.71, 0.85, 8456, 0.245, 0.052]
+        result_data_check = [33, "Gironde", 6, "6ème circonscription", "Penny", "Hofstadter", datetime.datetime(1985,11,30), "Sales", "F", True, 5, 46513465, 65.65, 5624, "Cooper", "Sheldon", "M", datetime.datetime(1974,3,24),  False, "Completed", 15132134, 46123, 30.5, 2561234, 75.5, 666, 20.1, 8.15, 113, 0.71, 0.85, 8456, 0.245, 0.052]
         assert_test.assert_result_data_model_with_all_infos(result_data_check, third_candidate_all_data)   
        
-        result_data_check = [92, "Hautes Seine", 8, "8ème circonscription", "Robin", "Scherbatsky", datetime.datetime(1982,4,3), "Journaliste", "F", False, 4, 96513465, 91.05, 46.512, "Aldrin", "Lily", "F", datetime.datetime(1974,3,24),  False, 1,  "Completed", 4635123, 45646, 19.5, 646543, 66.4, 234, 5.01, 19.15, 93, 1.91, 0.55, 5456, 0.235, 0.032]
+        result_data_check = [92, "Hautes Seine", 8, "8ème circonscription", "Robin", "Scherbatsky", datetime.datetime(1982,4,3), "Journaliste", "F", False, 4, 96513465, 91.05, 46.512, "Aldrin", "Lily", "F", datetime.datetime(1974,3,24),  False, "Completed", 4635123, 45646, 19.5, 646543, 66.4, 234, 5.01, 19.15, 93, 1.91, 0.55, 5456, 0.235, 0.032]
         assert_test.assert_result_data_model_with_all_infos(result_data_check, fourth_candidate_all_data)     
         
         
@@ -163,7 +163,7 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         third_election_data.department = third_department
         third_election_data.district = third_district
         third_election_data.candidates.append(third_candidate)
-        third_election_data.result = self.__get_result(1, "Completed", 15132134, 46123, 30.5, 2561234, 75.5, 666, 20.1, 8.15, 113, 0.71, 0.85, 8456, 0.245, 0.052)
+        third_election_data.result = self.__get_result("Completed", 15132134, 46123, 30.5, 2561234, 75.5, 666, 20.1, 8.15, 113, 0.71, 0.85, 8456, 0.245, 0.052)
         
         fourth_department = helper.get_department("Hautes Seine", 92)
         fourth_district = helper.get_district("8ème circonscription", 8) 
@@ -176,7 +176,7 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         fourth_election_data.department = fourth_department
         fourth_election_data.district = fourth_district
         fourth_election_data.candidates.append(fourth_candidate)
-        fourth_election_data.result = self.__get_result(1, "Completed", 4635123, 45646, 19.5, 646543, 66.4, 234, 5.01,  19.15, 93, 1.91, 0.55, 5456, 0.235, 0.032)
+        fourth_election_data.result = self.__get_result("Completed", 4635123, 45646, 19.5, 646543, 66.4, 234, 5.01,  19.15, 93, 1.91, 0.55, 5456, 0.235, 0.032)
         
         candidates.append(third_election_data)
         candidates.append(fourth_election_data)
@@ -185,10 +185,9 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         
         
         
-    def __get_result(self, round_number, state_compute, registered, abstaining, rate_abstaining, voting, rate_voting, blank_balot, rate_blank_registered, rate_blank_voting, null_ballot, 
+    def __get_result(self, state_compute, registered, abstaining, rate_abstaining, voting, rate_voting, blank_balot, rate_blank_registered, rate_blank_voting, null_ballot, 
                        rate_null_registered, rate_null_voting, expressed, rate_express_registered, rate_express_voting) : 
         result = ResultModel()
-        result.round_number = round_number
         result.state_compute = state_compute
         result.registered = registered
         result.abstaining = abstaining

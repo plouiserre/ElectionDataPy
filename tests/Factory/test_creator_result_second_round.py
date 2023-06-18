@@ -29,3 +29,16 @@ class CreatorResultSecondRoundTest(unittest.TestCase) :
         result_context_check = ['Complet', 931, 489, 52.54, 442, 47.46, 10, 1.105, 2.335, 11, 1.26, 2.66, 421, 45.09, 95.005]
         assert_test = AssertTest(self, 1)
         assert_test.assert_result_data_rounds_result(result_context_check, result_model)
+        
+        
+    def test_creator_result_with_two_last_election_data_created_second_round_data(self) :  
+        helper = HelperTest()
+        last_election_data_created = helper.get_two_cities_data_first_department_first_district_last_election_data_model()
+        creator = CreatorResultSecondRound(last_election_data_created)
+        
+        result_data = ['XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'Complet', '446 239', '53.59', 207, '46.41', 10, '2.24', '4.83', 2, '0.45', '0.97', 195, '43.72', '94.2', 'XXXXX', 'XXXXX']
+        result_model = creator.factory_method(result_data)
+        
+        result_context_check = ['Complet', 1377, 728, 52.89, 649, 47.11, 20, 1.483, 3.167, 13, 0.99, 2.097, 616, 44.633, 94.737]
+        assert_test = AssertTest(self, 1)
+        assert_test.assert_result_data_rounds_result(result_context_check, result_model)

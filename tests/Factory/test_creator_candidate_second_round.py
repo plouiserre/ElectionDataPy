@@ -16,7 +16,7 @@ class CreatorCandidateSecondRoundTest(unittest.TestCase) :
         assert_test.assert_election_data_second_round_result(candidate_model_check, candidate)  
         
         
-    def test_creator_candidate_male_first_round_data(self) :
+    def test_creator_candidate_male_second_round_data(self) :
         creator = CreatorCandidateSecondRound(None, None)
         
         election_data = [6, 'M', 'THOMASSIN', 'Geoffrey', 'DIV', '216', '0.27', '0.54', 'nan']
@@ -28,7 +28,7 @@ class CreatorCandidateSecondRoundTest(unittest.TestCase) :
         assert_test.assert_election_data_second_round_result(candidate_model_check, candidate) 
         
         
-    def test_creator_candidate_with__one_last_election_data_created(self) :
+    def test_creator_candidate_with_one_last_election_data_created_second_round_data(self) :
         helper = HelperTest()
         last_election_data = helper.get_first_department_first_district_last_election_data_model()
         creator = CreatorCandidateSecondRound(None, last_election_data)
@@ -40,4 +40,19 @@ class CreatorCandidateSecondRoundTest(unittest.TestCase) :
         candidate_model_check = ["XXXX", "M", "GUÉRAUD", "Sébastien", "XXXX", 151, 15.515, 34.36]
         assert_test = AssertTest(self, 1)  
         assert_test.assert_election_data_second_round_result(candidate_model_check, candidate) 
+        
+        
+    def test_creator_candidate_with_two_last_election_data_created_second_round_data(self) :
+        helper = HelperTest()
+        last_election_datas = helper.get_two_cities_data_first_department_first_district_last_election_data_model()
+        creator = CreatorCandidateSecondRound(None, last_election_datas)
+         
+        election_data = [8, 'M', 'GUÉRAUD', 'Sébastien', 'NUP', 67, '15.02', '34.36',  'nan'] 
+        
+        candidate = creator.factory_method(election_data)
+        
+        candidate_model_check = ["XXXX", "M", "GUÉRAUD", "Sébastien", "XXXX", 218, 15.35, 34.36]
+        assert_test = AssertTest(self, 1)  
+        assert_test.assert_election_data_second_round_result(candidate_model_check, candidate) 
+
             

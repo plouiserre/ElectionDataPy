@@ -257,8 +257,64 @@ class HelperTest :
                    fourteenth_party, fifteenth_party, sixteenth_party]
         return parties
     
-    
+    #TODO rework this method return an array and factorize with the last
     def get_first_department_first_district_last_election_data_model(self) : 
+        last_elections = []
+        last_election = self.__get_first_last_election_datas()
+        last_elections.append(last_election)
+        return last_elections
+    
+    
+    def get_two_cities_data_first_department_first_district_last_election_data_model(self) :
+        first_last_election = self.__get_first_last_election_datas()
+       
+        second_last_election = ElectionDataModel()
+        second_last_election.department = DepartmentModel()
+        second_last_election.department.name = "Ain"
+        second_last_election.department.number = 1
+        second_last_election.district = DistrictModel()
+        second_last_election.district.number = 1
+        second_last_election.district.name = "1ère circonscription"
+        second_last_election.result = ResultModel()
+        second_last_election.round_number = 2
+        second_last_election.state_compute = "Complet"
+        second_last_election.registered = 604
+        second_last_election.abstaining = 317
+        second_last_election.rate_abstaining = 52.48
+        second_last_election.voting = 287
+        second_last_election.rate_voting = 47.52
+        second_last_election.blank_balot = 6
+        second_last_election.rate_blank_registered = 0.99
+        second_last_election.rate_blank_voting = 2.09
+        second_last_election.null_ballot = 6
+        second_last_election.rate_null_registered = 0.99
+        second_last_election.rate_null_voting = 2.09
+        second_last_election.expressed = 275
+        second_last_election.rate_express_registered = 45.53
+        second_last_election.rate_express_voting = 95.82
+        third_candidate = CandidateModel()
+        third_candidate.last_name = 'GUÉRAUD'
+        third_candidate.first_name = 'Sébastien'
+        third_candidate.sexe = 'M'
+        third_candidate.party_id = 3
+        third_candidate.vote_second_round = 108
+        third_candidate.rate_vote_registered_second_round = 17.88
+        third_candidate.rate_vote_expressed_second_round = 39.27
+        fourth_candidate = CandidateModel()
+        fourth_candidate.last_name = 'BRETON'
+        fourth_candidate.first_name = 'Xavier'
+        fourth_candidate.sexe = 'M'
+        fourth_candidate.party_id = 11
+        fourth_candidate.vote_second_round = 167
+        fourth_candidate.rate_vote_registered_second_round = 27.65
+        fourth_candidate.rate_vote_expressed_second_round = 60.73
+        second_last_election.candidates = [third_candidate, fourth_candidate]
+        
+        last_election_datas = [first_last_election, second_last_election]
+        return last_election_datas
+    
+    
+    def __get_first_last_election_datas(self) :
         last_election = ElectionDataModel()
         last_election.department = DepartmentModel()
         last_election.department.name = "Ain"
@@ -302,3 +358,6 @@ class HelperTest :
         candidates = [first_candidate, second_candidate]
         last_election.candidates = candidates
         return last_election
+        
+
+

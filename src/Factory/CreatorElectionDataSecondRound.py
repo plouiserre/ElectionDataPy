@@ -19,14 +19,14 @@ class CreatorElectionDataSecondRound(CreatorElectionData) :
         self.__delete_city_datas()
         self._get_department_election_datas()
         self._get_district_election_datas()
-        self.__validate_last_election_data_created()
+        self.__validate_or_clear_out_last_election_data_created()
         self._get_result_model()
         self._get_candidates_model()
         
         return self.election_data
     
     
-    def __validate_last_election_data_created(self) : 
+    def __validate_or_clear_out_last_election_data_created(self) : 
         if self.last_election_data_created != None :
             is_same_department = False
             is_same_district = False

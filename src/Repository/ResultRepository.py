@@ -9,7 +9,6 @@ class ResultRepository :
         
         for result in results : 
             #TODO delete after
-            result.round_number = 1
             sql = "INSERT INTO ELECTIONSCONGRESSMANS.RESULT(RoundNumber, StateCompute, Registered, Abstaining, RateAbstaining, Voting, RateVoting, BlankBalot, RateBlankRegistered, RateBlankVoting, NullBallot, RateNullRegistered, RateNullVoting, Expressed, RateExpressRegistered, RateExpressVoting, DistrictId) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
             val = (result.round_number, result.state_compute, result.registered, result.abstaining, result.rate_abstaining, result.voting, result.rate_voting, result.blank_balot, result.rate_blank_registered, result.rate_blank_voting, result.null_ballot, result.rate_null_registered, result.rate_null_voting, result.expressed, result.rate_express_registered, result.rate_express_voting, result.district_id)
             mycursor.execute(sql, val)

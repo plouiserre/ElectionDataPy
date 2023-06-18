@@ -8,6 +8,7 @@ class CreatorResultSecondRound(CreatorResult) :
         
     def factory_method(self, second_round_data):
         self.data = second_round_data
+        self.result.round_number = 2
         if self.last_election_data_created == None :
             self.__get_result_without_last_election_data_created()
         else :

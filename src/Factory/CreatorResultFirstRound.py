@@ -7,6 +7,7 @@ class CreatorResultFirstRound(CreatorResult):
         
         
     def factory_method(self, first_round_data) : 
+        self.result.round_number = 1
         self.result.state_compute = first_round_data[4]
         self.__get_results_numbers_global(first_round_data[5])
         self.result.rate_abstaining = float(first_round_data[6])

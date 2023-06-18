@@ -13,7 +13,7 @@ class CreatorResultSecondRoundTest(unittest.TestCase) :
         result_data = ['XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'Complet', '327 172', '52.6', 155, '47.4', 4, '1.22', '2.58', 5, '1.53', '3.23', 146 ,'44.65', '94.19', 'XXXXX', 'XXXXX']
         result_model = creator.factory_method(result_data)
         
-        result_context_check = ['Complet', 327, 172, 52.6, 155, 47.4, 4, 1.22, 2.58, 5, 1.53, 3.23, 146 , 44.65, 94.19]
+        result_context_check = ['Complet', 2, 327, 172, 52.6, 155, 47.4, 4, 1.22, 2.58, 5, 1.53, 3.23, 146 , 44.65, 94.19]
         assert_test = AssertTest(self, 1)
         assert_test.assert_result_data_rounds_result(result_context_check, result_model)
         
@@ -26,7 +26,7 @@ class CreatorResultSecondRoundTest(unittest.TestCase) :
         result_data = ['XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'Complet', '604 317', '52.48', 287, '47.52', 6, '0.99', '2.09', 6, '0.99', '2.09', 275, '45.53', '95.82', 'XXXXX', 'XXXXX']
         result_model = creator.factory_method(result_data)
         
-        result_context_check = ['Complet', 931, 489, 52.54, 442, 47.46, 10, 1.105, 2.335, 11, 1.26, 2.66, 421, 45.09, 95.005]
+        result_context_check = ['Complet', 2, 931, 489, 52.54, 442, 47.46, 10, 1.105, 2.335, 11, 1.26, 2.66, 421, 45.09, 95.005]
         assert_test = AssertTest(self, 1)
         assert_test.assert_result_data_rounds_result(result_context_check, result_model)
         
@@ -39,6 +39,6 @@ class CreatorResultSecondRoundTest(unittest.TestCase) :
         result_data = ['XXXXX', 'XXXXX', 'XXXXX', 'XXXXX', 'Complet', '446 239', '53.59', 207, '46.41', 10, '2.24', '4.83', 2, '0.45', '0.97', 195, '43.72', '94.2', 'XXXXX', 'XXXXX']
         result_model = creator.factory_method(result_data)
         
-        result_context_check = ['Complet', 1377, 728, 52.89, 649, 47.11, 20, 1.483, 3.167, 13, 0.99, 2.097, 616, 44.633, 94.737]
+        result_context_check = ['Complet', 2, 1377, 728, 52.89, 649, 47.11, 20, 1.483, 3.167, 13, 0.99, 2.097, 616, 44.633, 94.737]
         assert_test = AssertTest(self, 1)
         assert_test.assert_result_data_rounds_result(result_context_check, result_model)

@@ -54,5 +54,3 @@ class CreatorCandidateSecondRoundTest(unittest.TestCase) :
         candidate_model_check = ["XXXX", "M", "GUÉRAUD", "Sébastien", "XXXX", 218, 15.35, 34.36]
         assert_test = AssertTest(self, 1)  
         assert_test.assert_election_data_second_round_result(candidate_model_check, candidate) 
-
-            

@@ -184,7 +184,7 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         return candidates
         
         
-        
+    #TODO move to helper and factorise with result_second test 
     def __get_result(self, state_compute, round_number, registered, abstaining, rate_abstaining, voting, rate_voting, blank_balot, rate_blank_registered, rate_blank_voting, null_ballot, 
                        rate_null_registered, rate_null_voting, expressed, rate_express_registered, rate_express_voting) : 
         result = ResultModel()

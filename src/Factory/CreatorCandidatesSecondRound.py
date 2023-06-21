@@ -9,6 +9,7 @@ class CreatorCandidatesSecondRound(CreatorCandidates) :
         #TODO comprendre pk c'est 18 et pas 21
         self.start_index_candidates = 18
         self.last_election_data = last_election_data
+        self.last_elements_created = []
         
     
     def factory_method(self, candidates_data):
@@ -24,9 +25,11 @@ class CreatorCandidatesSecondRound(CreatorCandidates) :
         if self.last_election_data == None :
             creator = CreatorCandidateSecondRound(None, None)
             candidate = creator.factory_method(election_data)
+            self.last_elements_created.append(creator.last_element_created)
         else : 
             creator = CreatorCandidateSecondRound(None, self.last_election_data)
             candidate = creator.factory_method(election_data)
+            self.last_elements_created.append(creator.last_element_created)
         return candidate   
     
     
@@ -39,4 +42,4 @@ class CreatorCandidatesSecondRound(CreatorCandidates) :
             else : 
                 j += 1
         candidates_number = j // 8
-        return candidates_number
+        return candidates_number        

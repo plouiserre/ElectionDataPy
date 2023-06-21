@@ -6,39 +6,43 @@ class CreatorCandidateSecondRound(CreatorCandidate) :
         super().__init__(parties)
         self.datas_second_round_same_district = datas_second_round_same_district
         self.candidate = CandidateModel()
+        self.last_element_created = None
         
         
     def factory_method(self, election_data):
-        self.candidate  = self._init_candidate_model(election_data)
+        self.data = election_data
+        self.candidate  = self._init_candidate_model(self.data)
         if self.datas_second_round_same_district == None or len(self.datas_second_round_same_district) == 0 :
-            self.__calculate_vote_without_last_election_data_created(election_data)
+            self.__calculate_vote_without_last_election_data_created()
         else :
-            self.__calculate_vote_with_last_election_data_created(election_data)
+            self.__calculate_vote_with_last_election_data_created()
+        self.__get_last_result_model_created()
         return self.candidate
     
     
-    def __calculate_vote_without_last_election_data_created(self, election_data) : 
-        if isinstance(election_data[5], str) :
+    #TODO factoriser avec la dernière méthode
+    def __calculate_vote_without_last_election_data_created(self) : 
+        if isinstance(self.data[5], str) :
             vote_to_convert = 0
-            vote_to_convert = election_data[5].replace('.0','')
+            vote_to_convert = self.data[5].replace('.0','')
             self.candidate.vote_second_round = int(vote_to_convert)
         else : 
-            self.candidate .vote_second_round = int(election_data[5])
-        self.candidate.rate_vote_registered_second_round = float(election_data[6])
-        self.candidate.rate_vote_expressed_second_round = float(election_data[7])
+            self.candidate .vote_second_round = int(self.data[5])
+        self.candidate.rate_vote_registered_second_round = float(self.data[6])
+        self.candidate.rate_vote_expressed_second_round = float(self.data[7])
         
     
-    def __calculate_vote_with_last_election_data_created(self, election_data) : 
+    def __calculate_vote_with_last_election_data_created(self) : 
         candidates = self.__get_good_candidate()
         last_vote = self.__get_vote_second_round_from_all_datas_same_districts(candidates)
-        if isinstance(election_data[5], str) :
+        if isinstance(self.data[5], str) :
             vote_to_convert = 0
-            vote_to_convert = election_data[5].replace('.0','')
+            vote_to_convert = self.data[5].replace('.0','')
             self.candidate.vote_second_round = int(vote_to_convert) + last_vote
         else : 
-            self.candidate .vote_second_round = int(election_data[5]) + last_vote
-        self.candidate.rate_vote_registered_second_round = round(self.__get_rate_vote_registered_second_round_from_all_datas_same_districts(candidates, (float(election_data[6]))),3)
-        self.candidate.rate_vote_expressed_second_round = round(self.__get_rate_vote_expressed_second_round_from_all_datas_same_districts(candidates, (float(election_data[7]))),3)
+            self.candidate .vote_second_round = int(self.data[5]) + last_vote
+        self.candidate.rate_vote_registered_second_round = round(self.__get_rate_vote_registered_second_round_from_all_datas_same_districts(candidates, (float(self.data[6]))),3)
+        self.candidate.rate_vote_expressed_second_round = round(self.__get_rate_vote_expressed_second_round_from_all_datas_same_districts(candidates, (float(self.data[7]))),3)
         
     
     def __get_vote_second_round_from_all_datas_same_districts(self, candidates) : 
@@ -73,3 +77,18 @@ class CreatorCandidateSecondRound(CreatorCandidate) :
                 if c.first_name == self.candidate.first_name and c.last_name == self.candidate.last_name :
                     candidates.append(c) 
         return candidates
+    
+    
+    def __get_last_result_model_created(self):
+        self.last_element_created = CandidateModel()
+        self.last_element_created.sexe = self.data[1]
+        self.last_element_created.last_name = self.data[2]
+        self.last_element_created.first_name = self.data[3]
+        if isinstance(self.data[5], str) :
+            vote_to_convert = 0
+            vote_to_convert = self.data[5].replace('.0','')
+            self.last_element_created.vote_second_round = int(vote_to_convert)
+        else : 
+            self.last_element_created.vote_second_round = int(self.data[5])
+        self.last_element_created.rate_vote_registered_second_round = float(self.data[6])
+        self.last_element_created.rate_vote_expressed_second_round = float(self.data[7])

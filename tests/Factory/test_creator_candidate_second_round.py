@@ -10,10 +10,12 @@ class CreatorCandidateSecondRoundTest(unittest.TestCase) :
         
         election_data = [ 8, 'F', 'ARMENJON', 'Eliane', 'ECO', '1161', '1.35', '2.78', 'nan']
         candidate = creator.factory_method(election_data)
+        last_candidate_model_created = creator.last_element_created
         
         candidate_model_check = ["XXXX","F", "ARMENJON", "Eliane","XXXX", 1161, 1.35, 2.78]     
         assert_test = AssertTest(self, 1)  
         assert_test.assert_election_data_second_round_result(candidate_model_check, candidate)  
+        assert_test.assert_election_data_second_round_result(candidate_model_check, last_candidate_model_created)  
         
         
     def test_creator_candidate_male_second_round_data(self) :
@@ -22,10 +24,12 @@ class CreatorCandidateSecondRoundTest(unittest.TestCase) :
         election_data = [6, 'M', 'THOMASSIN', 'Geoffrey', 'DIV', '216', '0.27', '0.54', 'nan']
         
         candidate = creator.factory_method(election_data)
+        last_candidate_model_created = creator.last_element_created
         
         candidate_model_check = ["XXXX","M", "THOMASSIN", "Geoffrey","XXXX", 216, 0.27, 0.54]     
         assert_test = AssertTest(self, 1)  
         assert_test.assert_election_data_second_round_result(candidate_model_check, candidate) 
+        assert_test.assert_election_data_second_round_result(candidate_model_check, last_candidate_model_created)  
         
         
     def test_creator_candidate_with_one_last_election_data_created_second_round_data(self) :
@@ -36,10 +40,14 @@ class CreatorCandidateSecondRoundTest(unittest.TestCase) :
         election_data = [8, 'M', 'GUÉRAUD', 'Sébastien', 'NUP', 108, '17.88', '39.27', 'nan'] 
         
         candidate = creator.factory_method(election_data)
+        last_candidate_model_created = creator.last_element_created
         
         candidate_model_check = ["XXXX", "M", "GUÉRAUD", "Sébastien", "XXXX", 151, 15.515, 34.36]
         assert_test = AssertTest(self, 1)  
         assert_test.assert_election_data_second_round_result(candidate_model_check, candidate) 
+        
+        last_model_check = ["XXXX", "M", "GUÉRAUD", "Sébastien", "XXXX", 108, 17.88, 39.27]
+        assert_test.assert_election_data_second_round_result(last_model_check, last_candidate_model_created) 
         
         
     def test_creator_candidate_with_two_last_election_data_created_second_round_data(self) :
@@ -50,7 +58,11 @@ class CreatorCandidateSecondRoundTest(unittest.TestCase) :
         election_data = [8, 'M', 'GUÉRAUD', 'Sébastien', 'NUP', 67, '15.02', '34.36',  'nan'] 
         
         candidate = creator.factory_method(election_data)
+        last_candidate_model_created = creator.last_element_created
         
         candidate_model_check = ["XXXX", "M", "GUÉRAUD", "Sébastien", "XXXX", 218, 15.35, 34.36]
         assert_test = AssertTest(self, 1)  
         assert_test.assert_election_data_second_round_result(candidate_model_check, candidate) 
+        
+        last_model_check = ["XXXX", "M", "GUÉRAUD", "Sébastien", "XXXX",  67, 15.02, 34.36]
+        assert_test.assert_election_data_second_round_result(last_model_check, last_candidate_model_created) 

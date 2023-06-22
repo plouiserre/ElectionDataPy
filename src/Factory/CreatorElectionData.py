@@ -43,6 +43,7 @@ class CreatorElectionData() :
         data = data.replace('\n ',' ')
         data = data.replace('[','')
         data = data.replace(']','')
+        data = data.replace('_','-')
         data = data.replace('\' \'','_')        
         data = data.replace('\' ','_')        
         data = data.replace(' \'','_')    

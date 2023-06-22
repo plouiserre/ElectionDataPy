@@ -37,6 +37,44 @@ class CreatorElectionDataSecondRoundTest(unittest.TestCase) :
         assert_test.assert_election_data_model_second_round_result(election_data_check, last_candidate_model_created)
         
         
+    def test_creator_dordogne_first_difficult_data_line(self) : 
+        creator = CreatorElectionDataSecondRound(None, [])
+        
+        election_data_model = creator.factory_method("['24' 'Dordogne' 2 '2ème circonscription' 423 'Saint-Julien-Innocence_Eulalie' 'Complet' 202 83 '41.09' 119 '58.91' 13 '6.44' '10.92' 3 '1.49' '2.52' 103 '50.99' '86.55' 2 'M' 'DELPON' 'Michel' 'ENS' 50 '24.75' '48.54' '3.0' 'M' 'MULLER' 'Serge' 'RN' '53.0' '26.24' '51.46' 'nan' 'nan' 'nan' 'nan' 'nan' 'nan' 'nan' 'nan']")
+        last_candidate_model_created = creator.last_element_created
+        
+        election_data_check = [24, 'Dordogne', 2, '2ème circonscription', 'Complet', 2, 202, 83, 41.09, 119, 58.91, 13, 6.44, 10.92, 3, 1.49, 2.52, 103, 50.99, 86.55, 2, 'M', 'DELPON', 'Michel', 'ENS', 50, 24.75, 48.54, 'nan', '3.0', 'M', 'MULLER', 'Serge', 'RN', 53, 26.24, 51.46, 'nan', 'nan']
+        assert_test = AssertTest(self, 2)
+        assert_test.assert_election_data_model_second_round_result(election_data_check, election_data_model) 
+        assert_test.assert_election_data_model_second_round_result(election_data_check, last_candidate_model_created)
+        
+        
+    #rename this test to explain what I test (three candidates and bad end line )
+    def test_creator_dordogne_three_candidates_second_round_data_line(self) :
+        creator = CreatorElectionDataSecondRound(None, [])
+        
+        election_data_model = creator.factory_method("['24' 'Dordogne' 3 '3ème circonscription' 1 'Abjat-sur-Bandiat' 'Complet' 474 195 '41.14' 279 '58.86' 4 '0.84' '1.43' 4 '0.84' '1.43' 271 '57.17' '97.13' 3 'M' 'GIRARDEAU' 'Cyril' 'NUP' 110 '23.21' '40.59' '10.0' 'M' 'CUBERTAFON' 'Jean-Pierre' 'ENS' '90.0' '18.99' '33.21' '7.0' 'F' 'JOUBERT' 'Florence' 'RN' '71.0' '14.98' '26.2']")
+        last_candidate_model_created = creator.last_element_created
+        
+        election_data_check = [24, 'Dordogne', 3, '3ème circonscription', 'Complet', 2, 474, 195, 41.14, 279, 58.86, 4, 0.84, 1.43, 4, 0.84, 1.43, 271, 57.17, 97.13, 3, 'M', 'GIRARDEAU', 'Cyril', 'NUP', 110, 23.21, 40.59, 'nan', '10.0', 'M', 'CUBERTAFON', 'Jean-Pierre', 'ENS', 90, 18.99, 33.21, 'nan', '7.0', 'F', 'JOUBERT', 'Florence', 'RN', 71, 14.98, 26.2, 'nan', 'nan', 'nan']
+        assert_test = AssertTest(self, 3)
+        assert_test.assert_election_data_model_second_round_result(election_data_check, election_data_model) 
+        assert_test.assert_election_data_model_second_round_result(election_data_check, last_candidate_model_created)
+        
+        
+    #rename with explanation of the cause of the bug
+    def test_creator_seine_saint_denis_with_only_one_candidate(self) :
+        creator = CreatorElectionDataSecondRound(None, [])
+        
+        election_data_model = creator.factory_method("['93' 'Seine-Saint-Denis' 4 '4ème circonscription' 7 'Le Blanc-Mesnil' 'Complet' 26143 19415 '74.26' 6728 '25.74' 1475 '5.64' '21.92' 185 '0.71' '2.75' 5068 '19.39' '75.33' 4 'F' 'BOUROUAHA' 'Soumya' 'NUP' 5068 '19.39' '100.0' 'nan' 'nan' 'nan' 'nan' 'nan' 'nan' 'nan' 'nan' 'nan' 'nan' 'nan' 'nan' 'nan' 'nan' 'nan' 'nan']")
+        last_candidate_model_created = creator.last_element_created
+        
+        election_data_check = [93, 'Seine-Saint-Denis', 4, '4ème circonscription', 'Complet', 2, 26143, 19415, 74.26, 6728, 25.74, 1475, 5.64, 21.92, 185, 0.71, 2.75, 5068, 19.39, 75.33, 4, 'F', 'BOUROUAHA', 'Soumya', 'NUP', 5068, 19.39, 100.0, 'nan', 'nan']
+        assert_test = AssertTest(self, 1)
+        assert_test.assert_election_data_model_second_round_result(election_data_check, election_data_model)
+        assert_test.assert_election_data_model_second_round_result(election_data_check, last_candidate_model_created)
+        
+        
     def test_creator_result_city_with_last_election_data_created_same_district(self) : 
         helper = HelperTest()
         last_election_data_created = helper.get_first_department_first_district_last_election_data_model()

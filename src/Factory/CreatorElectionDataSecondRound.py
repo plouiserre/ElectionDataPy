@@ -18,6 +18,7 @@ class CreatorElectionDataSecondRound(CreatorElectionData) :
         
         
     def factory_method(self, data) :
+        data = self.__update_end_of_data_correctly(data)
         self.datas = self._get_datas_cleaned_rounds(data)
         self.__delete_city_datas()
         self._get_department_election_datas()
@@ -28,6 +29,13 @@ class CreatorElectionDataSecondRound(CreatorElectionData) :
         self.__get_last_element_created()
         
         return self.election_data
+    
+    
+    def __update_end_of_data_correctly(self, data) :
+        end_correctly = '\'nan\''
+        if (end_correctly in data)  == False: 
+            data = data[:-1] + " 'nan' 'nan']"   
+        return data 
     
     
     #TODO update UT because last_election_data_created cannot be None
@@ -55,7 +63,10 @@ class CreatorElectionDataSecondRound(CreatorElectionData) :
         creator_candidates = CreatorCandidatesSecondRound(self.last_election_data_created)
         self.election_data.candidates = creator_candidates.factory_method(self.datas)
         self.all_last_elements_created["first_candidate"] = creator_candidates.last_elements_created[0]
-        self.all_last_elements_created["second_candidate"] = creator_candidates.last_elements_created[1]
+        if len(creator_candidates.last_elements_created) >= 2:
+            self.all_last_elements_created["second_candidate"] = creator_candidates.last_elements_created[1]
+        if len(creator_candidates.last_elements_created) >= 3 : 
+            self.all_last_elements_created["third_candidate"] = creator_candidates.last_elements_created[2]
     
     
     def __delete_city_datas(self) : 
@@ -68,4 +79,7 @@ class CreatorElectionDataSecondRound(CreatorElectionData) :
         self.last_element_created.district = self.election_data.district
         self.last_element_created.result = self.all_last_elements_created["result"]
         self.last_element_created.candidates.append(self.all_last_elements_created["first_candidate"])
-        self.last_element_created.candidates.append(self.all_last_elements_created["second_candidate"])
+        if len(self.all_last_elements_created) >= 3 :  
+         self.last_element_created.candidates.append(self.all_last_elements_created["second_candidate"])
+        if len(self.all_last_elements_created) == 4 :  
+            self.last_element_created.candidates.append(self.all_last_elements_created["third_candidate"])

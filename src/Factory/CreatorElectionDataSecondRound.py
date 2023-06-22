@@ -3,16 +3,10 @@ from src.Factory.CreatorElectionData import CreatorElectionData
 from src.Factory.CreatorResultSecondRound import CreatorResultSecondRound
 from src.Models.ElectionDataModel import ElectionDataModel
 
-#TODO factorize the constructor
 class CreatorElectionDataSecondRound(CreatorElectionData) : 
     def __init__(self, parties, last_election_data_created) :
-        self.election_data = ElectionDataModel()
-        self.datas = []
-        self.is_candidate_first_name_simple = True
-        self.is_deputy_first_name_simple = True
-        self.parties = parties
+        super().__init__(parties)
         self.last_election_data_created = last_election_data_created
-        self.is_new_election_data_model_created = False
         self.last_element_created = ElectionDataModel()
         self.all_last_elements_created = {}
         
@@ -38,8 +32,6 @@ class CreatorElectionDataSecondRound(CreatorElectionData) :
         return data 
     
     
-    #TODO update UT because last_election_data_created cannot be None
-    #TODO study if this method is useful or not if it is not kill it and update code
     def __validate_or_clear_out_last_election_data_created(self) : 
         if len(self.last_election_data_created) > 0 :
             index = len(self.last_election_data_created) - 1

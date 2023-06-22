@@ -20,7 +20,6 @@ class CreatorCandidateSecondRound(CreatorCandidate) :
         return self.candidate
     
     
-    #TODO factoriser avec la dernière méthode
     def __calculate_vote_without_last_election_data_created(self) : 
         if isinstance(self.data[5], str) :
             vote_to_convert = 0
@@ -80,10 +79,7 @@ class CreatorCandidateSecondRound(CreatorCandidate) :
     
     
     def __get_last_result_model_created(self):
-        self.last_element_created = CandidateModel()
-        self.last_element_created.sexe = self.data[1]
-        self.last_element_created.last_name = self.data[2]
-        self.last_element_created.first_name = self.data[3]
+        self.last_element_created = self._init_candidate_model(self.data)
         if isinstance(self.data[5], str) :
             vote_to_convert = 0
             vote_to_convert = self.data[5].replace('.0','')

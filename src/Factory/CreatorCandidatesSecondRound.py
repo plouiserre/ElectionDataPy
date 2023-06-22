@@ -6,7 +6,6 @@ from src.Models.CandidateModel import CandidateModel
 class CreatorCandidatesSecondRound(CreatorCandidates) : 
     def __init__(self, last_election_data):
         super().__init__()
-        #TODO comprendre pk c'est 18 et pas 21
         self.start_index_candidates = 18
         self.last_election_data = last_election_data
         self.last_elements_created = []
@@ -17,19 +16,13 @@ class CreatorCandidatesSecondRound(CreatorCandidates) :
         return candidates
     
     
-    #TODO try factorise with second round method
     def _get_candidate_model(self, candidates_data, index) : 
         candidate = CandidateModel()
         index_candidate = index * 8 + self.start_index_candidates
         election_data = candidates_data[index_candidate:index_candidate+9]
-        if self.last_election_data == None :
-            creator = CreatorCandidateSecondRound(None, None)
-            candidate = creator.factory_method(election_data)
-            self.last_elements_created.append(creator.last_element_created)
-        else : 
-            creator = CreatorCandidateSecondRound(None, self.last_election_data)
-            candidate = creator.factory_method(election_data)
-            self.last_elements_created.append(creator.last_element_created)
+        creator = CreatorCandidateSecondRound(None, self.last_election_data)
+        candidate = creator.factory_method(election_data)
+        self.last_elements_created.append(creator.last_element_created)
         return candidate   
     
     

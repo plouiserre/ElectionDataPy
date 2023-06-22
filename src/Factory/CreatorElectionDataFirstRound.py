@@ -27,7 +27,7 @@ class CreatorElectionDataFirstRound(CreatorElectionData) :
     
     def _get_result_model(self) : 
         creator_result = CreatorResultFirstRound()
-        self.election_data.result = creator_result.factory_method(self.datas)
+        self.election_data.first_result = creator_result.factory_method(self.datas)
     
     
     def _get_candidates_model(self) : 

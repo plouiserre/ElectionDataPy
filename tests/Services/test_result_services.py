@@ -34,7 +34,7 @@ class ResultServicesTest(unittest.TestCase) :
         result_service = ResultServices()
         result_service.store_results(election_datas_model, districts, dependency)
         
-        self.assertEqual(234, election_datas_model[0].result.district_id)
+        self.assertEqual(234, election_datas_model[0].first_result.district_id)
         
         
     def test_results_data_district_id_with_two_elections_data(self) :
@@ -69,8 +69,8 @@ class ResultServicesTest(unittest.TestCase) :
         result_service = ResultServices()
         result_service.store_results(election_datas_model, districts, dependency)
         
-        self.assertEqual(234, election_datas_model[0].result.district_id)
-        self.assertEqual(666, election_datas_model[1].result.district_id)
+        self.assertEqual(234, election_datas_model[0].first_result.district_id)
+        self.assertEqual(666, election_datas_model[1].first_result.district_id)
         
         
     def test_results_data_district_id_with_same_district_number_differents_departments(self) :
@@ -91,7 +91,7 @@ class ResultServicesTest(unittest.TestCase) :
         second_election_data_model.department = DepartmentModel()
         second_election_data_model.department.name = "Hauts de Seine"
         second_election_data_model.department.number = 92
-        second_election_data_model.result = ResultModel()
+        second_election_data_model.first_result = ResultModel()
         
         election_datas_model = [first_election_data_model, second_election_data_model]
         
@@ -117,8 +117,8 @@ class ResultServicesTest(unittest.TestCase) :
         result_service = ResultServices()
         result_service.store_results(election_datas_model, districts, dependency)
         
-        self.assertEqual(234, election_datas_model[0].result.district_id)
-        self.assertEqual(666, election_datas_model[1].result.district_id)
+        self.assertEqual(234, election_datas_model[0].first_result.district_id)
+        self.assertEqual(666, election_datas_model[1].first_result.district_id)
         
         
     def test_result_repository_called(self) :

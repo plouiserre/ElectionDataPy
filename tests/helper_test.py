@@ -257,7 +257,7 @@ class HelperTest :
                    fourteenth_party, fifteenth_party, sixteenth_party]
         return parties
     
-    #TODO rework this method return an array and factorize with the last
+    
     def get_first_department_first_district_last_election_data_model(self) : 
         last_elections = []
         last_election = self.__get_first_last_election_datas()
@@ -265,6 +265,7 @@ class HelperTest :
         return last_elections
     
     
+    #TODO use get_result for next two methods
     def get_two_cities_data_first_department_first_district_last_election_data_model(self) :
         first_last_election = self.__get_first_last_election_datas()
        
@@ -275,23 +276,8 @@ class HelperTest :
         second_last_election.district = DistrictModel()
         second_last_election.district.number = 1
         second_last_election.district.name = "1ère circonscription"
-        second_last_election.result = ResultModel()
-        second_last_election.result.round_number = 2
-        second_last_election.result.state_compute = "Complet"
-        second_last_election.result.registered = 604
-        second_last_election.result.abstaining = 317
-        second_last_election.result.rate_abstaining = 52.48
-        second_last_election.result.voting = 287
-        second_last_election.result.rate_voting = 47.52
-        second_last_election.result.blank_balot = 6
-        second_last_election.result.rate_blank_registered = 0.99
-        second_last_election.result.rate_blank_voting = 2.09
-        second_last_election.result.null_ballot = 6
-        second_last_election.result.rate_null_registered = 0.99
-        second_last_election.result.rate_null_voting = 2.09
-        second_last_election.result.expressed = 275
-        second_last_election.result.rate_express_registered = 45.53
-        second_last_election.result.rate_express_voting = 95.82
+        second_last_election.second_result = self.get_result("Complet", 2, 604, 317, 52.48, 287, 47.52, 6, 0.99, 2.09, 6, 
+                       0.99, 2.09, 275, 45.53, 95.82) 
         third_candidate = CandidateModel()
         third_candidate.last_name = 'GUÉRAUD'
         third_candidate.first_name = 'Sébastien'
@@ -322,23 +308,8 @@ class HelperTest :
         last_election.district = DistrictModel()
         last_election.district.number = 1
         last_election.district.name = "1ère circonscription"
-        last_election.result = ResultModel()
-        last_election.result.round_number = 2
-        last_election.result.state_compute = "Complet"
-        last_election.result.registered = 327
-        last_election.result.abstaining = 172
-        last_election.result.rate_abstaining = 52.6
-        last_election.result.voting = 155
-        last_election.result.rate_voting = 47.4
-        last_election.result.blank_balot = 4
-        last_election.result.rate_blank_registered = 1.22
-        last_election.result.rate_blank_voting = 2.58
-        last_election.result.null_ballot = 5
-        last_election.result.rate_null_registered = 1.53
-        last_election.result.rate_null_voting = 3.23
-        last_election.result.expressed = 146
-        last_election.result.rate_express_registered = 44.65
-        last_election.result.rate_express_voting = 94.19
+        last_election.second_result = self.get_result("Complet", 2, 327, 172, 52.6, 155, 47.4, 4, 1.22, 2.58, 5, 
+                       1.53, 3.23, 146, 44.65, 94.19) 
         first_candidate = CandidateModel()
         first_candidate.last_name = 'GUÉRAUD'
         first_candidate.first_name = 'Sébastien'

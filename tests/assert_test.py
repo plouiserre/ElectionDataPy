@@ -40,7 +40,7 @@ class AssertTest :
         deputy_data_check = result_data_check[14:19]
         self.__assert_basic_deputy_infos(deputy_data_check, result_data_model.deputies[0])
         result_data_check = result_data_check[19 : 35]
-        self.assert_result_data_rounds_result(result_data_check, result_data_model.result)
+        self.assert_result_data_rounds_result(result_data_check, result_data_model.first_result)
         
     def __assert_all_candidates(self, candidate_context_check, candidate_model) : 
         self.unit_test.assertEqual(candidate_context_check[0], candidate_model.first_name)
@@ -73,7 +73,10 @@ class AssertTest :
         district_data_check = election_data_check[2 : 4]
         self.__assert_candidate_district_first_round_result(district_data_check, election_data_model.district)
         result_data_check = election_data_check[4 : 20]
-        self.assert_result_data_rounds_result(result_data_check, election_data_model.result)
+        if election_data_model.first_result != None and election_data_model.first_result.state_compute != '':
+            self.assert_result_data_rounds_result(result_data_check, election_data_model.first_result)
+        else : 
+            self.assert_result_data_rounds_result(result_data_check, election_data_model.second_result)            
         limit_candidate = 19 + self.candidates_number * 9
         candidates_data_check = election_data_check[20 : limit_candidate]
         return candidates_data_check

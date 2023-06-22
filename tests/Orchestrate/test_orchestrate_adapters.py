@@ -62,7 +62,7 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         first_election_data.department = first_department
         first_election_data.district = first_district
         first_election_data.candidates.append(first_candidate)
-        first_election_data.result = helper.get_result("Completed", 1, 4654321, 56123, 10.5, 3561234, 95.5, 1234, 30.1, 12.15, 123, 1.01, 0.75, 7456, 0.345, 0.042)        
+        first_election_data.first_result = helper.get_result("Completed", 1, 4654321, 56123, 10.5, 3561234, 95.5, 1234, 30.1, 12.15, 123, 1.01, 0.75, 7456, 0.345, 0.042)        
         second_department = helper.get_department("Nord",59)
         second_district = helper.get_district("13ème circonscription", 13)   
         second_district.department = second_department
@@ -74,7 +74,7 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         second_election_data.department = second_department
         second_election_data.district = second_district
         second_election_data.candidates.append(second_candidate)
-        second_election_data.result = helper.get_result("Completed", 1, 897465143, 561023, 9.5, 857465143, 75.5, 134, 3.01,  9.15, 103, 0.91, 0.65, 6456, 0.245, 0.032)
+        second_election_data.first_result = helper.get_result("Completed", 1, 897465143, 561023, 9.5, 857465143, 75.5, 134, 3.01,  9.15, 103, 0.91, 0.65, 6456, 0.245, 0.032)
         
         candidates = [first_election_data, second_election_data]
         
@@ -163,7 +163,7 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         third_election_data.department = third_department
         third_election_data.district = third_district
         third_election_data.candidates.append(third_candidate)
-        third_election_data.result = helper.get_result("Completed", 1, 15132134, 46123, 30.5, 2561234, 75.5, 666, 20.1, 8.15, 113, 0.71, 0.85, 8456, 0.245, 0.052)
+        third_election_data.first_result = helper.get_result("Completed", 1, 15132134, 46123, 30.5, 2561234, 75.5, 666, 20.1, 8.15, 113, 0.71, 0.85, 8456, 0.245, 0.052)
         
         fourth_department = helper.get_department("Hautes Seine", 92)
         fourth_district = helper.get_district("8ème circonscription", 8) 
@@ -176,7 +176,7 @@ class OrchestrateStoreAdaptersTest(unittest.TestCase):
         fourth_election_data.department = fourth_department
         fourth_election_data.district = fourth_district
         fourth_election_data.candidates.append(fourth_candidate)
-        fourth_election_data.result = helper.get_result("Completed", 1, 4635123, 45646, 19.5, 646543, 66.4, 234, 5.01,  19.15, 93, 1.91, 0.55, 5456, 0.235, 0.032)
+        fourth_election_data.first_result = helper.get_result("Completed", 1, 4635123, 45646, 19.5, 646543, 66.4, 234, 5.01,  19.15, 93, 1.91, 0.55, 5456, 0.235, 0.032)
         
         candidates.append(third_election_data)
         candidates.append(fourth_election_data)

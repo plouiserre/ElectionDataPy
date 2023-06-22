@@ -47,7 +47,7 @@ class CreatorElectionDataSecondRound(CreatorElectionData) :
     
     def _get_result_model(self) : 
         creator_result = CreatorResultSecondRound(self.last_election_data_created)
-        self.election_data.result = creator_result.factory_method(self.datas)
+        self.election_data.second_result = creator_result.factory_method(self.datas)
         self.all_last_elements_created["result"] = creator_result.last_element_created
     
     
@@ -69,7 +69,7 @@ class CreatorElectionDataSecondRound(CreatorElectionData) :
     def __get_last_element_created(self) : 
         self.last_element_created.department = self.election_data.department
         self.last_element_created.district = self.election_data.district
-        self.last_element_created.result = self.all_last_elements_created["result"]
+        self.last_element_created.second_result = self.all_last_elements_created["result"]
         self.last_element_created.candidates.append(self.all_last_elements_created["first_candidate"])
         if len(self.all_last_elements_created) >= 3 :  
          self.last_element_created.candidates.append(self.all_last_elements_created["second_candidate"])

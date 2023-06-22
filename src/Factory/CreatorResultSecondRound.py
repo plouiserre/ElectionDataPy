@@ -179,4 +179,4 @@ class CreatorResultSecondRound(CreatorResult) :
     
     def __get_results_from_last_election_data_created(self) :
         for data in self.last_election_data_created :
-            self.results_from_last_datas.append(data.result)
+            self.results_from_last_datas.append(data.second_result)

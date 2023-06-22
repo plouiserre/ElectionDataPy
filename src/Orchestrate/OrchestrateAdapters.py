@@ -38,6 +38,6 @@ class OrchestrateAdapters :
                             candidate_stored.vote_first_round = candidate.vote_first_round
                             candidate_stored.rate_vote_registered_first_round = candidate.rate_vote_registered_first_round
                             candidate_stored.rate_vote_expressed_first_round = candidate.rate_vote_expressed_first_round
-                            candidates_stored.result = elections_data.result
+                            candidates_stored.first_result = elections_data.first_result
         return self.__candidates_with_all_datas
                     

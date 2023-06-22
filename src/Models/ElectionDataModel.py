@@ -9,4 +9,5 @@ class ElectionDataModel :
         self.district = DistrictModel()
         self.candidates = []
         self.deputies = []
-        self.result = ResultModel()        
+        self.first_result = ResultModel()
+        self.second_result = ResultModel()        

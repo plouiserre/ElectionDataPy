@@ -7,8 +7,6 @@ from tests.helper_test import HelperTest
 
 class CreatorResultSecondRoundTest(unittest.TestCase) :
     
-    #TODO quand j'aurai fait toute la chaîne il faudra surement modifier les results_data
-    #TODO factoriser la partie get result
     def test_creator_first_line(self) :
         creator = CreatorResultSecondRound([])
         

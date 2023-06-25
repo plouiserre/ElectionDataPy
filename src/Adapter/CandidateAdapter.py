@@ -1,5 +1,5 @@
 from src.Adapter.Adapter import Adapter
-from src.Factory.CreatorElectionData import CreatorElectionData 
+from src.Factory.CreatorElectionDataCandidatesList import CreatorElectionDataCandidatesList 
 
 
 class CandidateAdapter(Adapter) : 
@@ -18,7 +18,7 @@ class CandidateAdapter(Adapter) :
     def extracts_datas_from_files(self) : 
         excel_elections_datas = self.excel_manager.import_elections_datas(self.pd)       
         elections_datas = []
-        creator = CreatorElectionData(self.parties)
+        creator = CreatorElectionDataCandidatesList(self.parties)
             
         for index in range(len(excel_elections_datas)) : 
             last_election_data_created = creator.last_election_data_created

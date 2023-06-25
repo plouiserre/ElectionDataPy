@@ -1,6 +1,7 @@
 class ResultModel : 
     def __init__(self) :
         self.state_compute = ""
+        self.round_number = 0
         self.registered = 0
         self.abstaining = 0
         self.rate_abstaining = 0.0

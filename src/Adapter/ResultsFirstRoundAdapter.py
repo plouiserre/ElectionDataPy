@@ -1,6 +1,6 @@
 from src.Adapter.Adapter import Adapter
 
-from src.Factory.CreatorElectionData import CreatorElectionData
+from src.Factory.CreatorElectionDataFirstRound import CreatorElectionDataFirstRound
 
 class ResultsFirstRoundAdapter(Adapter) : 
     def __init__(self, panda_lib, excel_manager):
@@ -17,8 +17,8 @@ class ResultsFirstRoundAdapter(Adapter) :
         all_datas_from_first_round = []
         
         for data_each_line in datas_from_excel : 
-            creator = CreatorElectionData(None)
-            data_election_first_round = creator.factory_method_first_round(data_each_line)
+            creator = CreatorElectionDataFirstRound(None)
+            data_election_first_round = creator.factory_method(data_each_line)
             all_datas_from_first_round.append(data_election_first_round)
             
         return all_datas_from_first_round

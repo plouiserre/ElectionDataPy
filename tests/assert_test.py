@@ -79,7 +79,6 @@ class AssertTest :
         self.unit_test.assertEqual(candidate_context_check[12], candidate_model.rate_vote_expressed_second_round)
         
         
-    #TODO rewrite this part with return candidates_data_check
     def assert_election_data_model_first_round_result(self, election_data_check, election_data_model) :
         candidates_data_check = self.__assert_election_data_model_from_rounds_result_with_candidates_data_check(election_data_check, election_data_model)
         self.__assert_candidates_from_first_round_result(candidates_data_check, election_data_model.candidates)
@@ -90,7 +89,6 @@ class AssertTest :
         self.__assert_candidates_from_second_round_result(candidates_data_check, election_data_model.candidates)
           
         
-    #TODO rename all methods inside this methods
     def __assert_election_data_model_from_rounds_result_with_candidates_data_check(self, election_data_check, election_data_model) :
         department_data_check = election_data_check[0 : 2]
         self.__assert_candidate_department_first_round_result(department_data_check, election_data_model.department)
@@ -117,7 +115,6 @@ class AssertTest :
         self.unit_test.assertEqual(district_data_context_check[0], district_model.number)
         self.unit_test.assertEqual(district_data_context_check[1], district_model.name)
         
-    #TODO refactore between first and second rounds methods
     def __assert_candidates_from_first_round_result(self, candidates_context_check, candidates_model):
         self.unit_test.assertEqual(len(candidates_model), self.candidates_number)
         index = 0
@@ -128,7 +125,6 @@ class AssertTest :
             index += 1
             
             
-    #TODO rename this method
     def assert_election_data_first_round_result(self, candidate_context_check, candidate_model) :
         self.unit_test.assertEqual(candidate_context_check[1], candidate_model.sexe)
         self.unit_test.assertEqual(candidate_context_check[2], candidate_model.last_name)

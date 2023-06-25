@@ -7,8 +7,8 @@ class CandidateRepository :
         
         mycursor = mydb.cursor()
         for candidate in candidates : 
-            sql = "INSERT INTO ELECTIONSCONGRESSMANS.CANDIDATE(CandidateLastName, CandidateFirstName, CandidateSexe, CandidateBirthDate, PartyId, DistrictId, Job, OldCandidate, VoteFirstRound, RateVoteExpressedFirstRound, RateVoteRegisteredFirstRound) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            val = (candidate.last_name, candidate.first_name, candidate.sexe, candidate.birthdate, candidate.party_id, candidate.district_id, candidate.job, candidate.is_sorting, candidate.vote_first_round, candidate.rate_vote_registered_first_round, candidate.rate_vote_expressed_first_round)
+            sql = "INSERT INTO ELECTIONSCONGRESSMANS.CANDIDATE(CandidateLastName, CandidateFirstName, CandidateSexe, CandidateBirthDate, PartyId, DistrictId, Job, OldCandidate, VoteFirstRound, RateVoteExpressedFirstRound, RateVoteRegisteredFirstRound, VoteSecondRound, RateVoteExpressedSecondRound, RateVoteRegisteredSecondRound) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            val = (candidate.last_name, candidate.first_name, candidate.sexe, candidate.birthdate, candidate.party_id, candidate.district_id, candidate.job, candidate.is_sorting, candidate.vote_first_round, candidate.rate_vote_registered_first_round, candidate.rate_vote_expressed_first_round, candidate.vote_second_round, candidate.rate_vote_registered_second_round, candidate.rate_vote_expressed_second_round)
             mycursor.execute(sql, val)
             candidate.id = mycursor.lastrowid
             

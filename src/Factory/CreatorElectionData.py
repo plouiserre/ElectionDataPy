@@ -31,7 +31,6 @@ class CreatorElectionData() :
     def _get_result_model(self) : 
         pass
         
-    #TODO delete round_number
     def _get_candidates_model(self, round_number) : 
         creator_candidates = CreatorCandidates()
         self.election_data.candidates = creator_candidates.factory_method(self.datas)

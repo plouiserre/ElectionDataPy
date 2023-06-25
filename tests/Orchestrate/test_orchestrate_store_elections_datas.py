@@ -4,7 +4,6 @@ from mock import Mock
 from src.Orchestrate.OrchestrateStoreElectionsDatas import OrchestrateStoreElectionsDatas
 from src.Dependency.Dependency import Dependency
 
-#TODO how to test if the calls externs are bad formated
 class OrchestrateStoreElectionsDatasTest(unittest.TestCase):
     
     def getIterablesObject(*args) : 

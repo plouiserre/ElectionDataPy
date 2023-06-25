@@ -74,7 +74,6 @@ class CreatorResultSecondRound(CreatorResult) :
         self.result.rate_express_voting = round((self.__get_rate_express_voting_from_all_last_election_datas() + float(self.data[17])) / (len(self.last_election_data_created) + 1), 3)  
         
         
-    #TODO factorize with first round result
     def __get_results_numbers_global_with_last_election_data_created(self, datas) :
         datas_split = datas.split(" ")
         self.result.registered = int(datas_split[0]) + self.__get_registered_from_all_last_election_datas()

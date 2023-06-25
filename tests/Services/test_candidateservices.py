@@ -6,10 +6,7 @@ from src.Models.DistrictModel import DistrictModel
 from src.Models.DepartmentModel import DepartmentModel
 from tests.helper_test import HelperTest
 
-#TODO rework this UT
 class CandidatesServicesTest(unittest.TestCase) : 
-    #TODO dans la liste des districts ajouter le lien des départements et ajouter deux distrits bidons (un rien à voir rien avec tout à voir sauf le dep et en première place)
-    #TODO cleaner 
     def test_call_candidate_repository(self) : 
         helper = HelperTest()
         candidates = helper.get_two_elections_data_model()

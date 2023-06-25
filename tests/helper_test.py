@@ -265,7 +265,6 @@ class HelperTest :
         return last_elections
     
     
-    #TODO use get_result for next two methods
     def get_two_cities_data_first_department_first_district_last_election_data_model(self) :
         first_last_election = self.__get_first_last_election_datas()
        
@@ -353,7 +352,6 @@ class HelperTest :
         return result
     
     
-    #TODO factoriser with __get_election_data_from_second_round_adapter_two_candidates
     def get_election_data_from_first_round_adapter_two_candidates(self) :        
         first_department = self.get_department("Aisne",2)
         first_district = self.get_district("4ème circonscription", 4) 

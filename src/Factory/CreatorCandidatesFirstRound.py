@@ -10,7 +10,6 @@ class CreatorCandidatesFirstRound(CreatorCandidates) :
         candidates = super().factory_method(candidates_data)
         return candidates
     
-    #TODO try factorise with second round method
     def _get_candidate_model(self, candidates_data, index) : 
         candidate = CandidateModel()
         index_candidate = index*9+ self.start_index_candidates

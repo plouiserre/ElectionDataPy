@@ -30,7 +30,7 @@ class AssertTest :
         self.unit_test.assertEqual(election_data_check[7], election_data_model.deputies[0].candidate.first_name)
         
         
-    def assert_result_data_model_with_all_infos(self, result_data_check, result_data_model) : 
+    def assert_result_data_model_with_infos_from_list_first_round(self, result_data_check, result_data_model) : 
         department_data_check = result_data_check[0 : 2]
         self.__assert_candidate_department_first_round_result(department_data_check, result_data_model.department)
         district_data_check = result_data_check[2 : 4]
@@ -41,6 +41,7 @@ class AssertTest :
         self.__assert_basic_deputy_infos(deputy_data_check, result_data_model.deputies[0])
         result_data_check = result_data_check[19 : 35]
         self.assert_result_data_rounds_result(result_data_check, result_data_model.first_result)
+        
         
     def __assert_all_candidates(self, candidate_context_check, candidate_model) : 
         self.unit_test.assertEqual(candidate_context_check[0], candidate_model.first_name)
@@ -53,6 +54,29 @@ class AssertTest :
         self.unit_test.assertEqual(candidate_context_check[7], candidate_model.vote_first_round)
         self.unit_test.assertEqual(candidate_context_check[8], candidate_model.rate_vote_registered_first_round)
         self.unit_test.assertEqual(candidate_context_check[9], candidate_model.rate_vote_expressed_first_round)
+        
+        
+    def assert_result_data_model_with_all_infos(self, result_data_check, result_data_model) : 
+        department_data_check = result_data_check[0 : 2]
+        self.__assert_candidate_department_first_round_result(department_data_check, result_data_model.department)
+        district_data_check = result_data_check[2 : 4]
+        self.__assert_candidate_district_first_round_result(district_data_check, result_data_model.district)
+        election_data_check = result_data_check[4 : 17]
+        self.__assert_all_candidates_all_infos(election_data_check, result_data_model.candidates[0])
+        deputy_data_check = result_data_check[17:22]
+        self.__assert_basic_deputy_infos(deputy_data_check, result_data_model.deputies[0])
+        first_result_data_check = result_data_check[22 : 38]
+        self.assert_result_data_rounds_result(first_result_data_check, result_data_model.first_result)
+        second_result_data_check = result_data_check[38 : 54]
+        self.assert_result_data_rounds_result(second_result_data_check, result_data_model.second_result)
+        
+        
+    def __assert_all_candidates_all_infos(self, candidate_context_check, candidate_model) : 
+        candidate_context_check_without_second_round = candidate_context_check[0 : 10]
+        self.__assert_all_candidates(candidate_context_check_without_second_round, candidate_model)
+        self.unit_test.assertEqual(candidate_context_check[10], candidate_model.vote_second_round)
+        self.unit_test.assertEqual(candidate_context_check[11], candidate_model.rate_vote_registered_second_round)
+        self.unit_test.assertEqual(candidate_context_check[12], candidate_model.rate_vote_expressed_second_round)
         
         
     #TODO rewrite this part with return candidates_data_check

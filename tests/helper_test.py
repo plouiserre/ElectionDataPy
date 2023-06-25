@@ -351,3 +351,168 @@ class HelperTest :
         result.rate_express_registered = rate_express_registered
         result.rate_express_voting = rate_express_voting
         return result
+    
+    
+    #TODO factoriser with __get_election_data_from_second_round_adapter_two_candidates
+    def get_election_data_from_first_round_adapter_two_candidates(self) :        
+        first_department = self.get_department("Aisne",2)
+        first_district = self.get_district("4ème circonscription", 4) 
+        first_district.department = first_department
+        first_candidate = self.get_candidate("Wednesday", None, None, None, "Addams", 0, "F")
+        first_candidate.vote_first_round = 5463213
+        first_candidate.rate_vote_registered_first_round = 12.65
+        first_candidate.rate_vote_expressed_first_round = 9.24
+        first_election_data = ElectionDataModel()
+        first_election_data.department = first_department
+        first_election_data.district = first_district
+        first_election_data.candidates.append(first_candidate)
+        first_election_data.first_result = self.get_result("Completed", 1, 4654321, 56123, 10.5, 3561234, 95.5, 1234, 30.1, 12.15, 123, 1.01, 0.75, 7456, 0.345, 0.042)        
+        second_department = self.get_department("Nord",59)
+        second_district = self.get_district("13ème circonscription", 13)   
+        second_district.department = second_department
+        second_candidate = self.get_candidate("Thomas",  None, None, None, "Shelby", 0, "M")
+        second_candidate.vote_first_round = 614651432
+        second_candidate.rate_vote_registered_first_round = 37.95
+        second_candidate.rate_vote_expressed_first_round = 35.57  
+        second_election_data = ElectionDataModel()
+        second_election_data.department = second_department
+        second_election_data.district = second_district
+        second_election_data.candidates.append(second_candidate)
+        second_election_data.first_result = self.get_result("Completed", 1, 897465143, 561023, 9.5, 857465143, 75.5, 134, 3.01,  9.15, 103, 0.91, 0.65, 6456, 0.245, 0.032)
+        
+        candidates = [first_election_data, second_election_data]
+        
+        return candidates
+    
+    
+    def get_election_data_from_second_round_adapter_two_candidates(self) :
+        first_department = self.get_department("Aisne",2)
+        first_district = self.get_district("4ème circonscription", 4) 
+        first_district.department = first_department
+        first_candidate = self.get_candidate("Wednesday", None, None, None, "Addams", 0, "F")
+        first_candidate.vote_second_round = 21463213
+        first_candidate.rate_vote_registered_second_round = 36.65
+        first_candidate.rate_vote_expressed_second_round = 19.24
+        first_election_data = ElectionDataModel()
+        first_election_data.department = first_department
+        first_election_data.district = first_district
+        first_election_data.candidates.append(first_candidate)
+        first_election_data.second_result = self.get_result("Completed", 2, 4654321, 56123, 10.5, 3561234, 95.5, 1234, 30.1, 12.15, 123, 1.01, 0.75, 7456, 0.345, 0.042)        
+        
+        second_department = self.get_department("Nord",59)
+        second_district = self.get_district("13ème circonscription", 13)   
+        second_district.department = second_department
+        second_candidate = self.get_candidate("Thomas",  None, None, None, "Shelby", 0, "M")
+        second_candidate.vote_second_round = 9014651432
+        second_candidate.rate_vote_registered_second_round = 63.05
+        second_candidate.rate_vote_expressed_second_round = 38.57  
+        second_election_data = ElectionDataModel()
+        second_election_data.department = second_department
+        second_election_data.district = second_district
+        second_election_data.candidates.append(second_candidate)
+        second_election_data.second_result = self.get_result("Completed", 2, 897465143, 561023, 9.5, 857465143, 75.5, 134, 3.01,  9.15, 103, 0.91, 0.65, 6456, 0.245, 0.032)
+        
+        candidates = [first_election_data, second_election_data]
+        
+        return candidates
+    
+    
+    def get_election_data_from_candidate_adapter_four_candidates(self) : 
+        candidates = self.get_two_elections_data_model()
+        
+        third_election_data = ElectionDataModel()
+        third_department = self.get_department("Gironde", 33)
+        third_district = self.get_district("6ème circonscription", 6)
+        third_candidate = self.get_candidate("Penny", datetime.datetime(1985,11,30), True, "Sales", "Hofstadter", 5, "F")
+        third_deputy = self.get_deputy("Sheldon", "Cooper", datetime.datetime(1974,3,24),"M",False)
+        third_election_data.candidates.append(third_candidate)
+        third_election_data.department = third_department
+        third_election_data.deputies.append(third_deputy)
+        third_election_data.district = third_district
+        
+        fourth_election_data = ElectionDataModel()
+        fourth_department = self.get_department("Hautes Seine", 92)
+        fourth_district = self.get_district("8ème circonscription", 8)
+        fourth_candidate = self.get_candidate("Robin", datetime.datetime(1982,4,3), False, "Journaliste", "Scherbatsky", 4, "F")
+        fourth_deputy = self.get_deputy("Lily", "Aldrin", datetime.datetime(1974,3,24),"F",False)
+        fourth_election_data.candidates.append(fourth_candidate)
+        fourth_election_data.department = fourth_department
+        fourth_election_data.deputies.append(fourth_deputy)
+        fourth_election_data.district = fourth_district
+        
+        candidates.append(third_election_data)
+        candidates.append(fourth_election_data)
+        
+        return candidates
+    
+    
+    def get_election_data_from_first_round_adapter_four_candidates(self) : 
+        candidates = self.get_election_data_from_first_round_adapter_two_candidates()
+        
+        third_department = self.get_department("Gironde", 33)
+        third_district = self.get_district("6ème circonscription", 6)
+        third_district.department = third_department
+        third_candidate = self.get_candidate("Penny", None, None, None, "Hofstadter", 0, "F")
+        third_candidate.vote_first_round = 46513465
+        third_candidate.rate_vote_registered_first_round = 65.65
+        third_candidate.rate_vote_expressed_first_round = 5624
+        third_election_data = ElectionDataModel()
+        third_election_data.department = third_department
+        third_election_data.district = third_district
+        third_election_data.candidates.append(third_candidate)
+        third_election_data.first_result = self.get_result("Completed", 1, 15132134, 46123, 30.5, 2561234, 75.5, 666, 20.1, 8.15, 113, 0.71, 0.85, 8456, 0.245, 0.052)
+        
+        fourth_department = self.get_department("Hautes Seine", 92)
+        fourth_district = self.get_district("8ème circonscription", 8) 
+        fourth_district.department = fourth_department
+        fourth_candidate = self.get_candidate("Robin",  None, None, None, "Scherbatsky", 0, "F")
+        fourth_candidate.vote_first_round = 96513465
+        fourth_candidate.rate_vote_registered_first_round = 91.05
+        fourth_candidate.rate_vote_expressed_first_round = 46.512
+        fourth_election_data = ElectionDataModel()
+        fourth_election_data.department = fourth_department
+        fourth_election_data.district = fourth_district
+        fourth_election_data.candidates.append(fourth_candidate)
+        fourth_election_data.first_result = self.get_result("Completed", 1, 4635123, 45646, 19.5, 646543, 66.4, 234, 5.01,  19.15, 93, 1.91, 0.55, 5456, 0.235, 0.032)
+        
+        candidates.append(third_election_data)
+        candidates.append(fourth_election_data)
+        
+        return candidates
+    
+    
+    def get_election_data_from_second_round_adapter_four_candidates(self) : 
+        elections_data = self.get_election_data_from_second_round_adapter_two_candidates()
+        
+        third_department = self.get_department("Gironde", 33)
+        third_district = self.get_district("6ème circonscription", 6)
+        third_district.department = third_department
+        third_candidate = self.get_candidate("Penny", None, None, None, "Hofstadter", 0, "F")
+        third_candidate.vote_second_round = 46513465
+        third_candidate.rate_vote_registered_second_round = 65.65
+        third_candidate.rate_vote_expressed_second_round = 5624
+        third_election_data = ElectionDataModel()
+        third_election_data.department = third_department
+        third_election_data.district = third_district
+        third_election_data.candidates.append(third_candidate)
+        third_election_data.first_result = self.get_result("Completed", 1, 15132134, 46123, 30.5, 2561234, 75.5, 666, 20.1, 8.15, 113, 0.71, 0.85, 8456, 0.245, 0.052)
+        third_election_data.second_result = self.get_result("Completed", 2, 15132134, 46123, 30.5, 2561234, 75.5, 666, 20.1, 8.15, 113, 0.71, 0.85, 8456, 0.245, 0.052)
+        
+        fourth_department = self.get_department("Hautes Seine", 92)
+        fourth_district = self.get_district("8ème circonscription", 8) 
+        fourth_district.department = fourth_department
+        fourth_candidate = self.get_candidate("Robin",  None, None, None, "Scherbatsky", 0, "F")
+        fourth_candidate.vote_second_round = 96513465
+        fourth_candidate.rate_vote_registered_second_round = 91.05
+        fourth_candidate.rate_vote_expressed_second_round = 46.512
+        fourth_election_data = ElectionDataModel()
+        fourth_election_data.department = fourth_department
+        fourth_election_data.district = fourth_district
+        fourth_election_data.candidates.append(fourth_candidate)
+        fourth_election_data.first_result = self.get_result("Completed", 1, 4635123, 45646, 19.5, 646543, 66.4, 234, 5.01,  19.15, 93, 1.91, 0.55, 5456, 0.235, 0.032)
+        fourth_election_data.second_result = self.get_result("Completed", 2, 4635123, 45646, 19.5, 646543, 66.4, 234, 5.01,  19.15, 93, 1.91, 0.55, 5456, 0.235, 0.032)
+        
+        elections_data.append(third_election_data)
+        elections_data.append(fourth_election_data)
+        
+        return elections_data

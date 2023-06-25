@@ -13,15 +13,9 @@ from src.Services.ResultServices import ResultServices
 class ResultServicesTest(unittest.TestCase) : 
     def test_results_data_district_id_with_one_elections_data_with_first_result(self) :
         dependency = Mock()
-        first_election_data_model = ElectionDataModel()
-        first_election_data_model.district = DistrictModel()
-        first_election_data_model.district.name = '2ème circonscription'
-        first_election_data_model.district.number = 2
-        first_election_data_model.first_result = ResultModel()
-       
+        first_election_data_model = self.__get_simple_election_data_model(2, '2ème circonscription')
         
         election_datas_model = [first_election_data_model]
-        
         
         first_district = DistrictModel()
         first_district.name = '2ème circonscription'
@@ -38,20 +32,11 @@ class ResultServicesTest(unittest.TestCase) :
         
     def test_results_data_district_id_with_two_elections_data_with_first_result(self) :
         dependency = Mock()
-        first_election_data_model = ElectionDataModel()
-        first_election_data_model.district = DistrictModel()
-        first_election_data_model.district.name = '2ème circonscription'
-        first_election_data_model.district.number = 2
-        first_election_data_model.first_result = ResultModel()
+        first_election_data_model = self.__get_simple_election_data_model(2, '2ème circonscription')
         
-        second_election_data_model = ElectionDataModel()
-        second_election_data_model.district = DistrictModel()
-        second_election_data_model.district.name = '9ème circonscription'
-        second_election_data_model.district.number = 9
-        second_election_data_model.first_result = ResultModel()
+        second_election_data_model = self.__get_simple_election_data_model(9, '9ème circonscription')
         
         election_datas_model = [first_election_data_model, second_election_data_model]
-        
         
         first_district = DistrictModel()
         first_district.name = '2ème circonscription'
@@ -74,11 +59,7 @@ class ResultServicesTest(unittest.TestCase) :
         
     def test_results_data_district_id_with_two_elections_data_with_first_second_results(self) :
         dependency = Mock()
-        first_election_data_model = ElectionDataModel()
-        first_election_data_model.district = DistrictModel()
-        first_election_data_model.district.name = '2ème circonscription'
-        first_election_data_model.district.number = 2
-        first_election_data_model.first_result = ResultModel()
+        first_election_data_model = self.__get_simple_election_data_model(2, '2ème circonscription')
         
         second_election_data_model = ElectionDataModel()
         second_election_data_model.district = DistrictModel()
@@ -86,11 +67,7 @@ class ResultServicesTest(unittest.TestCase) :
         second_election_data_model.district.number = 5
         second_election_data_model.second_result = ResultModel()
         
-        third_election_data_model = ElectionDataModel()
-        third_election_data_model.district = DistrictModel()
-        third_election_data_model.district.name = '9ème circonscription'
-        third_election_data_model.district.number = 9
-        third_election_data_model.first_result = ResultModel()
+        third_election_data_model = self.__get_simple_election_data_model(9, '9ème circonscription')
         third_election_data_model.second_result = ResultModel()
         
         election_datas_model = [first_election_data_model, second_election_data_model, third_election_data_model]
@@ -168,6 +145,15 @@ class ResultServicesTest(unittest.TestCase) :
         
         self.assertEqual(234, election_datas_model[0].first_result.district_id)
         self.assertEqual(666, election_datas_model[1].first_result.district_id)
+        
+        
+    def __get_simple_election_data_model(self, district_number, district_name) : 
+        election_data_model = ElectionDataModel()
+        election_data_model.district = DistrictModel()
+        election_data_model.district.name = district_name
+        election_data_model.district.number = district_number
+        election_data_model.first_result = ResultModel()
+        return election_data_model
         
         
     def test_result_repository_called(self) :

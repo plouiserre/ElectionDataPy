@@ -52,12 +52,6 @@ CREATE TABLE IF NOT EXISTS CANDIDATE(
     Job VARCHAR(150),
     OldCandidate BIT,
     DistrictId INT NOT NULL,
-    VoteFirstRound INT,
-    RateVoteExpressedFirstRound FLOAT,
-    RateVoteRegisteredFirstRound FLOAT,
-    VoteSecondRound INT,
-    RateVoteExpressedSecondRound FLOAT,
-    RateVoteRegisteredSecondRound FLOAT,
     FOREIGN KEY (PartyId) REFERENCES PARTY(PartyId),
     FOREIGN KEY (DistrictId) REFERENCES DISTRICT(DistrictId)
 );
